@@ -1,9 +1,9 @@
-source = $(wildcard *.cpp)
+source = $(wildcard ./src/*.cpp)
 
 .PHONY: all clean
 all: main 
 main: $(source)
-	g++ $^ -I . -o $@
+	g++ $^ -I ./include/ -o $@
 
 clean: 
 	rm main

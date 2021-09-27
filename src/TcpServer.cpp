@@ -15,73 +15,65 @@
 
 
 TcpServer::TcpServer(EventPoll* my_epoll, const int my_port, const string my_addr) {
-    epoll = my_epoll;
-    port = my_port;
-    addr = my_addr;
+    epoll_ = my_epoll;
+    port_ = my_port;
+    addr_ = my_addr;
     establish();
 }
 
 int TcpServer::establish(void) {
     /* server address information */
-    memset(&serverAddr, 0, sizeof(serverAddr));
-    serverAddr.sin_family = AF_INET;
-    serverAddr.sin_port = htons(port);
-    serverAddr.sin_addr.s_addr = inet_addr(addr.c_str());
+    memset(&serverAddr_, 0, sizeof(struct sockaddr));
+    serverAddr_.sin_family = AF_INET;
+    serverAddr_.sin_port = htons(port_);
+    serverAddr_.sin_addr.s_addr = inet_addr(addr_.c_str());
     int on = 1;
 
-    /* 1: create socket */
-    if (0 > (listenfd = socket(AF_INET, SOCK_STREAM, 0))) {
+    if (0 > (listen_fd_ = socket(AF_INET, SOCK_STREAM, 0))) {
         perror("TCP:socket");
         return -1;
     }
     // reuse io
-    setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on));
+    setsockopt(listen_fd_, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on));
     cout << "1: socket OK" << endl;
 
-    /* 2: bind serveraddr and socket */
-    if (0 > bind(listenfd, (struct sockaddr *)&serverAddr, sizeof(struct sockaddr))) {
+    if (0 > bind(listen_fd_, (struct sockaddr *)&serverAddr_, sizeof(struct sockaddr))) {
         perror("TCP:bind");
         return -1;
     }
     cout << "2: bind OK" << endl;
 
-    /* 3: set listen config */
-    if (0 > listen(listenfd, 100)) {
+    if (0 > listen(listen_fd_, 100)) {
         perror("TCP:listen");
         return -1;
     }
     cout << "3: listen OK" << endl;
 
-    /* 4: add listen Event */
-    if (0 > (epoll -> addEvent(this, listenfd, EPOLLIN | EPOLLET, this -> listenCli))) {
+    if (0 > (epoll_ -> addEvent(this, listen_fd_, EPOLLIN | EPOLLET, this -> listenCli))) {
         perror("TCP:add listen Event");
     }
     cout << "4: add listen Event OK" << endl;
 
-    return listenfd;
+    return listen_fd_;
 }
 
 int TcpServer::listenCli(void* server, int fd) {
     TcpServer* Server = (TcpServer*)server;
-    if (fd != Server -> listenfd) {
+    if (fd != Server -> listen_fd_) {
         return -1;
     }
+
     int socklen = sizeof(struct sockaddr);
-    if (0 > (Server -> acceptfd = accept(Server -> listenfd, (struct sockaddr *)&(Server -> clientAddr), (socklen_t *)&socklen))) {
+    if (0 > (Server -> connet_fd_ = accept(Server -> listen_fd_, (struct sockaddr *)&(Server -> clientAddr_), (socklen_t *)&socklen))) {
         return -1;
     }
-    Server -> epoll -> addEvent(Server, Server -> acceptfd, EPOLLIN | EPOLLET, Server -> receive);
-    printf("8: accpet OK\n");
+    cout << "accept" <<  Server -> connet_fd_ << endl;
+    Server -> callback_(Server -> usr_data_, Server -> connet_fd_);
+
     return 0;
 }
 
-int TcpServer::receive(void* server, int fd) {
-    TcpServer* Server = (TcpServer*)server;
-    if (Server -> acceptfd == fd){
-        memset(Server -> buff, 0, sizeof(Server -> buff));
-        recv(fd, Server -> buff, sizeof(Server -> buff), 0);
-        printf("s:%s", Server -> buff);
-    }
-    return 0;
+void TcpServer::addConnect(void* usr_data, SERCALLBACK callback) {
+    usr_data_ = usr_data;
+    callback_ = callback;
 }
-

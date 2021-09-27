@@ -25,9 +25,9 @@
 #include <functional>
 #include <map>
 #include "EventPoll.h"
-
+#include "TcpClient.h"
 using namespace std;
-
+using SERCALLBACK = function<int(void* usr_data, int fd)>;
 
 // create TCP server class
 class TcpServer{
@@ -35,16 +35,19 @@ public:
     TcpServer(EventPoll* my_epoll, const int my_port, const string my_addr);
     int establish(void);
     static int listenCli(void* server, int fd);
-    static int receive(void* server, int fd);
+    void addConnect(void* usr_data, SERCALLBACK callback);
 private:
-    int port = 0;
-    string addr = "";
-    int listenfd = -1;
-    int acceptfd = -1;
-    struct sockaddr_in serverAddr = {0};
-    struct sockaddr_in clientAddr = {0};
-    char buff[1024] = {0};
-    EventPoll* epoll = NULL;
+    EventPoll* epoll_ = NULL;
+    int port_ = 0;
+    string addr_ = "";
+    int listen_fd_ = -1;
+    int connet_fd_ = -1;
+    struct sockaddr_in serverAddr_ = {0};
+    struct sockaddr_in clientAddr_ = {0};
+    char buff_[1024] = {0};
+    SERCALLBACK callback_ = NULL;
+    void* usr_data_ = NULL;
+    
 };
 
 

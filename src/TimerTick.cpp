@@ -1,40 +1,40 @@
 #include <iostream>
 #include "TimerTick.h"
+#include "Logger.h"
 
-
-TimerTick::TimerTick(EventPoll* my_epoll, int ms) {
+TimerTick::TimerTick(EventPoll* my_epoll, int ms, TIMER_MODE timer_mode) {
     epoll_ = my_epoll;
     set_ms_ = ms;
+    timer_mode_ = timer_mode;
     timerInit();
 }
 
 int TimerTick::timerInit(void) {
-    struct timespec start = {0};
-    if(0 > clock_gettime(CLOCK_REALTIME_COARSE, &start)) {
+    struct timeval start = {0};
+    if (0 > gettimeofday(&start, NULL)) {
         perror("TimerInit");
         return -1;
     }
-    start_time_ms_ = start.tv_sec * 1000 + start.tv_nsec / (1000 * 1000);
-    end_time_ms_ = start_time_ms_ + set_ms_;
-    epoll_ -> addTimer(this, timerRun);
+    end_time_ms_ = start.tv_sec * 1000 + start.tv_usec / 1000 + set_ms_;
+    epoll_->addTimer(this, timerRun);
     return 0;
 }
 
-int TimerTick::timerRun(void* usr_data) {
+int TimerTick::timerRun(void* usr_data, long int now_time_ms) {
     TimerTick* timertick = (TimerTick*)usr_data;
-    struct timespec now = {0};
-    long int now_time_ms = 0;
-    clock_gettime(CLOCK_REALTIME_COARSE, &now);
-    now_time_ms = now.tv_sec * 1000 + now.tv_nsec / (1000 * 1000);
-    if (timertick -> end_time_ms_ > now_time_ms) {
-        return timertick -> end_time_ms_ - now_time_ms;
-    } else {
-        timertick -> tim_callback_(usr_data);
-        cout << "now time ms:" << now_time_ms << endl;
-        timertick -> end_time_ms_ += timertick -> set_ms_;
+    int time_duration = timertick->end_time_ms_ - now_time_ms;
+    LogDebug() << "addr: " << usr_data << " end: " << timertick->end_time_ms_ << " now: " << now_time_ms << " diff: " << time_duration;
+    if (time_duration <= 0) {
+        timertick->tim_callback_(usr_data, now_time_ms);
+        if(TIMER_ONCE == timertick->timer_mode_) {
+            timertick->epoll_->addTimer(NULL, NULL);
+        } else {
+            timertick->end_time_ms_ += timertick->set_ms_;
+            time_duration = timertick->end_time_ms_ - now_time_ms;
+        }
     }
 
-    return timertick -> end_time_ms_ - now_time_ms;
+    return time_duration;
 }
 
 void TimerTick::addCallback(TIMCALLBACK timcallback) {

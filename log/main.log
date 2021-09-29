@@ -1,0 +1,122 @@
+[20210929 09:00:28.162][INFO ][(src/Logger.cpp):52](loggerStart) Log init success.
+[20210929 09:00:28.163][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906028313 now: 1632906028163 diff: 150
+[20210929 09:00:28.163][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906028363 now: 1632906028163 diff: 200
+[20210929 09:00:28.312][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 149
+[20210929 09:00:28.313][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906028313 now: 1632906028313 diff: 0
+[20210929 09:00:28.313][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA912F0timer finish
+[20210929 09:00:28.313][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906028363 now: 1632906028313 diff: 50
+[20210929 09:00:28.364][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 49
+[20210929 09:00:28.364][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906028463 now: 1632906028364 diff: 99
+[20210929 09:00:28.364][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906028363 now: 1632906028364 diff: -1
+[20210929 09:00:28.364][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA91330timer finish
+[20210929 09:00:28.462][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 98
+[20210929 09:00:28.463][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906028463 now: 1632906028463 diff: 0
+[20210929 09:00:28.463][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA912F0timer finish
+[20210929 09:00:28.463][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906028563 now: 1632906028463 diff: 100
+[20210929 09:00:28.562][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 99
+[20210929 09:00:28.562][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906028613 now: 1632906028562 diff: 51
+[20210929 09:00:28.562][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906028563 now: 1632906028562 diff: 1
+[20210929 09:00:28.562][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 0
+[20210929 09:00:28.562][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906028613 now: 1632906028562 diff: 51
+[20210929 09:00:28.562][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906028563 now: 1632906028562 diff: 1
+[20210929 09:00:28.562][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 0
+[20210929 09:00:28.562][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906028613 now: 1632906028562 diff: 51
+[20210929 09:00:28.562][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906028563 now: 1632906028562 diff: 1
+[20210929 09:00:28.562][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 0
+[20210929 09:00:28.562][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906028613 now: 1632906028562 diff: 51
+[20210929 09:00:28.562][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906028563 now: 1632906028562 diff: 1
+[20210929 09:00:28.562][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 0
+[20210929 09:00:28.562][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906028613 now: 1632906028562 diff: 51
+[20210929 09:00:28.562][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906028563 now: 1632906028562 diff: 1
+[20210929 09:00:28.562][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 0
+[20210929 09:00:28.562][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906028613 now: 1632906028562 diff: 51
+[20210929 09:00:28.562][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906028563 now: 1632906028562 diff: 1
+[20210929 09:00:28.562][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 0
+[20210929 09:00:28.562][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906028613 now: 1632906028562 diff: 51
+[20210929 09:00:28.562][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906028563 now: 1632906028562 diff: 1
+[20210929 09:00:28.562][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 0
+[20210929 09:00:28.562][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906028613 now: 1632906028562 diff: 51
+[20210929 09:00:28.562][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906028563 now: 1632906028562 diff: 1
+[20210929 09:00:28.563][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 0
+[20210929 09:00:28.563][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906028613 now: 1632906028563 diff: 50
+[20210929 09:00:28.563][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906028563 now: 1632906028563 diff: 0
+[20210929 09:00:28.563][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA91330timer finish
+[20210929 09:00:28.613][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 49
+[20210929 09:00:28.613][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906028613 now: 1632906028613 diff: 0
+[20210929 09:00:28.613][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA912F0timer finish
+[20210929 09:00:28.613][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906028763 now: 1632906028613 diff: 150
+[20210929 09:00:28.765][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 149
+[20210929 09:00:28.765][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906028763 now: 1632906028765 diff: -2
+[20210929 09:00:28.766][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA912F0timer finish
+[20210929 09:00:28.766][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906028763 now: 1632906028765 diff: -2
+[20210929 09:00:28.766][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA91330timer finish
+[20210929 09:00:28.914][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 147
+[20210929 09:00:28.915][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906028913 now: 1632906028915 diff: -2
+[20210929 09:00:28.915][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA912F0timer finish
+[20210929 09:00:28.915][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906028963 now: 1632906028915 diff: 48
+[20210929 09:00:28.963][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 47
+[20210929 09:00:28.964][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906029063 now: 1632906028963 diff: 100
+[20210929 09:00:28.964][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906028963 now: 1632906028963 diff: 0
+[20210929 09:00:28.964][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA91330timer finish
+[20210929 09:00:29.064][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 99
+[20210929 09:00:29.064][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906029063 now: 1632906029064 diff: -1
+[20210929 09:00:29.065][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA912F0timer finish
+[20210929 09:00:29.065][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906029163 now: 1632906029064 diff: 99
+[20210929 09:00:29.164][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 98
+[20210929 09:00:29.164][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906029213 now: 1632906029164 diff: 49
+[20210929 09:00:29.164][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906029163 now: 1632906029164 diff: -1
+[20210929 09:00:29.164][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA91330timer finish
+[20210929 09:00:29.215][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 48
+[20210929 09:00:29.215][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906029213 now: 1632906029215 diff: -2
+[20210929 09:00:29.215][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA912F0timer finish
+[20210929 09:00:29.215][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906029363 now: 1632906029215 diff: 148
+[20210929 09:00:29.363][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 147
+[20210929 09:00:29.363][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906029363 now: 1632906029363 diff: 0
+[20210929 09:00:29.363][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA912F0timer finish
+[20210929 09:00:29.363][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906029363 now: 1632906029363 diff: 0
+[20210929 09:00:29.363][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA91330timer finish
+[20210929 09:00:29.515][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 149
+[20210929 09:00:29.515][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906029513 now: 1632906029515 diff: -2
+[20210929 09:00:29.515][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA912F0timer finish
+[20210929 09:00:29.515][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906029563 now: 1632906029515 diff: 48
+[20210929 09:00:29.564][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 47
+[20210929 09:00:29.564][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906029663 now: 1632906029564 diff: 99
+[20210929 09:00:29.564][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906029563 now: 1632906029564 diff: -1
+[20210929 09:00:29.564][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA91330timer finish
+[20210929 09:00:29.665][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 98
+[20210929 09:00:29.665][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906029663 now: 1632906029665 diff: -2
+[20210929 09:00:29.665][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA912F0timer finish
+[20210929 09:00:29.665][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906029763 now: 1632906029665 diff: 98
+[20210929 09:00:29.763][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 97
+[20210929 09:00:29.763][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906029813 now: 1632906029763 diff: 50
+[20210929 09:00:29.763][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906029763 now: 1632906029763 diff: 0
+[20210929 09:00:29.763][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA91330timer finish
+[20210929 09:00:29.813][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 49
+[20210929 09:00:29.813][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906029813 now: 1632906029813 diff: 0
+[20210929 09:00:29.813][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA912F0timer finish
+[20210929 09:00:29.813][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906029963 now: 1632906029813 diff: 150
+[20210929 09:00:29.964][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 149
+[20210929 09:00:29.964][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906029963 now: 1632906029964 diff: -1
+[20210929 09:00:29.964][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA912F0timer finish
+[20210929 09:00:29.964][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906029963 now: 1632906029964 diff: -1
+[20210929 09:00:29.964][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA91330timer finish
+[20210929 09:00:30.114][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 148
+[20210929 09:00:30.114][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906030113 now: 1632906030114 diff: -1
+[20210929 09:00:30.114][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA912F0timer finish
+[20210929 09:00:30.114][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906030163 now: 1632906030114 diff: 49
+[20210929 09:00:30.164][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 48
+[20210929 09:00:30.164][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906030263 now: 1632906030164 diff: 99
+[20210929 09:00:30.164][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906030163 now: 1632906030164 diff: -1
+[20210929 09:00:30.164][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA91330timer finish
+[20210929 09:00:30.263][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 98
+[20210929 09:00:30.263][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906030263 now: 1632906030263 diff: 0
+[20210929 09:00:30.263][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA912F0timer finish
+[20210929 09:00:30.263][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906030363 now: 1632906030263 diff: 100
+[20210929 09:00:30.363][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 99
+[20210929 09:00:30.363][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906030413 now: 1632906030363 diff: 50
+[20210929 09:00:30.363][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906030363 now: 1632906030363 diff: 0
+[20210929 09:00:30.363][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA91330timer finish
+[20210929 09:00:30.417][DEBUG][(src/EventPoll.cpp):63](loop) time_out: 49
+[20210929 09:00:30.417][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA912F0 end: 1632906030413 now: 1632906030417 diff: -4
+[20210929 09:00:30.417][INFO ][(src/main.cpp):45](timCallback) 0x7FFC2EA912F0timer finish
+[20210929 09:00:30.417][DEBUG][(src/TimerTick.cpp):26](timerRun) addr: 0x7FFC2EA91330 end: 1632906030563 now: 1632906030417 diff: 146

@@ -1,12 +1,12 @@
 #include <iostream>
 #include <string.h>
-#include "TcpServer.h"
-#include "TcpClient.h"
-#include "EventPoll.h"
-#include "StdInput.h"
-#include "TimerTick.h"
-#include "Logger.h"
-
+#include "../include/TcpServer.h"
+#include "../include/TcpClient.h"
+#include "../include/EventPoll.h"
+#include "../include/StdInput.h"
+#include "../include/TimerTick.h"
+#include "../include/Logger.h"
+#include "../include/ThreadPool.h"
 
 using namespace std;
 
@@ -48,18 +48,19 @@ static int timCallback(void *usr_data, long int now_time_ms) {
 
 
 
+
 int main(int argc, char **argv)
 {    
-    Logger::getInstance().addLoggerToFile("./log", "main", FNLog::PRIORITY_DEBUG);
-    Logger::getInstance().addLoggerToScreen(FNLog::PRIORITY_DEBUG);
-    Logger::getInstance().setLoggerSync();
+    Logger::getInstance().addLoggerToFile("./log", "main", FNLog::PRIORITY_INFO, 1024, 1);
+    Logger::getInstance().addLoggerToScreen(FNLog::PRIORITY_INFO);
     Logger::getInstance().loggerStart();
     EventPoll eventPoll;
-    TimerTick timerTick1(&eventPoll, 150, TimerTick::TIMER_FOREVER);
-    timerTick1.addCallback(timCallback);
-    TimerTick timerTick2(&eventPoll, 200, TimerTick::TIMER_FOREVER);
-    timerTick2.addCallback(timCallback);
     
+    for(int i = 0; i < 1000; i++) {
+        TimerTick* timerTick = new TimerTick(&eventPoll, 100, TimerTick::TIMER_FOREVER);
+        timerTick->addCallback(timCallback);
+    }
+
     if (!memcmp(argv[1], "server", 6)) {
         TcpServer tcpServer(&eventPoll, 8000, "192.168.1.98");
         tcpServer.addConnect(&eventPoll, tcpConnect);

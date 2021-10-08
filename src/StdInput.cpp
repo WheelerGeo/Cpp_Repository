@@ -2,7 +2,7 @@
 #include <iostream>
 #include <sys/epoll.h>
 #include <string.h>
-#include "StdInput.h"
+#include "../include/StdInput.h"
 
 
 StdInput::StdInput(EventPoll* my_epoll) {

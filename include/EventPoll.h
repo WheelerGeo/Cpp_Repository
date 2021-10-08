@@ -31,7 +31,7 @@ private:
     vector<struct info> vector_;
     epoll_event events_[EVENTS_MAX] ={0};
     // TIMCALLBACK tim_callback_ = NULL;
-    void* usr_data_;
+    // void* usr_data_;
     int epoll_time_out_ = EPOLL_TIMEOUT;
     long int now_time_ms_ = 0;
 };

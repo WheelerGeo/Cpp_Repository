@@ -1,6 +1,6 @@
 #include <iostream>
-#include "EventPoll.h"
-#include "Logger.h"
+#include "../include/EventPoll.h"
+#include "../include/Logger.h"
 
 
 EventPoll::EventPoll(void) {

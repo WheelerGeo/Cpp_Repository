@@ -11,8 +11,8 @@
 #include <sys/epoll.h>
 #include <memory>
 #include <utility>
-#include "TcpClient.h"
-#include "StdInput.h"
+#include "../include/TcpClient.h"
+#include "../include/StdInput.h"
 
 TcpClient::TcpClient(EventPoll *my_epoll, int my_port, string my_addr) {
     epoll_ = my_epoll;

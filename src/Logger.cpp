@@ -1,4 +1,4 @@
-#include "Logger.h"
+#include "../include/Logger.h"
 
 Logger::Logger(void):level_(FNLog::PRIORITY_ERROR), device_id_(0) {
     loggerInit();

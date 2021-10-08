@@ -11,7 +11,7 @@ public:
     void setLoggerFromConfig(const std::string &config_path);
     int setLoggerSync(void);
     int addLoggerToFile(const std::string& fpath, const std::string& fname, 
-        FNLog::LogPriority level, int limit_size = 1000, int rollback = 4);
+        FNLog::LogPriority level, int limit_size = 1024, int rollback = 4);
     int addLoggerToScreen(FNLog::LogPriority level);
     int addLoggerToUdp(const std::string& ip, int port, FNLog::LogPriority level);
 protected:

@@ -1,6 +1,6 @@
 #include <iostream>
-#include "TimerTick.h"
-#include "Logger.h"
+#include "../include/TimerTick.h"
+#include "../include/Logger.h"
 
 TimerTick::TimerTick(EventPoll* my_epoll, int ms, TIMER_MODE timer_mode) {
     epoll_ = my_epoll;

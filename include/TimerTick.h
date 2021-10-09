@@ -13,6 +13,8 @@ public:
     int timerInit(void);
     static int timerRun(void* usr_data, long int now_time_ms);
     void addCallback(TIMCALLBACK timcallback);
+    void timerStop(void);
+    void timerStart(void);
 private:
     EventPoll* epoll_ = NULL;
     int set_ms_ = -1;

@@ -7,7 +7,7 @@ main: $(source:.cpp=.o)
 	g++ $^ -lpthread -o $@
 
 %.o: %.cpp
-	g++ $< -I ./include/  -c -o  $@
+	g++ $< -I ./include/ -g -c -o  $@
 
 clean: 
 	rm main ./src/*.o

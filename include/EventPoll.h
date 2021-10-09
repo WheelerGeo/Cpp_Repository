@@ -22,13 +22,13 @@ public:
 private:
     int epoll_fd_ = -1;
     int events_cnt = 0;
-    struct info {
-        TIMCALLBACK tim_callback_ = NULL;
+    struct info {  
         CALLBACK callback_ = NULL;
-        void* usr_data_;
+        void* usr_data_ = NULL;
     };
-    map<int, struct info> map_;
-    vector<struct info> vector_;
+    map<int, struct info> event_map_;
+    TIMCALLBACK tim_callback_ = NULL;
+    map<void*, TIMCALLBACK> timer_map_;
     epoll_event events_[EVENTS_MAX] ={0};
     // TIMCALLBACK tim_callback_ = NULL;
     // void* usr_data_;

@@ -1,6 +1,7 @@
 #include "../include/ThreadPool.h"
 #include "../include/Logger.h"
-ThreadPool::ThreadPool(int max_thread, int min_thread, int max_queue) {
+
+ThreadPool::ThreadPool(int max_thread = 10, int min_thread = 3, int max_queue = 50) {
     if (pthread_mutex_init(&thread_pool_lock_, NULL) != 0 || 
         pthread_mutex_init(&busy_task_lock_, NULL) != 0 ||
         pthread_cond_init(&queue_not_full_, NULL) != 0 || 
@@ -16,7 +17,7 @@ ThreadPool::ThreadPool(int max_thread, int min_thread, int max_queue) {
     wait_exit_thread_num_ = 0;
     work_thread_ = new pthread_t[max_thread_num_];
     // 重设任务队列容量
-    thread_queue_.resize(max_queue_num_);
+    // thread_queue_.resize(max_queue_num_);
     // 创建管理者线程
     pthread_create(&manager_thread_, NULL, threadWorkHandler, this);
     // 创建任务线程
@@ -30,6 +31,7 @@ void* ThreadPool::threadWorkHandler(void* arg) {
     ThreadPool* pool = (ThreadPool*)arg;
     while (1) {
         pthread_mutex_lock(&pool->thread_pool_lock_);
+        
         while (pool->thread_queue_.size() == 0 && !pool->shut_down_state_) {
             pthread_cond_wait(&pool->queue_not_empty_, &pool->thread_pool_lock_);
 
@@ -54,6 +56,7 @@ void* ThreadPool::threadWorkHandler(void* arg) {
         pthread_cond_signal(&pool->queue_not_full_);
         pthread_mutex_unlock(&pool->thread_pool_lock_);
 
+        LogInfo() << "thread:" << pthread_self() << "start working!";
         pthread_mutex_lock(&pool->busy_task_lock_);
         pool->busy_thread_num_++;
         pthread_mutex_unlock(&pool->busy_task_lock_);
@@ -62,10 +65,12 @@ void* ThreadPool::threadWorkHandler(void* arg) {
         free(task);
         task = NULL;
         
+        LogInfo() << "thread:" << pthread_self() << "end working!";
         pthread_mutex_lock(&pool->busy_task_lock_);
         pool->busy_thread_num_--;
         pthread_mutex_unlock(&pool->busy_task_lock_);
     }
+    return NULL;
 
 }
 
@@ -103,6 +108,7 @@ void* ThreadPool::threadMangerHandler(void* arg) {
             }
         }
     }
+    return NULL;
 }
 
 // 二次封装pthread_exit，用于线程退出时将成员变量线程id数组对应元素清0
@@ -132,7 +138,35 @@ void ThreadPool::addThreadPoolTask(void* usr_data, TASKCALLBACK task_call_back) 
     pthread_mutex_unlock(&thread_pool_lock_);
 }
 
-
 int ThreadPool::getBusyThreadNum(void) {
     return busy_thread_num_;
+}
+
+int ThreadPool::getLiveThreadNum(void) {
+    return live_thread_num_;
+}
+
+void ThreadPool::threadPoolDestroy(void) {
+    shut_down_state_ = 1;
+
+    // 回收管理者线程
+    pthread_join(manager_thread_, NULL);
+
+    // 唤醒消费者线程，让他在线程处理函数中自己主动退出
+    for (int i = 0; i < live_thread_num_; ++i) {
+        pthread_cond_signal(&queue_not_empty_);
+    }
+
+    // 释放容器内存
+    std::vector<struct thread_pool_task_>().swap(thread_queue_);
+
+    // 释放线程ID堆内存
+    delete(work_thread_);
+
+    pthread_mutex_destroy(&thread_pool_lock_);
+    pthread_mutex_destroy(&busy_task_lock_);
+    pthread_cond_destroy(&queue_not_full_);
+    pthread_cond_destroy(&queue_not_empty_);
+
+    delete(this);
 }

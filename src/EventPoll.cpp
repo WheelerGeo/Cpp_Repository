@@ -24,7 +24,7 @@ int EventPoll::addEvent(void* usr_data, int fd, int flags, CALLBACK callback) {
     ev->events = flags;
     ev->data.fd = fd;
     
-    map_[fd] = infor; 
+    event_map_[fd] = infor; 
 
     if (0 > epoll_ctl(epoll_fd_, EPOLL_CTL_ADD, fd, ev)) {
         perror("epoll_ctl");
@@ -35,11 +35,8 @@ int EventPoll::addEvent(void* usr_data, int fd, int flags, CALLBACK callback) {
 }
 
 void EventPoll::addTimer(void* usr_data, TIMCALLBACK tim_callback) {
-    struct info infor = {
-        .tim_callback_ = tim_callback,
-        .usr_data_ = usr_data
-    };
-    vector_.push_back(infor);
+    tim_callback_ = tim_callback;
+    timer_map_[usr_data] = tim_callback_;
 }
 
 
@@ -50,9 +47,9 @@ int EventPoll::loop() {
         epoll_time_out_ = EPOLL_TIMEOUT;
         gettimeofday(&now, NULL);
         now_time_ms_ = now.tv_sec * 1000 + now.tv_usec / 1000;
-        for(auto it : vector_) {
-            if(it.tim_callback_) {
-                int time_duration = it.tim_callback_(it.usr_data_, now_time_ms_);
+        for(auto it : timer_map_) {
+            if(it.second) {
+                int time_duration = it.second(it.first, now_time_ms_);
                 if(time_duration < epoll_time_out_ && time_duration > 0) {
                     epoll_time_out_ =  time_duration - 1;
                 }
@@ -70,8 +67,8 @@ int EventPoll::loop() {
         }
         
         for (int n = 0; n < nfds; ++n) {
-            auto it = map_.find(events_[n].data.fd);
-            if (it != map_.end()) {
+            auto it = event_map_.find(events_[n].data.fd);
+            if (it != event_map_.end()) {
                 it->second.callback_(it->second.usr_data_, events_[n].data.fd);
             }
         }

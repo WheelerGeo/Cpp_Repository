@@ -41,9 +41,19 @@ static int tcpConnect(void* usr_data, int fd) {
     return 0;
 }
 
-static int timCallback(void *usr_data, long int now_time_ms) {
+static int timCallback1(void* usr_data, long int now_time_ms) {
     LogInfo() << usr_data << "timer finish";
     return 0;
+}
+
+static int timCallback2(void* usr_data, long int now_time_ms) {
+    LogInfo() << usr_data << "timer finish";
+    return 0;
+}
+
+static void threadCallback(void* usr_data) {
+    int* i = (int*)usr_data;
+    cout << "tid:" << pthread_self() << "task id:" << *i << endl;
 }
 
 
@@ -55,11 +65,11 @@ int main(int argc, char **argv)
     Logger::getInstance().addLoggerToScreen(FNLog::PRIORITY_INFO);
     Logger::getInstance().loggerStart();
     EventPoll eventPoll;
-    
-    for(int i = 0; i < 1000; i++) {
-        TimerTick* timerTick = new TimerTick(&eventPoll, 100, TimerTick::TIMER_FOREVER);
-        timerTick->addCallback(timCallback);
-    }
+
+    TimerTick* timerTick1 = new TimerTick(&eventPoll, 100, TimerTick::TIMER_FOREVER);
+    TimerTick* timerTick2 = new TimerTick(&eventPoll, 100, TimerTick::TIMER_FOREVER);
+    timerTick1->addCallback(timCallback1);
+    timerTick1->addCallback(timCallback2);
 
     if (!memcmp(argv[1], "server", 6)) {
         TcpServer tcpServer(&eventPoll, 8000, "192.168.1.98");

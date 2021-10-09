@@ -2,19 +2,22 @@
 #define __THREADPOLL_H__
 #include <pthread.h>
 #include <vector>
-using TASKCALLBACK = function<void(void*)>;
+#include <functional>
+#include <unistd.h>
+
+using TASKCALLBACK = std::function<void(void*)>;
 
 
 class ThreadPool{
 public:
     ThreadPool(int max_thread, int min_thread, int max_queue);
-    static void* ThreadPool::threadWorkHandler(void *arg);
-    static void* ThreadPool::threadMangerHandler(void *arg);
+    static void* threadWorkHandler(void *arg);
+    static void* threadMangerHandler(void *arg);
     void threadExit(void);
     void addThreadPoolTask(void* usr_data, TASKCALLBACK task_call_back);
     int getBusyThreadNum(void);
-protected:
-    ~ThreadPool();
+    int getLiveThreadNum(void);
+    void threadPoolDestroy(void);
 private:
     struct thread_pool_task_{
         TASKCALLBACK task_call_back_ = NULL;

@@ -27,7 +27,7 @@ int TimerTick::timerRun(void* usr_data, long int now_time_ms) {
     if (time_duration <= 0) {
         timertick->tim_callback_(usr_data, now_time_ms);
         if(TIMER_ONCE == timertick->timer_mode_) {
-            timertick->epoll_->addTimer(NULL, NULL);
+            timertick->epoll_->addTimer(timertick, NULL);
         } else {
             timertick->end_time_ms_ += timertick->set_ms_;
             time_duration = timertick->end_time_ms_ - now_time_ms;
@@ -39,4 +39,12 @@ int TimerTick::timerRun(void* usr_data, long int now_time_ms) {
 
 void TimerTick::addCallback(TIMCALLBACK timcallback) {
     tim_callback_ = timcallback;
+}
+
+void TimerTick::timerStop(void) {
+    epoll_->addTimer(this, NULL);
+}
+
+void TimerTick::timerStart(void) {
+    timerInit();
 }

@@ -3,7 +3,7 @@
 #include <sys/epoll.h>
 #include <string.h>
 #include "../include/StdInput.h"
-
+#include "../include/Logger.h"
 
 StdInput::StdInput(EventPoll* my_epoll) {
     epoll_ = my_epoll;
@@ -12,7 +12,7 @@ StdInput::StdInput(EventPoll* my_epoll) {
 
 int StdInput::stdinInit(void) {
     if (0 > (epoll_ -> addEvent(this, STDIN_FILENO, EPOLLIN | EPOLLET, receive))) {
-        perror("stdin init");
+        LogError() << "stdin init";
         return -1;
     }
     return 0;
@@ -24,7 +24,7 @@ int StdInput::receive(void* server, int fd) {
     memset(Server -> buff_, 0, sizeof(Server -> buff_));
     read(fd, Server -> buff_, sizeof(Server -> buff_));
     Server -> callback_(Server -> usr_data_, Server -> buff_, sizeof(Server -> buff_));
-    std::cout << "input:" << Server -> buff_;
+    LogInfo() << "Stdinput:" << Server -> buff_;
     return 0;
 }
 

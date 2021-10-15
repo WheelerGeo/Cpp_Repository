@@ -1,13 +1,18 @@
-source = $(wildcard ./src/*.cpp)
-
+SRC_DIR = ./src/
+OBJ_DIR = ./obj/
+INC_DIR = ./include/
+INCLUDE = -I $(INC_DIR)
+LIB = -lpthread
+SRCS = $(wildcard $(SRC_DIR)*.cpp)
+OBJS = $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 
 .PHONY: all clean
 all: main 
-main: $(source:.cpp=.o)
-	g++ $^ -lpthread -o $@
+main: $(OBJS)
+	g++ $^ $(LIB) -o $@
 
-%.o: %.cpp
-	g++ $< -I ./include/ -g -c -o  $@
+$(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
+	g++ $< $(INCLUDE) -g -c -o  $@
 
 clean: 
-	rm main ./src/*.o
+	rm main $(OBJ_DIR)*.o

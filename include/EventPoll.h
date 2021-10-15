@@ -5,7 +5,7 @@
 #include <map>
 #include <vector>
 #include <sys/time.h>
-#define EVENTS_MAX      10
+#define EVENTS_MAX      1024
 #define EPOLL_TIMEOUT   1000
 using namespace std;
 using CALLBACK = function<int(void* usr_data, int fd)>;

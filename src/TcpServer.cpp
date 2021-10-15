@@ -23,10 +23,10 @@ TcpServer::TcpServer(EventPoll* my_epoll, const int my_port, const string my_add
 
 int TcpServer::establish(void) {
     /* server address information */
-    memset(&serverAddr_, 0, sizeof(struct sockaddr));
-    serverAddr_.sin_family = AF_INET;
-    serverAddr_.sin_port = htons(port_);
-    serverAddr_.sin_addr.s_addr = inet_addr(addr_.c_str());
+    memset(&server_addr_, 0, sizeof(struct sockaddr_in));
+    server_addr_.sin_family = AF_INET;
+    server_addr_.sin_port = htons(port_);
+    server_addr_.sin_addr.s_addr = inet_addr(addr_.c_str());
     int on = 1;
 
     if (0 > (listen_fd_ = socket(AF_INET, SOCK_STREAM, 0))) {
@@ -37,7 +37,7 @@ int TcpServer::establish(void) {
     setsockopt(listen_fd_, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on));
     cout << "1: socket OK" << endl;
 
-    if (0 > bind(listen_fd_, (struct sockaddr *)&serverAddr_, sizeof(struct sockaddr))) {
+    if (0 > bind(listen_fd_, (struct sockaddr *)&server_addr_, sizeof(struct sockaddr))) {
         perror("TCP:bind");
         return -1;
     }
@@ -64,7 +64,9 @@ int TcpServer::listenCli(void* server, int fd) {
     }
 
     int socklen = sizeof(struct sockaddr);
-    if (0 > (Server -> connet_fd_ = accept(Server -> listen_fd_, (struct sockaddr *)&(Server -> clientAddr_), (socklen_t *)&socklen))) {
+    if (0 > (Server -> connet_fd_ = accept(Server -> listen_fd_, 
+                                            (struct sockaddr *)&(Server -> client_addr_), 
+                                            (socklen_t *)&socklen))) {
         return -1;
     }
     cout << "accept" <<  Server -> connet_fd_ << endl;
@@ -73,7 +75,7 @@ int TcpServer::listenCli(void* server, int fd) {
     return 0;
 }
 
-void TcpServer::addConnect(void* usr_data, SERCALLBACK callback) {
+void TcpServer::addCallBack(void* usr_data, SERCALLBACK callback) {
     usr_data_ = usr_data;
     callback_ = callback;
 }

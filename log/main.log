@@ -1,2 +1,37 @@
-[20211009 03:27:04.946][INFO ][(src/Logger.cpp):52](loggerStart) Log init success.
-[20211009 03:27:05.047][INFO ][(src/main.cpp):45](timCallback) 0x5559268F1650timer finish
+[20211015 03:09:00.171][INFO ] [37824] src/Logger.cpp:<52> loggerStart Log init success.
+[20211015 03:09:00.171][INFO ] [37827] src/ThreadPool.cpp:<62> threadWorkHandler tid:140158719395584start working!
+[20211015 03:09:00.172][INFO ] [37827] src/ThreadPool.cpp:<63> threadWorkHandler pid:37824start working!
+[20211015 03:09:00.172][INFO ] [37827] src/main.cpp:<52> threadCallback number:1
+[20211015 03:09:00.172][INFO ] [37828] src/ThreadPool.cpp:<62> threadWorkHandler tid:140158711002880start working!
+[20211015 03:09:00.172][INFO ] [37828] src/ThreadPool.cpp:<63> threadWorkHandler pid:37824start working!
+[20211015 03:09:00.172][INFO ] [37828] src/main.cpp:<52> threadCallback number:2
+[20211015 03:09:00.172][INFO ] [37826] src/ThreadPool.cpp:<62> threadWorkHandler tid:140158727788288start working!
+[20211015 03:09:00.172][INFO ] [37826] src/ThreadPool.cpp:<63> threadWorkHandler pid:37824start working!
+[20211015 03:09:00.172][INFO ] [37829] src/ThreadPool.cpp:<62> threadWorkHandler tid:140158702610176start working!
+[20211015 03:09:00.172][INFO ] [37826] src/main.cpp:<52> threadCallback number:3
+[20211015 03:09:00.172][INFO ] [37830] src/ThreadPool.cpp:<62> threadWorkHandler tid:140158694217472start working!
+[20211015 03:09:00.172][INFO ] [37829] src/ThreadPool.cpp:<63> threadWorkHandler pid:37824start working!
+[20211015 03:09:00.172][INFO ] [37829] src/main.cpp:<52> threadCallback number:4
+[20211015 03:09:00.172][INFO ] [37830] src/ThreadPool.cpp:<63> threadWorkHandler pid:37824start working!
+[20211015 03:09:00.172][INFO ] [37830] src/main.cpp:<52> threadCallback number:5
+[20211015 03:09:00.279][INFO ] [37824] src/main.cpp:<46> timCallback 0x563B79CD1510timer finish
+[20211015 03:09:10.175][INFO ] [37829] src/ThreadPool.cpp:<72> threadWorkHandler tid:140158702610176end working!
+[20211015 03:09:10.175][INFO ] [37828] src/ThreadPool.cpp:<72> threadWorkHandler tid:140158711002880end working!
+[20211015 03:09:10.175][INFO ] [37829] src/ThreadPool.cpp:<62> threadWorkHandler tid:140158702610176start working!
+[20211015 03:09:10.176][INFO ] [37829] src/ThreadPool.cpp:<63> threadWorkHandler pid:37824start working!
+[20211015 03:09:10.175][INFO ] [37830] src/ThreadPool.cpp:<72> threadWorkHandler tid:140158694217472end working!
+[20211015 03:09:10.175][INFO ] [37827] src/ThreadPool.cpp:<72> threadWorkHandler tid:140158719395584end working!
+[20211015 03:09:10.176][INFO ] [37830] src/ThreadPool.cpp:<62> threadWorkHandler tid:140158694217472start working!
+[20211015 03:09:10.175][INFO ] [37826] src/ThreadPool.cpp:<72> threadWorkHandler tid:140158727788288end working!
+[20211015 03:09:10.176][INFO ] [37826] src/ThreadPool.cpp:<62> threadWorkHandler tid:140158727788288start working!
+[20211015 03:09:10.177][INFO ] [37826] src/ThreadPool.cpp:<63> threadWorkHandler pid:37824start working!
+[20211015 03:09:10.176][INFO ] [37829] src/main.cpp:<52> threadCallback number:6
+[20211015 03:09:10.176][INFO ] [37830] src/ThreadPool.cpp:<63> threadWorkHandler pid:37824start working!
+[20211015 03:09:10.177][INFO ] [37826] src/main.cpp:<52> threadCallback number:9
+[20211015 03:09:10.178][INFO ] [37827] src/ThreadPool.cpp:<62> threadWorkHandler tid:140158719395584start working!
+[20211015 03:09:10.178][INFO ] [37827] src/ThreadPool.cpp:<63> threadWorkHandler pid:37824start working!
+[20211015 03:09:10.178][INFO ] [37827] src/main.cpp:<52> threadCallback number:10
+[20211015 03:09:10.177][INFO ] [37830] src/main.cpp:<52> threadCallback number:8
+[20211015 03:09:10.176][INFO ] [37828] src/ThreadPool.cpp:<62> threadWorkHandler tid:140158711002880start working!
+[20211015 03:09:10.179][INFO ] [37828] src/ThreadPool.cpp:<63> threadWorkHandler pid:37824start working!
+[20211015 03:09:10.179][INFO ] [37828] src/main.cpp:<52> threadCallback number:7

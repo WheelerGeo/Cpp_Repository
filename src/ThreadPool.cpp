@@ -6,7 +6,7 @@ ThreadPool::ThreadPool(int max_thread = 10, int min_thread = 3, int max_queue = 
         pthread_mutex_init(&busy_task_lock_, NULL) != 0 ||
         pthread_cond_init(&queue_not_full_, NULL) != 0 || 
         pthread_cond_init(&queue_not_empty_, NULL) != 0) {
-            LogError() << "mutex and cond init error";
+        LogError() << "mutex and cond init error";
     }
     pthread_mutex_lock(&thread_pool_lock_);
     max_thread_num_ = max_thread;
@@ -19,10 +19,10 @@ ThreadPool::ThreadPool(int max_thread = 10, int min_thread = 3, int max_queue = 
     // 重设任务队列容量
     // thread_queue_.resize(max_queue_num_);
     // 创建管理者线程
-    pthread_create(&manager_thread_, NULL, threadWorkHandler, this);
+    pthread_create(&manager_thread_, NULL, threadMangerHandler, this);
     // 创建任务线程
-    for(int i = 0;i < min_thread; ++i) {
-        pthread_create(&work_thread_[i], NULL, threadMangerHandler, this);
+    for(int i = 0; i < min_thread; ++i) {
+        pthread_create(&work_thread_[i], NULL, threadWorkHandler, this);
     }
     pthread_mutex_unlock(&thread_pool_lock_);
 }
@@ -56,7 +56,7 @@ void* ThreadPool::threadWorkHandler(void* arg) {
         pthread_cond_signal(&pool->queue_not_full_);
         pthread_mutex_unlock(&pool->thread_pool_lock_);
 
-        LogInfo() << "thread:" << pthread_self() << "start working!";
+        LogInfo() << "tid:" << pthread_self() << "start working!";
         pthread_mutex_lock(&pool->busy_task_lock_);
         pool->busy_thread_num_++;
         pthread_mutex_unlock(&pool->busy_task_lock_);
@@ -65,7 +65,7 @@ void* ThreadPool::threadWorkHandler(void* arg) {
         free(task);
         task = NULL;
         
-        LogInfo() << "thread:" << pthread_self() << "end working!";
+        LogInfo() << "tid:" << pthread_self() << "end working!";
         pthread_mutex_lock(&pool->busy_task_lock_);
         pool->busy_thread_num_--;
         pthread_mutex_unlock(&pool->busy_task_lock_);

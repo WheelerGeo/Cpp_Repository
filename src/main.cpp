@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string.h>
+#include <memory>
 #include "../include/TcpServer.h"
 #include "../include/TcpClient.h"
 #include "../include/EventPoll.h"
@@ -41,19 +42,15 @@ static int tcpConnect(void* usr_data, int fd) {
     return 0;
 }
 
-static int timCallback1(void* usr_data, long int now_time_ms) {
-    LogInfo() << usr_data << "timer finish";
-    return 0;
-}
-
-static int timCallback2(void* usr_data, long int now_time_ms) {
+static int timCallback(void* usr_data, long int now_time_ms) {
     LogInfo() << usr_data << "timer finish";
     return 0;
 }
 
 static void threadCallback(void* usr_data) {
-    int* i = (int*)usr_data;
-    cout << "tid:" << pthread_self() << "task id:" << *i << endl;
+    int i = *(int*)usr_data;
+    LogInfo() << "number:" << i;
+    sleep(10);
 }
 
 
@@ -61,16 +58,27 @@ static void threadCallback(void* usr_data) {
 
 int main(int argc, char **argv)
 {    
+    /* Log init */
     Logger::getInstance().addLoggerToFile("./log", "main", FNLog::PRIORITY_INFO, 1024, 1);
     Logger::getInstance().addLoggerToScreen(FNLog::PRIORITY_INFO);
+    Logger::getInstance().setLoggerSync();
     Logger::getInstance().loggerStart();
+    
+    /* Event poll init */
     EventPoll eventPoll;
 
-    TimerTick* timerTick1 = new TimerTick(&eventPoll, 100, TimerTick::TIMER_FOREVER);
-    TimerTick* timerTick2 = new TimerTick(&eventPoll, 100, TimerTick::TIMER_FOREVER);
-    timerTick1->addCallback(timCallback1);
-    timerTick1->addCallback(timCallback2);
+    /* Timer init */
+    TimerTick* timerTick = new TimerTick(&eventPoll, 100, TimerTick::TIMER_ONCE);
+    timerTick->addCallback(timCallback);
 
+    /* Thread pool init */
+    ThreadPool threadPool(10, 5, 50);
+    for(int i = 1; i < 51; ++i) {
+        int* ptr = new int(i);
+        threadPool.addThreadPoolTask(ptr, threadCallback);
+    }
+
+    /* TCP server or client init */
     if (!memcmp(argv[1], "server", 6)) {
         TcpServer tcpServer(&eventPoll, 8000, "192.168.1.98");
         tcpServer.addConnect(&eventPoll, tcpConnect);

@@ -12,7 +12,7 @@ TimerTick::TimerTick(EventPoll* my_epoll, int ms, TIMER_MODE timer_mode) {
 int TimerTick::timerInit(void) {
     struct timeval start = {0};
     if (0 > gettimeofday(&start, NULL)) {
-        perror("TimerInit");
+        LogError() << "TimerInit";
         return -1;
     }
     end_time_ms_ = start.tv_sec * 1000 + start.tv_usec / 1000 + set_ms_;

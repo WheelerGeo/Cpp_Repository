@@ -9,7 +9,7 @@ EventPoll::EventPoll(void) {
 
 int EventPoll::create(void) {
     if (0 > (epoll_fd_ = epoll_create1(0))) {
-        perror("epoll_create");
+        LogError() << "epoll_create";
         return -1;
     }
     return 0;
@@ -27,7 +27,7 @@ int EventPoll::addEvent(void* usr_data, int fd, int flags, CALLBACK callback) {
     event_map_[fd] = infor; 
 
     if (0 > epoll_ctl(epoll_fd_, EPOLL_CTL_ADD, fd, ev)) {
-        perror("epoll_ctl");
+        LogError() << "epoll_ctl";
         return -1;
     }
     
@@ -62,7 +62,7 @@ int EventPoll::loop() {
         
         
         if (0 > nfds) {
-            perror("epoll_wait");
+            LogError() << "epoll_wait";
             return -1;
         }
         

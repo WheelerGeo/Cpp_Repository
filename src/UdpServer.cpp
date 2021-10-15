@@ -14,7 +14,7 @@
 
 
 
-UdpServer::UdpServer(EventPoll* my_epoll, const int my_port, const string my_addr) {
+UdpServer::UdpServer(EventPoll* my_epoll, const int my_port, const std::string my_addr) {
     epoll_ = my_epoll;
     port_ = my_port;
     addr_ = my_addr;
@@ -32,11 +32,13 @@ int UdpServer::udpServerStart(void) {
         LogError() << "UDP:socket";
         return -1;
     }
+    LogInfo() << "UDP:1:socket";
 
     if (0 > bind(sock_fd_, (struct sockaddr *)&server_addr_, sizeof(struct sockaddr))) {
         LogError() << "UDP:bind";
         return -1;
     }
+    LogInfo() << "UDP:2:bind";
 
     epoll_->addEvent(this, sock_fd_, EPOLLIN | EPOLLET, receive);
 
@@ -54,6 +56,7 @@ int UdpServer::receive(void* server, int fd) {
     UdpServer* Server = (UdpServer*)server;
     struct sockaddr_in usr_addr = {0};
     socklen_t len = sizeof(struct sockaddr_in);
+
     memset(&usr_addr, 0, sizeof(struct sockaddr_in));
     memset(Server->buff_, 0, sizeof(Server->buff_));
 
@@ -76,7 +79,7 @@ int UdpServer::receive(void* server, int fd) {
     return close(sock_fd_);
  }
 
- int UdpServer::sendData(string data, string des_ip, int des_port) {
+ int UdpServer::sendData(std::string data, std::string des_ip, int des_port) {
     socklen_t len = sizeof(struct sockaddr_in);
     struct sockaddr_in des_addr;
     memset(&des_addr, 0, sizeof(struct sockaddr_in));

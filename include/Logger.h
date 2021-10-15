@@ -1,3 +1,21 @@
+/*****************************************************************************
+*  Riechan's Basic Log library                                               *
+*  @file     Logger.h                                                        *
+*  @brief    Log print API                                                   *
+*  @author   Riechan.ye                                                      *
+*  @email    Riechan.ye@outlook.com                                          *
+*  @version  1.0.0                                                           *
+*  @date     2021.10.15 20:00:00                                             *
+*  @license  GNU General Public License (GPL)                                *
+*                                                                            *
+*----------------------------------------------------------------------------*
+*  Remark         : Description                                              *
+*----------------------------------------------------------------------------*
+*  Change History :                                                          *
+*  <Date>     | <Version> | <Author>       | <Description>                   *
+*----------------------------------------------------------------------------*
+*  2021/10/15 | 1.0.1     | Riechan.ye     | Create file                     *
+*****************************************************************************/
 #ifndef __LOGGER_H__
 #define __LOGGER_H__
 #include "fn_log.h"

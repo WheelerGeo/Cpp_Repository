@@ -12,9 +12,9 @@
 #include <memory>
 #include <utility>
 #include "../include/TcpServer.h"
+#include "../include/Logger.h"
 
-
-TcpServer::TcpServer(EventPoll* my_epoll, const int my_port, const string my_addr) {
+TcpServer::TcpServer(EventPoll* my_epoll, const int my_port, const std::string my_addr) {
     epoll_ = my_epoll;
     port_ = my_port;
     addr_ = my_addr;
@@ -30,47 +30,48 @@ int TcpServer::establish(void) {
     int on = 1;
 
     if (0 > (listen_fd_ = socket(AF_INET, SOCK_STREAM, 0))) {
-        perror("TCP:socket");
+        LogError() << "TCP:socket";
         return -1;
     }
     // reuse io
     setsockopt(listen_fd_, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on));
-    cout << "1: socket OK" << endl;
+    LogInfo() << "TCP:1: socket OK";
 
     if (0 > bind(listen_fd_, (struct sockaddr *)&server_addr_, sizeof(struct sockaddr))) {
-        perror("TCP:bind");
+        LogError() << "TCP:bind";
         return -1;
     }
-    cout << "2: bind OK" << endl;
+    LogInfo() << "TCP:2: bind OK";
 
     if (0 > listen(listen_fd_, 100)) {
-        perror("TCP:listen");
+        LogError() << "TCP:listen";
         return -1;
     }
-    cout << "3: listen OK" << endl;
+    LogInfo() << "TCP:3: listen OK";
 
-    if (0 > (epoll_ -> addEvent(this, listen_fd_, EPOLLIN | EPOLLET, this -> listenCli))) {
-        perror("TCP:add listen Event");
+    if (0 > (epoll_ -> addEvent(this, listen_fd_, EPOLLIN | EPOLLET, this->listenCli))) {
+        LogError() << "TCP:add listen Even";
+        return -1;
     }
-    cout << "4: add listen Event OK" << endl;
+    LogInfo() << "TCP:4: add listen Event OK";
 
     return listen_fd_;
 }
 
 int TcpServer::listenCli(void* server, int fd) {
     TcpServer* Server = (TcpServer*)server;
-    if (fd != Server -> listen_fd_) {
+    if (fd != Server->listen_fd_) {
         return -1;
     }
 
     int socklen = sizeof(struct sockaddr);
-    if (0 > (Server -> connet_fd_ = accept(Server -> listen_fd_, 
-                                            (struct sockaddr *)&(Server -> client_addr_), 
-                                            (socklen_t *)&socklen))) {
+    if (0 > (Server->connet_fd_ = accept(Server->listen_fd_, 
+                                         (struct sockaddr *)&(Server->client_addr_), 
+                                         (socklen_t *)&socklen))) {
         return -1;
     }
-    cout << "accept" <<  Server -> connet_fd_ << endl;
-    Server -> callback_(Server -> usr_data_, Server -> connet_fd_);
+    LogInfo() << "TCP:accept:" << Server->connet_fd_;
+    Server -> callback_(Server->usr_data_, Server->connet_fd_);
 
     return 0;
 }

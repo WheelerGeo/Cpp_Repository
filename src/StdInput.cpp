@@ -11,7 +11,7 @@ StdInput::StdInput(EventPoll* my_epoll) {
 }
 
 int StdInput::stdinInit(void) {
-    if (0 > (epoll_ -> addEvent(this, STDIN_FILENO, EPOLLIN | EPOLLET, receive))) {
+    if (0 > (epoll_->addEvent(this, STDIN_FILENO, EPOLLIN | EPOLLET, receive))) {
         LogError() << "stdin init";
         return -1;
     }
@@ -21,14 +21,14 @@ int StdInput::stdinInit(void) {
 
 int StdInput::receive(void* server, int fd) {
     StdInput* Server = (StdInput*)server;
-    memset(Server -> buff_, 0, sizeof(Server -> buff_));
-    read(fd, Server -> buff_, sizeof(Server -> buff_));
-    Server -> callback_(Server -> usr_data_, Server -> buff_, sizeof(Server -> buff_));
-    LogInfo() << "Stdinput:" << Server -> buff_;
+    memset(Server->buff_, 0, sizeof(Server->buff_));
+    read(fd, Server->buff_, sizeof(Server->buff_));
+    Server->callback_(Server->usr_data_, Server->buff_, sizeof(Server->buff_));
+    LogInfo() << "Stdinput:" << Server->buff_;
     return 0;
 }
 
-void StdInput::addRecv(void* usr_data, STDCALLBACK callback) {
+void StdInput::addCallBack(void* usr_data, STDCALLBACK callback) {
     usr_data_ = usr_data;
     callback_ = callback;
 }

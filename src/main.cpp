@@ -4,7 +4,6 @@
 #include "../include/TcpServer.h"
 #include "../include/TcpClient.h"
 #include "../include/UdpServer.h"
-#include "../include/UdpClient.h"
 #include "../include/EventPoll.h"
 #include "../include/StdInput.h"
 #include "../include/TimerTick.h"
@@ -17,67 +16,13 @@ using namespace std;
 
 
 StdInput* stdInput;
-static int tcpRecv(void* usr_data, char* buff, size_t len) {
-    TcpClient* cli_usr = (TcpClient*)usr_data;
-    if (len == 0) {
-        cli_usr->closeConnet();
-    } else {
-        cout << buff << endl;
-    }
-    return 0;
-}
-
-static int stdinTcpRecv(void* usr_data, char* buff, size_t len) {
-    TcpClient* cli_usr = (TcpClient*)usr_data;
-    cout << buff << endl;
-    if (!memcmp(buff, "close", 5)) {
-        cli_usr->closeConnet();
-        cout << "client closed" << endl;
-    } else {
-        cli_usr->sendData(buff);
-    }
-    return 0;
-}
-
-static int udpRecvCallBack(void* usr_data, char* buff, string des_ip, int des_port) {
-    UdpServer* cli_usr = (UdpServer*)usr_data;
-
-    return 0;
-}
-
-static int stdinUdpRecv(void* usr_data, char* buff, size_t len) {
-    UdpServer* ser_usr = (UdpServer*)usr_data;
-    LogInfo() << buff;
-    if (!memcmp(buff, "close", 5)) {
-        ser_usr->closeConnect();
-        LogInfo() << "client closed";
-    } else {
-        ser_usr->sendData(buff, "192.168.1.98", 9000);
-    }
-    return 0;
-}
-
-static int tcpCallBack(void* usr_data, int fd) {
-    TcpClient* tcpClient = new TcpClient((EventPoll*)usr_data, fd);
-    tcpClient->addRecv(tcpClient, tcpRecv);
-    stdInput->addRecv(tcpClient, stdinTcpRecv);
-    return 0;
-}
-
-
-static int timCallback(void* usr_data, long int now_time_ms) {
-    LogInfo() << usr_data << "timer finish";
-    return 0;
-}
-
-static void threadCallback(void* usr_data) {
-    int i = *(int*)usr_data;
-    LogInfo() << "number:" << i;
-    sleep(10);
-}
-
-
-
+static int timCallback(void* usr_data, long int now_time_ms);
+static void threadCallback(void* usr_data);
+static int tcpServerCallBack(void* usr_data, int fd);
+static int tcpClientCallBack(void* usr_data, char* buff, size_t len);
+static int stdInTcpCallBack(void* usr_data, char* buff, size_t len);
+static int udpRecvCallBack(void* usr_data, char* buff, string des_ip, int des_port);
+static int stdInUdpCallBack(void* usr_data, char* buff, size_t len);
 
 int main(int argc, char **argv)
 {    
@@ -106,13 +51,13 @@ int main(int argc, char **argv)
     /* TCP server or client init */
     if (!memcmp(argv[1], "tcpserver", strlen("tcpserver"))) {
         TcpServer tcpServer(&eventPoll, 8000, "192.168.1.98");
-        tcpServer.addCallBack(&eventPoll, tcpCallBack);
+        tcpServer.addCallBack(&eventPoll, tcpServerCallBack);
         stdInput = new StdInput(&eventPoll);
     } else if (!memcmp(argv[1], "tcpclient", strlen("tcpclient"))) {
         stdInput = new StdInput(&eventPoll);
         TcpClient tcpClient(&eventPoll, 8000, "192.168.1.98");
-        tcpClient.addRecv(&tcpClient, tcpRecv);
-        stdInput->addRecv(&tcpClient, stdinTcpRecv);
+        tcpClient.addCallBack(&tcpClient, tcpClientCallBack);
+        stdInput->addCallBack(&tcpClient, stdInTcpCallBack);
     }
 
     /* UDP server or client init */
@@ -120,11 +65,68 @@ int main(int argc, char **argv)
         UdpServer udpServer(&eventPoll, 9000, "192.168.1.98");
         udpServer.addCallBack(&udpServer, udpRecvCallBack);
         stdInput = new StdInput(&eventPoll);
-        stdInput->addRecv(&udpServer, stdinUdpRecv);
+        stdInput->addCallBack(&udpServer, stdInUdpCallBack);
     }
-
-
 
     
     return eventPoll.loop();
 }
+
+static int timCallback(void* usr_data, long int now_time_ms) {
+    LogInfo() << usr_data << "timer finish";
+    return 0;
+}
+
+static void threadCallback(void* usr_data) {
+    int i = *(int*)usr_data;
+    LogInfo() << "number:" << i;
+    sleep(10);
+}
+
+static int tcpServerCallBack(void* usr_data, int fd) {
+    TcpClient* tcpClient = new TcpClient((EventPoll*)usr_data, fd);
+    tcpClient->addCallBack(tcpClient, tcpClientCallBack);
+    stdInput->addCallBack(tcpClient, stdInTcpCallBack);
+    return 0;
+}
+
+static int tcpClientCallBack(void* usr_data, char* buff, size_t len) {
+    TcpClient* cli_usr = (TcpClient*)usr_data;
+    if (len == 0) {
+        cli_usr->closeConnect();
+    } else {
+        LogInfo() << buff;
+    }
+    return 0;
+}
+
+static int stdInTcpCallBack(void* usr_data, char* buff, size_t len) {
+    TcpClient* cli_usr = (TcpClient*)usr_data;
+    cout << buff << endl;
+    if (!memcmp(buff, "close", 5)) {
+        cli_usr->closeConnect();
+        LogInfo() << "client closed";
+    } else {
+        cli_usr->sendData(buff);
+    }
+    return 0;
+}
+
+static int udpRecvCallBack(void* usr_data, char* buff, string des_ip, int des_port) {
+    UdpServer* cli_usr = (UdpServer*)usr_data;
+
+    return 0;
+}
+
+static int stdInUdpCallBack(void* usr_data, char* buff, size_t len) {
+    UdpServer* ser_usr = (UdpServer*)usr_data;
+    LogInfo() << buff;
+    if (!memcmp(buff, "close", 5)) {
+        ser_usr->closeConnect();
+        LogInfo() << "client closed";
+    } else {
+        ser_usr->sendData(buff, "192.168.1.98", 9000);
+    }
+    return 0;
+}
+

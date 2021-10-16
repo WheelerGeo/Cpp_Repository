@@ -6,7 +6,7 @@ ThreadPool::ThreadPool(int max_thread = 10, int min_thread = 3, int max_queue = 
         pthread_mutex_init(&busy_task_lock_, NULL) != 0 ||
         pthread_cond_init(&queue_not_full_, NULL) != 0 || 
         pthread_cond_init(&queue_not_empty_, NULL) != 0) {
-        LogError() << "mutex and cond init error";
+        LogError() << "ThreadPool:mutex and cond init error";
     }
     pthread_mutex_lock(&thread_pool_lock_);
     max_thread_num_ = max_thread;

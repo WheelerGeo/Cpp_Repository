@@ -9,7 +9,7 @@ EventPoll::EventPoll(void) {
 
 int EventPoll::create(void) {
     if (0 > (epoll_fd_ = epoll_create1(0))) {
-        LogError() << "epoll_create";
+        LogError() << "EventPoll:epoll_create1";
         return -1;
     }
     return 0;
@@ -27,7 +27,7 @@ int EventPoll::addEvent(void* usr_data, int fd, int flags, CALLBACK callback) {
     event_map_[fd] = infor; 
 
     if (0 > epoll_ctl(epoll_fd_, EPOLL_CTL_ADD, fd, ev)) {
-        LogError() << "epoll_ctl";
+        LogError() << "EventPoll:epoll_ctl";
         return -1;
     }
     
@@ -55,16 +55,12 @@ int EventPoll::loop() {
                 }
             }
         }
-
-        nfds = epoll_wait(epoll_fd_, events_, EVENTS_MAX, epoll_time_out_);
-        LogDebug() << "time_out: " << epoll_time_out_;
-
         
-        
-        if (0 > nfds) {
-            LogError() << "epoll_wait";
+        if (0 > (nfds = epoll_wait(epoll_fd_, events_, EVENTS_MAX, epoll_time_out_))) {
+            LogError() << "EventPoll:epoll_wait";
             return -1;
         }
+        LogDebug() << "time_out: " << epoll_time_out_;
         
         for (int n = 0; n < nfds; ++n) {
             auto it = event_map_.find(events_[n].data.fd);

@@ -11,13 +11,23 @@
 #include <sys/epoll.h>
 #include "../include/UdpServer.h"
 #include "../include/Logger.h"
-
+#include "../include/NetworkTool.h"
 
 
 UdpServer::UdpServer(EventPoll* my_epoll, const int my_port, const std::string my_addr) {
     epoll_ = my_epoll;
     port_ = my_port;
     addr_ = my_addr;
+    udpServerStart();
+}
+
+UdpServer::UdpServer(EventPoll* my_epoll, const int my_port) {
+    epoll_ = my_epoll;
+    port_ = my_port;
+    char ip[16];
+    NetworkTool::GetLocalIp("ens33", ip);
+    addr_ = ip;
+    LogInfo() << "GetLocalIp:" << addr_;
     udpServerStart();
 }
 

@@ -12,7 +12,7 @@ StdInput::StdInput(EventPoll* my_epoll) {
 
 int StdInput::stdinInit(void) {
     if (0 > (epoll_->addEvent(this, STDIN_FILENO, EPOLLIN | EPOLLET, receive))) {
-        LogError() << "stdin init";
+        LogError() << "StdInput:addEvent";
         return -1;
     }
     return 0;

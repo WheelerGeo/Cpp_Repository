@@ -9,20 +9,26 @@
 #include "../include/TimerTick.h"
 #include "../include/Logger.h"
 #include "../include/ThreadPool.h"
-
-
+#include "../include/NetworkTool.h"
+#include "../include/HttpServer.h"
+#include "../include/HttpClient.h"
 
 using namespace std;
 
 
-StdInput* stdInput;
-static int timCallback(void* usr_data, long int now_time_ms);
-static void threadCallback(void* usr_data);
+// StdInput* stdInput;
+unique_ptr<StdInput> stdInput;
+static int timCallBack(void* usr_data, long int now_time_ms);
+static void threadCallBack(void* usr_data);
 static int tcpServerCallBack(void* usr_data, int fd);
 static int tcpClientCallBack(void* usr_data, char* buff, size_t len);
 static int stdInTcpCallBack(void* usr_data, char* buff, size_t len);
 static int udpRecvCallBack(void* usr_data, char* buff, string des_ip, int des_port);
 static int stdInUdpCallBack(void* usr_data, char* buff, size_t len);
+static int httpServerCallBack(void* usr_data, int fd);
+static int httpClientCallBack(void* usr_data, char* buff, size_t len);
+static int stdInHttpCallBack(void* usr_data, char* buff, size_t len);
+static int httpRequestCallBack(void* usr_data, char* buff, size_t len);
 
 int main(int argc, char **argv)
 {    
@@ -37,47 +43,59 @@ int main(int argc, char **argv)
 
     /* Timer init */
     TimerTick* timerTick = new TimerTick(&eventPoll, 100, TimerTick::TIMER_ONCE);
-    timerTick->addCallback(timCallback);
+    timerTick->addCallBack(timCallBack);
 
     /* Thread pool init */
     if(!memcmp(argv[1], "threadpool", strlen("threadpool"))) {
-        ThreadPool threadPool(10, 5, 50);
+        ThreadPool* threadPool = new ThreadPool(10, 5, 50);
         for(int i = 1; i < 51; ++i) {
             int* ptr = new int(i);
-            threadPool.addThreadPoolTask(ptr, threadCallback);
+            threadPool->addThreadPoolTask(ptr, threadCallBack);
         }
     }
 
     /* TCP server or client init */
     if (!memcmp(argv[1], "tcpserver", strlen("tcpserver"))) {
-        TcpServer tcpServer(&eventPoll, 8000, "192.168.1.98");
-        tcpServer.addCallBack(&eventPoll, tcpServerCallBack);
-        stdInput = new StdInput(&eventPoll);
+        TcpServer* tcpServer = new TcpServer(&eventPoll, 8000);
+        tcpServer->addCallBack(&eventPoll, tcpServerCallBack);
+        stdInput.reset(new StdInput(&eventPoll));
     } else if (!memcmp(argv[1], "tcpclient", strlen("tcpclient"))) {
-        stdInput = new StdInput(&eventPoll);
-        TcpClient tcpClient(&eventPoll, 8000, "192.168.1.98");
-        tcpClient.addCallBack(&tcpClient, tcpClientCallBack);
+        stdInput.reset(new StdInput(&eventPoll));
+        TcpClient* tcpClient = new TcpClient(&eventPoll, 8000, "192.168.1.98");
+        tcpClient->addCallBack(&tcpClient, tcpClientCallBack);
         stdInput->addCallBack(&tcpClient, stdInTcpCallBack);
     }
 
-    /* UDP server or client init */
+    /* UDP server init */
     if (!memcmp(argv[1], "udpserver", strlen("udpserver"))) {
-        UdpServer udpServer(&eventPoll, 9000, "192.168.1.98");
-        udpServer.addCallBack(&udpServer, udpRecvCallBack);
-        stdInput = new StdInput(&eventPoll);
+        UdpServer* udpServer = new UdpServer(&eventPoll, 9000);
+        udpServer->addCallBack(&udpServer, udpRecvCallBack);
+        stdInput.reset(new StdInput(&eventPoll));
         stdInput->addCallBack(&udpServer, stdInUdpCallBack);
+    }
+
+    /* HTTP server or client init */
+    if (!memcmp(argv[1], "httpserver", strlen("httpserver"))) {
+        HttpServer* httpServer = new HttpServer(&eventPoll, 1080);
+        httpServer->addCallBack(&eventPoll, httpServerCallBack);
+
+    } else if (!memcmp(argv[1], "httpclient", strlen("httpclient"))) {
+        HttpClient* httpClient = new HttpClient(&eventPoll, 1080, "192.168.1.98");
+        httpClient->addCallBack(&eventPoll, httpClientCallBack);
+        stdInput.reset(new StdInput(&eventPoll));
+        stdInput->addCallBack(&httpClient, stdInHttpCallBack);
     }
 
     
     return eventPoll.loop();
 }
 
-static int timCallback(void* usr_data, long int now_time_ms) {
+static int timCallBack(void* usr_data, long int now_time_ms) {
     LogInfo() << usr_data << "timer finish";
     return 0;
 }
 
-static void threadCallback(void* usr_data) {
+static void threadCallBack(void* usr_data) {
     int i = *(int*)usr_data;
     LogInfo() << "number:" << i;
     sleep(10);
@@ -130,3 +148,43 @@ static int stdInUdpCallBack(void* usr_data, char* buff, size_t len) {
     return 0;
 }
 
+static int httpServerCallBack(void* usr_data, int fd) {
+    HttpClient* httpClient = new HttpClient((EventPoll*)usr_data, fd);
+    httpClient->addCallBack(httpClient, httpRequestCallBack);
+    return 0;
+}
+
+static int httpRequestCallBack(void* usr_data, char* buff, size_t len) {
+    HttpClient* cli_usr = (HttpClient*)usr_data;
+    int ret = cli_usr->analysisUrl(buff);
+    if (0 == ret) {
+        cli_usr->responseSuccess();
+    } else if (-1 == ret) {
+
+    } else if (-2 == ret) {
+
+    }
+    return 0;
+}
+
+static int httpClientCallBack(void* usr_data, char* buff, size_t len) {
+    HttpClient* cli_usr = (HttpClient*)usr_data;
+    if (len == 0) {
+        cli_usr->closeConnect();
+    } else {
+        LogInfo() << buff;
+    }
+    return 0;
+}
+
+static int stdInHttpCallBack(void* usr_data, char* buff, size_t len) {
+    HttpClient* cli_usr = (HttpClient*)usr_data;
+    cout << buff << endl;
+    if (!memcmp(buff, "close", 5)) {
+        cli_usr->closeConnect();
+        LogInfo() << "client closed";
+    } else {
+        cli_usr->sendData(buff);
+    }
+    return 0;
+}

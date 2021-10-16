@@ -13,11 +13,22 @@
 #include <utility>
 #include "../include/TcpServer.h"
 #include "../include/Logger.h"
+#include "../include/NetworkTool.h"
 
 TcpServer::TcpServer(EventPoll* my_epoll, const int my_port, const std::string my_addr) {
     epoll_ = my_epoll;
     port_ = my_port;
     addr_ = my_addr;
+    establish();
+}
+
+TcpServer::TcpServer(EventPoll* my_epoll, const int my_port) {
+    epoll_ = my_epoll;
+    port_ = my_port;
+    char ip[16];
+    NetworkTool::GetLocalIp("ens33", ip);
+    addr_ = ip;
+    LogInfo() << "GetLocalIp:" << addr_;
     establish();
 }
 
@@ -30,30 +41,30 @@ int TcpServer::establish(void) {
     int on = 1;
 
     if (0 > (listen_fd_ = socket(AF_INET, SOCK_STREAM, 0))) {
-        LogError() << "TCP:socket";
+        LogError() << "TcpServer:socket";
         return -1;
     }
     // reuse io
     setsockopt(listen_fd_, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on));
-    LogInfo() << "TCP:1: socket OK";
+    LogInfo() << "TcpServer:1: socket OK";
 
     if (0 > bind(listen_fd_, (struct sockaddr *)&server_addr_, sizeof(struct sockaddr))) {
-        LogError() << "TCP:bind";
+        LogError() << "TcpServer:bind";
         return -1;
     }
-    LogInfo() << "TCP:2: bind OK";
+    LogInfo() << "TcpServer:2: bind OK";
 
     if (0 > listen(listen_fd_, 100)) {
-        LogError() << "TCP:listen";
+        LogError() << "TcpServer:listen";
         return -1;
     }
-    LogInfo() << "TCP:3: listen OK";
+    LogInfo() << "TcpServer:3: listen OK";
 
-    if (0 > (epoll_ -> addEvent(this, listen_fd_, EPOLLIN | EPOLLET, this->listenCli))) {
-        LogError() << "TCP:add listen Even";
+    if (0 > (epoll_->addEvent(this, listen_fd_, EPOLLIN | EPOLLET, this->listenCli))) {
+        LogError() << "TcpServer:addEvent";
         return -1;
     }
-    LogInfo() << "TCP:4: add listen Event OK";
+    LogInfo() << "TcpServer:4: add listen Event OK";
 
     return listen_fd_;
 }
@@ -70,7 +81,7 @@ int TcpServer::listenCli(void* server, int fd) {
                                          (socklen_t *)&socklen))) {
         return -1;
     }
-    LogInfo() << "TCP:accept:" << Server->connet_fd_;
+    LogInfo() << "TcpServer:accept:" << Server->connet_fd_;
     Server -> callback_(Server->usr_data_, Server->connet_fd_);
 
     return 0;

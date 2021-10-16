@@ -25,6 +25,7 @@ using UDPCALLBACK = std::function<int(void*, char*, std::string, int)>;
 class UdpServer{
 public:
     UdpServer(EventPoll* my_epoll, const int my_port, const std::string my_addr);
+    UdpServer(EventPoll* my_epoll, const int my_port);
     int udpServerStart(void);
     void addCallBack(void* usr_data, UDPCALLBACK callback);
     static int receive(void* server, int fd);

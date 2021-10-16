@@ -12,7 +12,7 @@ TimerTick::TimerTick(EventPoll* my_epoll, int ms, TIMER_MODE timer_mode) {
 int TimerTick::timerInit(void) {
     struct timeval start = {0};
     if (0 > gettimeofday(&start, NULL)) {
-        LogError() << "TimerInit";
+        LogError() << "TimerTick:gettimeofday";
         return -1;
     }
     end_time_ms_ = start.tv_sec * 1000 + start.tv_usec / 1000 + set_ms_;
@@ -37,7 +37,7 @@ int TimerTick::timerRun(void* usr_data, long int now_time_ms) {
     return time_duration;
 }
 
-void TimerTick::addCallback(TIMCALLBACK timcallback) {
+void TimerTick::addCallBack(TIMCALLBACK timcallback) {
     tim_callback_ = timcallback;
 }
 

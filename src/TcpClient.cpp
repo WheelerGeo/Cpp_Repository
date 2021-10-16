@@ -26,32 +26,32 @@ TcpClient::TcpClient(EventPoll *my_epoll, int fd) {
     epoll_ = my_epoll;
     connect_fd_ = fd;
     if (0 > (epoll_ -> addEvent(this, connect_fd_, EPOLLIN | EPOLLET, receive))) {
-        LogError() << "TCP:add receive Event";
+        LogError() << "TcpClient:addEvent";
     }
 }
 
 int TcpClient::establish(void) {
     if (0 > (connect_fd_ = socket(AF_INET, SOCK_STREAM, 0))) {
-        LogError() << "TCP:socket";
+        LogError() << "TcpClient:socket";
         return -1;
     }
-    LogInfo() << "TCP:1: socket OK";
+    LogInfo() << "TcpClient:1: socket OK";
 
     memset(&cli_addr_, 0, sizeof(cli_addr_));
     cli_addr_.sin_family = AF_INET;
     cli_addr_.sin_addr.s_addr = inet_addr(addr_.c_str());
     cli_addr_.sin_port = htons(port_);
     if (0 > connect(connect_fd_, (sockaddr *)&cli_addr_, sizeof(cli_addr_))) {
-        LogError() << "TCP:connect";
+        LogError() << "TcpClient:connect";
         return -1;
     }
-    LogInfo() << "TCP:2: connect OK";
+    LogInfo() << "TcpClient:2: connect OK";
 
     if (0 > (epoll_ -> addEvent(this, connect_fd_, EPOLLIN | EPOLLET, receive))) {
-        LogError() << "TCP:add receive Event";
+        LogError() << "TcpClient:addEvent";
         return -1;
     }
-    LogInfo() << "TCP:3: add receive Event OK";
+    LogInfo() << "TcpClient:3: add receive Event OK";
 
     return 0;
 }

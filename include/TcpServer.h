@@ -32,6 +32,7 @@ using SERCALLBACK = std::function<int(void* usr_data, int fd)>;
 class TcpServer{
 public:
     TcpServer(EventPoll* my_epoll, const int my_port, const std::string my_addr);
+    TcpServer(EventPoll* my_epoll, const int my_port);
     int establish(void);
     static int listenCli(void* server, int fd);
     void addCallBack(void* usr_data, SERCALLBACK callback);

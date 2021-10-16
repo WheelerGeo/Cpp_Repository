@@ -20,6 +20,7 @@
 #define __TCPCLIENT_H__
 #include <string>
 #include <map>
+#include <netinet/in.h>
 #include "EventPoll.h"
 using CLICALLBACK = std::function<int(void* usr_data, char* buff, size_t len)>;
 
@@ -33,13 +34,14 @@ public:
     int sendData(std::string data);
     void addCallBack(void* usr_data, CLICALLBACK callback);
     int closeConnect(void);
+protected:
+    char buff_[1024] = {0};
 private:
     EventPoll* epoll_ = nullptr;
     int port_ = 0;
     std::string addr_ = {0};
     int connect_fd_ = -1;
     struct sockaddr_in cli_addr_ = {0};
-    char buff_[1024] = {0};
     CLICALLBACK callback_ = nullptr;
     void* usr_data_ = nullptr;
 };

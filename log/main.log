@@ -1,16 +1,54 @@
-[20211015 09:56:55.778][INFO ] [58884] src/Logger.cpp:<52> loggerStart Log init success.
-[20211015 09:56:55.880][INFO ] [58884] src/main.cpp:<69> timCallback 0x558AA5D5E510timer finish
-[20211015 09:56:59.385][INFO ] [58884] src/UdpServer.cpp:<70> receive recv from 192.168.1.98/34574: 22
+[20211016 06:47:31.691][INFO ] [102948] src/Logger.cpp:<52> loggerStart Log init success.
+[20211016 06:47:31.692][INFO ] [102948] src/TcpServer.cpp:<31> TcpServer GetLocalIp:192.168.1.98
+[20211016 06:47:31.692][INFO ] [102948] src/TcpServer.cpp:<49> establish TcpServer:1: socket OK
+[20211016 06:47:31.692][INFO ] [102948] src/TcpServer.cpp:<55> establish TcpServer:2: bind OK
+[20211016 06:47:31.692][INFO ] [102948] src/TcpServer.cpp:<61> establish TcpServer:3: listen OK
+[20211016 06:47:31.692][INFO ] [102948] src/TcpServer.cpp:<67> establish TcpServer:4: add listen Event OK
+[20211016 06:47:31.792][INFO ] [102948] src/main.cpp:<91> timCallBack 0x561DC19BE510timer finish
+[20211016 06:47:41.505][INFO ] [102948] src/TcpServer.cpp:<84> listenCli TcpServer:accept:6
+[20211016 06:47:41.508][INFO ] [102948] src/main.cpp:<160> httpClientCallBack GET / HTTP/1.1
+Host: 192.168.1.98:1080
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
 
-[20211015 09:57:02.462][INFO ] [58884] src/UdpServer.cpp:<70> receive recv from 192.168.1.98/34574: 33
 
-[20211015 09:57:03.408][INFO ] [58884] src/UdpServer.cpp:<70> receive recv from 192.168.1.98/34574: 444
+[20211016 06:47:41.509][INFO ] [102948] src/TcpClient.cpp:<65> receive recv from server:GET / HTTP/1.1
+Host: 192.168.1.98:1080
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
 
-[20211015 09:57:04.440][INFO ] [58884] src/UdpServer.cpp:<70> receive recv from 192.168.1.98/34574: 444
 
-[20211015 09:57:07.323][INFO ] [58884] src/UdpServer.cpp:<70> receive recv from 192.168.1.98/34574: 222
+[20211016 07:12:58.517][INFO ] [102948] src/main.cpp:<160> httpClientCallBack 
+[20211016 07:12:58.518][INFO ] [102948] src/TcpClient.cpp:<65> receive recv from server:
+[20211016 07:12:58.521][INFO ] [102948] src/TcpServer.cpp:<84> listenCli TcpServer:accept:7
+[20211016 07:12:58.521][INFO ] [102948] src/TcpServer.cpp:<84> listenCli TcpServer:accept:8
+[20211016 07:12:58.521][INFO ] [102948] src/main.cpp:<160> httpClientCallBack 
+[20211016 07:12:58.521][INFO ] [102948] src/TcpClient.cpp:<65> receive recv from server:
+[20211016 07:12:58.526][INFO ] [102948] src/main.cpp:<160> httpClientCallBack GET /index HTTP/1.1
+Host: 192.168.1.98:1080
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
 
-[20211015 09:57:45.979][INFO ] [58884] src/main.cpp:<50> stdinUdpRecv 2333
 
-[20211015 09:57:45.979][INFO ] [58884] src/UdpServer.cpp:<70> receive recv from 192.168.1.98/9000: 2333
+[20211016 07:12:58.526][INFO ] [102948] src/TcpClient.cpp:<65> receive recv from server:GET /index HTTP/1.1
+Host: 192.168.1.98:1080
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+
 

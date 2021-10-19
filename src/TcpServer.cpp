@@ -32,7 +32,7 @@ TcpServer::TcpServer(EventPoll* my_epoll, const int my_port) {
     establish();
 }
 
-int TcpServer::establish(void) {
+OPERATE_RET TcpServer::establish(void) {
     /* server address information */
     memset(&server_addr_, 0, sizeof(struct sockaddr_in));
     server_addr_.sin_family = AF_INET;
@@ -42,7 +42,7 @@ int TcpServer::establish(void) {
 
     if (0 > (listen_fd_ = socket(AF_INET, SOCK_STREAM, 0))) {
         LogError() << "TcpServer:socket";
-        return -1;
+        return OPRT_SOCK_CREATE_ERROR;
     }
     // reuse io
     setsockopt(listen_fd_, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on));
@@ -50,44 +50,44 @@ int TcpServer::establish(void) {
 
     if (0 > bind(listen_fd_, (struct sockaddr *)&server_addr_, sizeof(struct sockaddr))) {
         LogError() << "TcpServer:bind";
-        return -1;
+        return OPRT_SOCK_BIND_ERROR;
     }
     LogInfo() << "TcpServer:2: bind OK";
 
     if (0 > listen(listen_fd_, 100)) {
         LogError() << "TcpServer:listen";
-        return -1;
+        return OPRT_SOCK_LISTEN_ERROR;
     }
     LogInfo() << "TcpServer:3: listen OK";
 
     if (0 > (epoll_->addEvent(this, listen_fd_, EPOLLIN | EPOLLET, this->listenCli))) {
         LogError() << "TcpServer:addEvent";
-        return -1;
+        return OPRT_EPOLL_ADDEVENT_ERROR;
     }
     LogInfo() << "TcpServer:4: add listen Event OK";
 
-    return listen_fd_;
+    return OPRT_OK;
 }
 
-int TcpServer::listenCli(void* server, int fd) {
+OPERATE_RET TcpServer::listenCli(void* server, int fd) {
     TcpServer* Server = (TcpServer*)server;
     if (fd != Server->listen_fd_) {
-        return -1;
+        return OPRT_INVALID_PARM;
     }
 
     int socklen = sizeof(struct sockaddr);
     if (0 > (Server->connet_fd_ = accept(Server->listen_fd_, 
                                          (struct sockaddr *)&(Server->client_addr_), 
                                          (socklen_t *)&socklen))) {
-        return -1;
+        return OPRT_SOCK_ACCEPT_ERROR;
     }
     LogInfo() << "TcpServer:accept:" << Server->connet_fd_;
     Server -> callback_(Server->usr_data_, Server->connet_fd_);
 
-    return 0;
+    return OPRT_OK;
 }
 
-void TcpServer::addCallBack(void* usr_data, SERCALLBACK callback) {
+void TcpServer::addCallBack(void* usr_data, EXTCALLBACK callback) {
     usr_data_ = usr_data;
     callback_ = callback;
 }

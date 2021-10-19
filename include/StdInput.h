@@ -19,18 +19,19 @@
 #ifndef __STDINPUT_H__
 #define __STDINPUT_H__
 #include "EventPoll.h"
-using STDCALLBACK = std::function<int(void* usr_data, char* buff, size_t len)>;
+#include "ErrorCode.h"
+using STDCALLBACK = std::function<OPERATE_RET(void* usr_data, std::string buff)>;
 
 
 class StdInput{
 public:
     StdInput(EventPoll* my_epoll);
-    int stdinInit(void);
-    static int receive(void* server, int fd);
+    OPERATE_RET stdinInit(void);
+    static OPERATE_RET receive(void* server, int fd);
     void addCallBack(void* usr_data, STDCALLBACK callback);
 private:
     EventPoll* epoll_ = NULL;
-    char buff_[1024] = {0};
+    std::string buff_ = "";
     void* usr_data_ = NULL;
     STDCALLBACK callback_ = NULL;
 };

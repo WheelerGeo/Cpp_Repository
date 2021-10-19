@@ -9,13 +9,14 @@
 #include "../include/NetworkTool.h"
 #include "../include/Logger.h" 
 
-int NetworkTool::GetLocalIp(const char *eth_inf, char *ip) {
+OPERATE_RET NetworkTool::GetLocalIp(const char *eth_inf, char *ip) {
     int sd;  
     struct sockaddr_in sin;  
     struct ifreq ifr;  
   
     if (0 > (sd = socket(AF_INET, SOCK_DGRAM, 0))) {
         LogError() << "NetworkTool:socket";
+        return OPRT_SOCK_CREATE_ERROR;
     }  
   
     strncpy(ifr.ifr_name, eth_inf, IFNAMSIZ);  
@@ -23,11 +24,15 @@ int NetworkTool::GetLocalIp(const char *eth_inf, char *ip) {
 
     if (0 > ioctl(sd, SIOCGIFADDR, &ifr)) {
         LogError() << "NetworkTool:ioctl";
+        return OPRT_IOCTL_ERROR;
     }
   
     memcpy(&sin, &ifr.ifr_addr, sizeof(sin));  
     memcpy(ip, inet_ntoa(sin.sin_addr), 16);  
   
-    close(sd);  
-    return 0;  
+    if (0 > close(sd)) {
+        LogError() << "NetworkTool:close";
+        return OPRT_SOCK_CLOSE_ERROR;
+    }  
+    return OPRT_OK;  
 }

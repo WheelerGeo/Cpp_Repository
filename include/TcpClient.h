@@ -22,27 +22,28 @@
 #include <map>
 #include <netinet/in.h>
 #include "EventPoll.h"
-using CLICALLBACK = std::function<int(void* usr_data, char* buff, size_t len)>;
+#include "ErrorCode.h"
+
 
 
 class TcpClient{
 public:
+    using EXTCALLBACK = std::function<OPERATE_RET(void*, const std::string&)>;
     TcpClient(EventPoll *my_epoll, int my_port, std::string my_addr);
     TcpClient(EventPoll *my_epoll, int fd);
-    int establish(void);
-    static int receive(void* server, int fd);
-    int sendData(std::string data);
-    void addCallBack(void* usr_data, CLICALLBACK callback);
-    int closeConnect(void);
-protected:
-    char buff_[1024] = {0};
+    OPERATE_RET establish(void);
+    static OPERATE_RET receive(void* server, int fd);
+    OPERATE_RET sendData(std::string data);
+    void addCallBack(void* usr_data, EXTCALLBACK callback);
+    OPERATE_RET closeConnect(void);  
 private:
+    std::string buff_ = "";
     EventPoll* epoll_ = nullptr;
     int port_ = 0;
     std::string addr_ = {0};
     int connect_fd_ = -1;
     struct sockaddr_in cli_addr_ = {0};
-    CLICALLBACK callback_ = nullptr;
+    EXTCALLBACK callback_ = nullptr;
     void* usr_data_ = nullptr;
 };
 

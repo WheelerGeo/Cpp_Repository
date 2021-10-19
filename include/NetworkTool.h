@@ -18,10 +18,11 @@
 *****************************************************************************/
 #ifndef __NETWORKTOOL_H__
 #define __NETWORKTOOL_H__
+#include "ErrorCode.h"
 
 class NetworkTool{
 public:
-    static int GetLocalIp(const char *eth_inf, char *ip);
+    static OPERATE_RET GetLocalIp(const char *eth_inf, char *ip);
 
 
 

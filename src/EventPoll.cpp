@@ -7,15 +7,15 @@ EventPoll::EventPoll(void) {
     create();
 }
 
-int EventPoll::create(void) {
+OPERATE_RET EventPoll::create(void) {
     if (0 > (epoll_fd_ = epoll_create1(0))) {
         LogError() << "EventPoll:epoll_create1";
-        return -1;
+        return OPRT_EPOLL_CREATE_ERROR;
     }
-    return 0;
+    return OPRT_OK;
 }
 
-int EventPoll::addEvent(void* usr_data, int fd, int flags, CALLBACK callback) {
+OPERATE_RET EventPoll::addEvent(void* usr_data, int fd, int flags, CALLBACK callback) {
     struct info infor = {
         .callback_ = callback,
         .usr_data_ = usr_data
@@ -28,10 +28,10 @@ int EventPoll::addEvent(void* usr_data, int fd, int flags, CALLBACK callback) {
 
     if (0 > epoll_ctl(epoll_fd_, EPOLL_CTL_ADD, fd, ev)) {
         LogError() << "EventPoll:epoll_ctl";
-        return -1;
+        return OPRT_EPOLL_CTL_ERROR;
     }
     
-    return 0;
+    return OPRT_OK;
 }
 
 void EventPoll::addTimer(void* usr_data, TIMCALLBACK tim_callback) {
@@ -40,7 +40,7 @@ void EventPoll::addTimer(void* usr_data, TIMCALLBACK tim_callback) {
 }
 
 
-int EventPoll::loop() {
+OPERATE_RET EventPoll::loop() {
     int nfds = 0;
     struct timeval now = {0};
     while (1) {
@@ -49,7 +49,8 @@ int EventPoll::loop() {
         now_time_ms_ = now.tv_sec * 1000 + now.tv_usec / 1000;
         for(auto it : timer_map_) {
             if(it.second) {
-                int time_duration = it.second(it.first, now_time_ms_);
+                int time_duration;
+                it.second(it.first, now_time_ms_, &time_duration);
                 if(time_duration < epoll_time_out_ && time_duration > 0) {
                     epoll_time_out_ =  time_duration - 1;
                 }
@@ -58,7 +59,7 @@ int EventPoll::loop() {
         
         if (0 > (nfds = epoll_wait(epoll_fd_, events_, EVENTS_MAX, epoll_time_out_))) {
             LogError() << "EventPoll:epoll_wait";
-            return -1;
+            return OPRT_EPOLL_WAIT_ERROR;
         }
         LogDebug() << "time_out: " << epoll_time_out_;
         
@@ -69,5 +70,5 @@ int EventPoll::loop() {
             }
         }
     }
-    return 0;
+    return OPRT_OK;
 }

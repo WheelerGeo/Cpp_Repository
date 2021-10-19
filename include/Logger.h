@@ -19,19 +19,20 @@
 #ifndef __LOGGER_H__
 #define __LOGGER_H__
 #include "fn_log.h"
+#include "ErrorCode.h"
 
 class Logger{
 public:
     Logger();
-    int loggerInit(void);
-    int loggerStart(void);
+    OPERATE_RET loggerInit(void);
+    OPERATE_RET loggerStart(void);
     static Logger& getInstance(void);
     void setLoggerFromConfig(const std::string &config_path);
-    int setLoggerSync(void);
-    int addLoggerToFile(const std::string& fpath, const std::string& fname, 
+    OPERATE_RET setLoggerSync(void);
+    OPERATE_RET addLoggerToFile(const std::string& fpath, const std::string& fname, 
         FNLog::LogPriority level, int limit_size = 1024, int rollback = 4);
-    int addLoggerToScreen(FNLog::LogPriority level);
-    int addLoggerToUdp(const std::string& ip, int port, FNLog::LogPriority level);
+    OPERATE_RET addLoggerToScreen(FNLog::LogPriority level);
+    OPERATE_RET addLoggerToUdp(const std::string& ip, int port, FNLog::LogPriority level);
 protected:
     ~Logger(){};
 

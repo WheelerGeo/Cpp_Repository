@@ -12,23 +12,23 @@
 #include "../include/NetworkTool.h"
 #include "../include/HttpServer.h"
 #include "../include/HttpClient.h"
-
+#include "../include/ErrorCode.h"
 using namespace std;
 
 
 // StdInput* stdInput;
 unique_ptr<StdInput> stdInput;
-static int timCallBack(void* usr_data, long int now_time_ms);
+static OPERATE_RET timCallBack(void* usr_data);
 static void threadCallBack(void* usr_data);
-static int tcpServerCallBack(void* usr_data, int fd);
-static int tcpClientCallBack(void* usr_data, char* buff, size_t len);
-static int stdInTcpCallBack(void* usr_data, char* buff, size_t len);
-static int udpRecvCallBack(void* usr_data, char* buff, string des_ip, int des_port);
-static int stdInUdpCallBack(void* usr_data, char* buff, size_t len);
-static int httpServerCallBack(void* usr_data, int fd);
-static int httpClientCallBack(void* usr_data, char* buff, size_t len);
-static int stdInHttpCallBack(void* usr_data, char* buff, size_t len);
-static int httpRequestCallBack(void* usr_data, char* buff, size_t len);
+static OPERATE_RET tcpServerCallBack(void* usr_data, int fd);
+static OPERATE_RET tcpClientCallBack(void* usr_data, const std::string& buff);
+static OPERATE_RET stdInTcpCallBack(void* usr_data, const std::string& buff);
+static OPERATE_RET udpRecvCallBack(void* usr_data, char* buff, string des_ip, int des_port);
+static OPERATE_RET stdInUdpCallBack(void* usr_data, const std::string& buff);
+static OPERATE_RET httpServerCallBack(void* usr_data, int fd);
+static OPERATE_RET httpRequestCallBack(void* usr_data, const std::string& buff);
+static OPERATE_RET httpClientCallBack(void* usr_data, const std::string& buff);
+static OPERATE_RET stdInHttpCallBack(void* usr_data, const std::string& buff);
 
 int main(int argc, char **argv)
 {    
@@ -78,7 +78,6 @@ int main(int argc, char **argv)
     if (!memcmp(argv[1], "httpserver", strlen("httpserver"))) {
         HttpServer* httpServer = new HttpServer(&eventPoll, 1080);
         httpServer->addCallBack(&eventPoll, httpServerCallBack);
-
     } else if (!memcmp(argv[1], "httpclient", strlen("httpclient"))) {
         HttpClient* httpClient = new HttpClient(&eventPoll, 1080, "192.168.1.98");
         httpClient->addCallBack(&eventPoll, httpClientCallBack);
@@ -90,9 +89,9 @@ int main(int argc, char **argv)
     return eventPoll.loop();
 }
 
-static int timCallBack(void* usr_data, long int now_time_ms) {
+static OPERATE_RET timCallBack(void* usr_data) {
     LogInfo() << usr_data << "timer finish";
-    return 0;
+    return OPRT_OK;
 }
 
 static void threadCallBack(void* usr_data) {
@@ -101,90 +100,96 @@ static void threadCallBack(void* usr_data) {
     sleep(10);
 }
 
-static int tcpServerCallBack(void* usr_data, int fd) {
+static OPERATE_RET tcpServerCallBack(void* usr_data, int fd) {
     TcpClient* tcpClient = new TcpClient((EventPoll*)usr_data, fd);
     tcpClient->addCallBack(tcpClient, tcpClientCallBack);
     stdInput->addCallBack(tcpClient, stdInTcpCallBack);
-    return 0;
+    return OPRT_OK;
 }
 
-static int tcpClientCallBack(void* usr_data, char* buff, size_t len) {
+
+static OPERATE_RET tcpClientCallBack(void* usr_data, const std::string& buff) {
     TcpClient* cli_usr = (TcpClient*)usr_data;
-    if (len == 0) {
+    if (0 == buff.size()) {
         cli_usr->closeConnect();
     } else {
         LogInfo() << buff;
     }
-    return 0;
+    return OPRT_OK;
 }
 
-static int stdInTcpCallBack(void* usr_data, char* buff, size_t len) {
+static OPERATE_RET stdInTcpCallBack(void* usr_data, const std::string& buff) {
     TcpClient* cli_usr = (TcpClient*)usr_data;
-    cout << buff << endl;
-    if (!memcmp(buff, "close", 5)) {
+    LogInfo() << buff;
+    if (!buff.compare("close")) {
         cli_usr->closeConnect();
         LogInfo() << "client closed";
     } else {
         cli_usr->sendData(buff);
     }
-    return 0;
+    return OPRT_OK;
 }
 
-static int udpRecvCallBack(void* usr_data, char* buff, string des_ip, int des_port) {
+static OPERATE_RET udpRecvCallBack(void* usr_data, char* buff, string des_ip, int des_port) {
     UdpServer* cli_usr = (UdpServer*)usr_data;
 
-    return 0;
+    return OPRT_OK;
 }
 
-static int stdInUdpCallBack(void* usr_data, char* buff, size_t len) {
+static OPERATE_RET stdInUdpCallBack(void* usr_data, const std::string& buff) {
     UdpServer* ser_usr = (UdpServer*)usr_data;
     LogInfo() << buff;
-    if (!memcmp(buff, "close", 5)) {
+    if (!buff.compare("close")) {
         ser_usr->closeConnect();
         LogInfo() << "client closed";
     } else {
         ser_usr->sendData(buff, "192.168.1.98", 9000);
     }
-    return 0;
+    return OPRT_OK;
 }
 
-static int httpServerCallBack(void* usr_data, int fd) {
+static OPERATE_RET httpServerCallBack(void* usr_data, int fd) {
     HttpClient* httpClient = new HttpClient((EventPoll*)usr_data, fd);
     httpClient->addCallBack(httpClient, httpRequestCallBack);
-    return 0;
+    return OPRT_OK;
 }
 
-static int httpRequestCallBack(void* usr_data, char* buff, size_t len) {
+static OPERATE_RET httpRequestCallBack(void* usr_data, const std::string& buff) {
     HttpClient* cli_usr = (HttpClient*)usr_data;
+    if(0 == buff.size()) {
+        cli_usr->closeConnect();
+        return 0;
+    }
     int ret = cli_usr->analysisUrl(buff);
+    
     if (0 == ret) {
         cli_usr->responseSuccess();
     } else if (-1 == ret) {
-
+        // cli_usr->responseFailed();
     } else if (-2 == ret) {
-
+        // cli_usr->responseFailed();
     }
-    return 0;
+    return OPRT_OK;
 }
 
-static int httpClientCallBack(void* usr_data, char* buff, size_t len) {
+static OPERATE_RET httpClientCallBack(void* usr_data, const std::string& buff) {
     HttpClient* cli_usr = (HttpClient*)usr_data;
-    if (len == 0) {
+    if (0 == buff.size()) {
         cli_usr->closeConnect();
     } else {
         LogInfo() << buff;
     }
-    return 0;
+    return OPRT_OK;
 }
 
-static int stdInHttpCallBack(void* usr_data, char* buff, size_t len) {
+static OPERATE_RET stdInHttpCallBack(void* usr_data, const std::string& buff) {
     HttpClient* cli_usr = (HttpClient*)usr_data;
-    cout << buff << endl;
-    if (!memcmp(buff, "close", 5)) {
+    LogInfo() << buff;
+    if (!buff.compare("close")) {
         cli_usr->closeConnect();
         LogInfo() << "client closed";
     } else {
         cli_usr->sendData(buff);
     }
-    return 0;
+    return OPRT_OK;
 }

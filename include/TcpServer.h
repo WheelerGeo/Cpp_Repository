@@ -26,16 +26,18 @@
 #include <map>
 #include "EventPoll.h"
 #include "TcpClient.h"
-using SERCALLBACK = std::function<int(void* usr_data, int fd)>;
+#include "ErrorCode.h"
+
 
 // create TCP server class
 class TcpServer{
 public:
+    using EXTCALLBACK = std::function<OPERATE_RET(void* usr_data, int fd)>;
     TcpServer(EventPoll* my_epoll, const int my_port, const std::string my_addr);
     TcpServer(EventPoll* my_epoll, const int my_port);
-    int establish(void);
-    static int listenCli(void* server, int fd);
-    void addCallBack(void* usr_data, SERCALLBACK callback);
+    OPERATE_RET establish(void);
+    static OPERATE_RET listenCli(void* server, int fd);
+    void addCallBack(void* usr_data, EXTCALLBACK callback);
 private:
     EventPoll* epoll_ = nullptr;
     int port_ = 0;
@@ -45,9 +47,8 @@ private:
     struct sockaddr_in server_addr_ = {0};
     struct sockaddr_in client_addr_ = {0};
     char buff_[1024] = {0};
-    SERCALLBACK callback_ = nullptr;
+    EXTCALLBACK callback_ = nullptr;
     void* usr_data_ = nullptr;
-    
 };
 
 

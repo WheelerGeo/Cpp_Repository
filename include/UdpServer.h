@@ -19,18 +19,18 @@
 #ifndef __UDPSERVER_H__
 #define __UDPSERVER_H__
 #include "EventPoll.h"
-
-using UDPCALLBACK = std::function<int(void*, char*, std::string, int)>;
+#include "ErrorCode.h"
 
 class UdpServer{
 public:
+    using EXTCALLBACK = std::function<OPERATE_RET(void*, char*, std::string, int)>;
     UdpServer(EventPoll* my_epoll, const int my_port, const std::string my_addr);
     UdpServer(EventPoll* my_epoll, const int my_port);
-    int udpServerStart(void);
-    void addCallBack(void* usr_data, UDPCALLBACK callback);
-    static int receive(void* server, int fd);
-    int closeConnect(void);
-    int sendData(std::string data, std::string des_addr, int des_port);
+    OPERATE_RET udpServerStart(void);
+    void addCallBack(void* usr_data, EXTCALLBACK callback);
+    static OPERATE_RET receive(void* server, int fd);
+    OPERATE_RET closeConnect(void);
+    OPERATE_RET sendData(std::string data, std::string des_addr, int des_port);
 private:
     EventPoll* epoll_ = nullptr;
     int port_ = 0;
@@ -38,7 +38,7 @@ private:
     int sock_fd_ = 0;
     struct sockaddr_in server_addr_ = {0};
     void* usr_data_ = nullptr;
-    UDPCALLBACK callback_ = nullptr;
+    EXTCALLBACK callback_ = nullptr;
     char buff_[1024] = {0};
 
 

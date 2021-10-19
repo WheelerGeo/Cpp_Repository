@@ -23,19 +23,20 @@
 #include <map>
 #include <vector>
 #include <sys/time.h>
+#include "ErrorCode.h"
+
 #define EVENTS_MAX      1024
 #define EPOLL_TIMEOUT   1000
-using CALLBACK = std::function<int(void* usr_data, int fd)>;
-using TIMCALLBACK = std::function<int(void* usr_data, long int now_time_ms)>;
-
 
 class EventPoll{
 public:
+    using CALLBACK = std::function<OPERATE_RET(void* usr_data, int fd)>;
+    using TIMCALLBACK = std::function<OPERATE_RET(void* usr_data, const long int now_time_ms, int* time_duration)>;
     EventPoll(void);
-    int create(void);
-    int addEvent(void* usr_data, int fd, int flags, CALLBACK callback);
+    OPERATE_RET create(void);
+    OPERATE_RET addEvent(void* usr_data, int fd, int flags, CALLBACK callback);
     void addTimer(void* usr_data, TIMCALLBACK tim_callback);
-    int loop();
+    OPERATE_RET loop();
 private:
     int epoll_fd_ = -1;
     int events_cnt = 0;

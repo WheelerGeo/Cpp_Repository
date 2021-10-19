@@ -25,15 +25,15 @@ TcpClient::TcpClient(EventPoll *my_epoll, int my_port, std::string my_addr) {
 TcpClient::TcpClient(EventPoll *my_epoll, int fd) {
     epoll_ = my_epoll;
     connect_fd_ = fd;
-    if (0 > (epoll_ -> addEvent(this, connect_fd_, EPOLLIN | EPOLLET, receive))) {
+    if (0 > (epoll_->addEvent(this, connect_fd_, EPOLLIN | EPOLLET, receive))) {
         LogError() << "TcpClient:addEvent";
     }
 }
 
-int TcpClient::establish(void) {
+OPERATE_RET TcpClient::establish(void) {
     if (0 > (connect_fd_ = socket(AF_INET, SOCK_STREAM, 0))) {
         LogError() << "TcpClient:socket";
-        return -1;
+        return OPRT_SOCK_CREATE_ERROR;
     }
     LogInfo() << "TcpClient:1: socket OK";
 
@@ -43,38 +43,55 @@ int TcpClient::establish(void) {
     cli_addr_.sin_port = htons(port_);
     if (0 > connect(connect_fd_, (sockaddr *)&cli_addr_, sizeof(cli_addr_))) {
         LogError() << "TcpClient:connect";
-        return -1;
+        return OPRT_SOCK_CONNECT_ERROR;
     }
     LogInfo() << "TcpClient:2: connect OK";
 
-    if (0 > (epoll_ -> addEvent(this, connect_fd_, EPOLLIN | EPOLLET, receive))) {
+    if (0 > (epoll_->addEvent(this, connect_fd_, EPOLLIN | EPOLLET, receive))) {
         LogError() << "TcpClient:addEvent";
-        return -1;
+        return OPRT_EPOLL_ADDEVENT_ERROR;
     }
     LogInfo() << "TcpClient:3: add receive Event OK";
 
-    return 0;
+    return OPRT_OK;
 }
 
-int TcpClient::receive(void* server, int fd) {
+/* 存在bug */
+OPERATE_RET TcpClient::receive(void* server, int fd) {
+    int buff_size = 0;
+    char buff[1024] = "";
     TcpClient* Server = (TcpClient*)server;
 
-    memset(Server->buff_, 0, sizeof(Server->buff_));
-    recv(fd, Server->buff_, sizeof(Server->buff_), 0);
-    Server->callback_(Server->usr_data_, Server->buff_, sizeof(Server->buff_));
-    LogInfo() << "recv from server:" << Server->buff_;
-    return 0;
+    Server->buff_.clear();
+    buff_size = recv(fd, buff, sizeof(buff), 0);
+    if (0 > buff_size) {
+        LogError() << "TcpClient:receive";
+        return OPRT_SOCK_RECV_ERROR;
+    }
+    Server->buff_ = std::string(buff, buff_size);
+    LogInfo() << "recv from server[" << buff_size << "]:" << Server->buff_;
+    Server->callback_(Server->usr_data_, Server->buff_);
+    
+    return OPRT_OK;
 }
 
-int TcpClient::sendData(std::string data) {
-    return send(connect_fd_, data.c_str(), data.size(), 0);
+OPERATE_RET TcpClient::sendData(std::string data) {
+    if (0 > send(connect_fd_, data.c_str(), data.size(), 0)) {
+        LogError() << "TcpClient:send";
+        return OPRT_SOCK_SEND_ERROR;
+    }
+    return OPRT_OK;
 }
 
-void TcpClient::addCallBack(void* usr_data, CLICALLBACK callback) {
+void TcpClient::addCallBack(void* usr_data, EXTCALLBACK callback) {
     usr_data_ = usr_data;
     callback_ = callback;
 }
 
-int TcpClient::closeConnect(void) {
-    return close(connect_fd_);
+OPERATE_RET TcpClient::closeConnect(void) {
+    if (0 > close(connect_fd_)) {
+        LogError() << "TcpClient:close";
+        return OPRT_SOCK_CLOSE_ERROR;
+    }
+    return OPRT_OK;
 }

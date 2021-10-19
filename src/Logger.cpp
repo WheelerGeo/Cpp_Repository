@@ -4,16 +4,16 @@ Logger::Logger(void):level_(FNLog::PRIORITY_ERROR), device_id_(0) {
     loggerInit();
 };
 
-int Logger::loggerInit(void) {
+OPERATE_RET Logger::loggerInit(void) {
     FNLog::Logger& logger = FNLog::GetDefaultLogger();
     FNLog::Logger::StateLockGuard state_guard(logger.state_lock);
     if (logger.logger_state_ != FNLog::LOGGER_STATE_UNINIT) {
         perror("init logger failed");
-        return -1;
+        return OPRT_LOG_INIT_ERROR;
     }
     if (logger.shm_ == nullptr) {
         perror("init logger error. no shm");
-        return -2;
+        return OPRT_LOG_NOSHM_ERROR;
     }
 
     logger.yaml_path_ = "";
@@ -32,13 +32,13 @@ int Logger::loggerInit(void) {
     if (logger.shm_->channel_size_ > FNLog::Logger::MAX_CHANNEL_SIZE
             || logger.shm_->channel_size_ <= 0) {
         printf("start error 2");
-        return -2;
+        return OPRT_LOG_START_ERROR;
     }
 
-    return 0;
+    return OPRT_OK;
 }
 
-int Logger::loggerStart(void) {
+OPERATE_RET Logger::loggerStart(void) {
     int ret = -1;
 
     if (!config_path_.empty()) {
@@ -65,33 +65,33 @@ void Logger::setLoggerFromConfig(const std::string &config_path) {
     }
 }
 
-int Logger::setLoggerSync(void) {
+OPERATE_RET Logger::setLoggerSync(void) {
     FNLog::Logger& logger = FNLog::GetDefaultLogger();
     FNLog::Logger::StateLockGuard state_guard(logger.state_lock);
     if (logger.logger_state_ != FNLog::LOGGER_STATE_UNINIT) {
         perror("init logger failed");
-        return -1;
+        return OPRT_LOG_INIT_ERROR;
     }
     if (logger.shm_ == nullptr) {
         perror("init logger error. no shm");
-        return -2;
+        return OPRT_LOG_NOSHM_ERROR;
     }
 
     logger.shm_->channels_[0].channel_type_ = FNLog::CHANNEL_SYNC;
-    return 0;
+    return OPRT_OK;
 }
 
-int Logger::addLoggerToFile(const std::string& fpath, const std::string& fname,
+OPERATE_RET Logger::addLoggerToFile(const std::string& fpath, const std::string& fname,
             FNLog::LogPriority level, int limit_size, int rollback) {
     FNLog::Logger& logger = FNLog::GetDefaultLogger();
     FNLog::Logger::StateLockGuard state_guard(logger.state_lock);
     if (logger.logger_state_ != FNLog::LOGGER_STATE_UNINIT) {
         perror("init logger failed");
-        return -1;
+        return OPRT_LOG_INIT_ERROR;
     }
     if (logger.shm_ == nullptr) {
         perror("init logger error. no shm");
-        return -2;
+        return OPRT_LOG_NOSHM_ERROR;
     }
 
     FNLog::Channel& channel = logger.shm_->channels_[0];
@@ -108,19 +108,19 @@ int Logger::addLoggerToFile(const std::string& fpath, const std::string& fname,
     device.config_fields_[FNLog::DEVICE_CFG_FILE_ROLLBACK] = rollback;
     memcpy(device.out_path_, fpath.c_str(), fpath.size());
     memcpy(device.out_file_, fname.c_str(), fname.size());
-    return 0;
+    return OPRT_OK;
 }
 
-int Logger::addLoggerToScreen(FNLog::LogPriority level) {
+OPERATE_RET Logger::addLoggerToScreen(FNLog::LogPriority level) {
     FNLog::Logger& logger = FNLog::GetDefaultLogger();
     FNLog::Logger::StateLockGuard state_guard(logger.state_lock);
     if (logger.logger_state_ != FNLog::LOGGER_STATE_UNINIT) {
         perror("init logger failed");
-        return -1;
+        return OPRT_LOG_INIT_ERROR;
     }
     if (logger.shm_ == nullptr) {
         perror("init logger error. no shm");
-        return -2;
+        return OPRT_LOG_NOSHM_ERROR;
     }
     level_ = level;
 
@@ -134,19 +134,19 @@ int Logger::addLoggerToScreen(FNLog::LogPriority level) {
     device.config_fields_[FNLog::DEVICE_CFG_PRIORITY] = level;
     device.config_fields_[FNLog::DEVICE_CFG_CATEGORY] = 0;
     device.config_fields_[FNLog::DEVICE_CFG_CATEGORY_EXTEND] = 0;
-    return 0;
+    return OPRT_OK;
 }
 
-int Logger::addLoggerToUdp(const std::string& ip, int port, FNLog::LogPriority level) {
+OPERATE_RET Logger::addLoggerToUdp(const std::string& ip, int port, FNLog::LogPriority level) {
     FNLog::Logger& logger = FNLog::GetDefaultLogger();
     FNLog::Logger::StateLockGuard state_guard(logger.state_lock);
     if (logger.logger_state_ != FNLog::LOGGER_STATE_UNINIT) {
         perror("init logger failed");
-        return -1;
+        return OPRT_LOG_INIT_ERROR;
     }
     if (logger.shm_ == nullptr) {
         perror("init logger error. no shm");
-        return -2;
+        return OPRT_LOG_NOSHM_ERROR;
     }
 
     FNLog::Channel& channel = logger.shm_->channels_[0];
@@ -163,6 +163,7 @@ int Logger::addLoggerToUdp(const std::string& ip, int port, FNLog::LogPriority l
     device.config_fields_[FNLog::DEVICE_CFG_FILE_ROLLBACK] = 4;
     device.config_fields_[FNLog::DEVICE_CFG_UDP_IP] = inet_addr(ip.c_str());
     device.config_fields_[FNLog::DEVICE_CFG_UDP_PORT] = htons(port);
-    return 0;
+    
+    return OPRT_OK;
 }
 

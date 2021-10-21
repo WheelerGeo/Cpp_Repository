@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/test.dir/home/arinux/workspace/Cpp_Repository/demo/test.cpp.o  -o /home/arinux/workspace/Cpp_Repository/bin/test  -lpthread /home/arinux/workspace/Cpp_Repository/lib/libnwk_static.a 

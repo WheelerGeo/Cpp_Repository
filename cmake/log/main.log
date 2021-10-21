@@ -1,0 +1,3 @@
+[20211021 07:12:26.352][INFO ] [75142] Cpp_Repository/src/Logger.cpp:<52> loggerStart Log init success.
+[20211021 07:12:26.352][ERROR] [75142] Cpp_Repository/src/FileOperate.cpp:<35> readLineFromFile readLineFromFile:line_id too big
+[20211021 07:12:26.353][INFO ] [75142] Cpp_Repository/demo/test.cpp:<14> main 

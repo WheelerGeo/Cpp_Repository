@@ -38,6 +38,7 @@ public:
     OPERATE_RET establish(void);
     static OPERATE_RET listenCli(void* server, int fd);
     void addCallBack(void* usr_data, EXTCALLBACK callback);
+    
 private:
     EventPoll* epoll_ = nullptr;
     int port_ = 0;

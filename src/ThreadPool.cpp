@@ -1,7 +1,13 @@
 #include "../include/ThreadPool.h"
 #include "../include/Logger.h"
 
-ThreadPool::ThreadPool(int max_thread = 10, int min_thread = 3, int max_queue = 50) {
+ThreadPool& ThreadPool::getInstance(void) {
+    static ThreadPool instance;
+    return instance;
+}
+
+void ThreadPool::threadPoolStart(int min_thread, int max_thread, int max_queue) {
+    
     if (pthread_mutex_init(&thread_pool_lock_, NULL) != 0 || 
         pthread_mutex_init(&busy_task_lock_, NULL) != 0 ||
         pthread_cond_init(&queue_not_full_, NULL) != 0 || 
@@ -12,6 +18,7 @@ ThreadPool::ThreadPool(int max_thread = 10, int min_thread = 3, int max_queue = 
     max_thread_num_ = max_thread;
     min_thread_num_ = min_thread;
     max_queue_num_ = max_queue;
+    LogDebug() << max_queue_num_;
     busy_thread_num_ = 0;
     live_thread_num_ = min_thread_num_;
     wait_exit_thread_num_ = 0;
@@ -28,6 +35,7 @@ ThreadPool::ThreadPool(int max_thread = 10, int min_thread = 3, int max_queue = 
 }
 
 void* ThreadPool::threadWorkHandler(void* arg) {
+    LogInfo() << "work thread start!";
     ThreadPool* pool = (ThreadPool*)arg;
     while (1) {
         pthread_mutex_lock(&pool->thread_pool_lock_);
@@ -75,6 +83,7 @@ void* ThreadPool::threadWorkHandler(void* arg) {
 }
 
 void* ThreadPool::threadMangerHandler(void* arg) {
+    LogInfo() << "manage thread start!";
     ThreadPool* pool = (ThreadPool*)arg;
     while (!pool->shut_down_state_) {
         sleep(3);
@@ -124,9 +133,11 @@ void ThreadPool::threadExit(void) {
 
 void ThreadPool::addThreadPoolTask(void* usr_data, TASKCALLBACK task_call_back) {
     pthread_mutex_lock(&thread_pool_lock_);
+    LogDebug() << thread_queue_.size() << " " << max_queue_num_ << " " << shut_down_state_;
     while (thread_queue_.size() == max_queue_num_ && !shut_down_state_) {
         pthread_cond_wait(&queue_not_full_, &thread_pool_lock_);
     }
+    LogDebug() << "bbbb";
     if (shut_down_state_) {
         pthread_mutex_unlock(&thread_pool_lock_);
         return;

@@ -13,6 +13,7 @@
 #include "../include/HttpServer.h"
 #include "../include/HttpClient.h"
 #include "../include/ErrorCode.h"
+#include "../include/FileOperate.h"
 using namespace std;
 
 
@@ -33,11 +34,11 @@ static OPERATE_RET stdInHttpCallBack(void* usr_data, const std::string& buff);
 int main(int argc, char **argv)
 {    
     /* Log init */
-    Logger::getInstance().addLoggerToFile("./log", "main", FNLog::PRIORITY_INFO, 1024, 1);
+    Logger::getInstance().addLoggerToFile("/tmp", "main", FNLog::PRIORITY_INFO, 1024, 1);
     Logger::getInstance().addLoggerToScreen(FNLog::PRIORITY_INFO);
     Logger::getInstance().setLoggerSync();
     Logger::getInstance().loggerStart();
-    
+
     /* Event poll init */
     EventPoll eventPoll;
 
@@ -46,13 +47,14 @@ int main(int argc, char **argv)
     timerTick->addCallBack(timCallBack);
 
     /* Thread pool init */
-    if(!memcmp(argv[1], "threadpool", strlen("threadpool"))) {
-        ThreadPool* threadPool = new ThreadPool(10, 5, 50);
-        for(int i = 1; i < 51; ++i) {
-            int* ptr = new int(i);
-            threadPool->addThreadPoolTask(ptr, threadCallBack);
-        }
-    }
+    // if(!memcmp(argv[1], "threadpool", strlen("threadpool"))) {
+    //     ThreadPool threadPool = ThreadPool::getInstance();
+    //     threadPool.threadPoolStart();
+    //     for(int i = 1; i < 51; ++i) {
+    //         int* ptr = new int(i);
+    //         threadPool.addThreadPoolTask(ptr, threadCallBack);
+    //     }
+    // }
 
     /* TCP server or client init */
     if (!memcmp(argv[1], "tcpserver", strlen("tcpserver"))) {

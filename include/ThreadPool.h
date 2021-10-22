@@ -22,13 +22,15 @@
 #include <vector>
 #include <functional>
 #include <unistd.h>
+#include "ErrorCode.h"
 
-using TASKCALLBACK = std::function<void(void*)>;
+using TASKCALLBACK = std::function<OPERATE_RET(void*)>;
 
 
 class ThreadPool{
 public:
-    ThreadPool(int max_thread, int min_thread, int max_queue);
+    static ThreadPool& getInstance(void);
+    void threadPoolStart(int min_thread = 3, int max_thread = 10, int max_queue = 50);
     static void* threadWorkHandler(void *arg);
     static void* threadMangerHandler(void *arg);
     void threadExit(void);

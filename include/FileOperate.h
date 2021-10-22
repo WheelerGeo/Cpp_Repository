@@ -1,17 +1,30 @@
 #ifndef __FILEOPERATE_H__
 #define __FILEOPERATE_H__
 #include <string>
-
+#include <fstream>
+#include <functional>
+#include "ErrorCode.h"
 
 class FileOperate{
 public:
-    int open(const std::string& file_name);
-    void readAllFromFile(const std::string& file_name, std::string& read_buff);
-    void readLineFromFile(const std::string& file_name, std::string& line, std::string& read_buff);
-    void writeAllIntoFile(const std::string& file_name, const std::string& write_buff);
-    void writeApendIntoFile(const std::string& file_name, const std::string& write_buff);
-private:
+    FileOperate(const std::string& file_name):file_name_(file_name) {}
+    FileOperate(const std::string& file_name, const std::string& write_buff):file_name_(file_name), write_buff_(write_buff) {}
+    
+    static OPERATE_RET syncReadAllFromFile(const std::string& file_name, std::string& read_buff);
+    static OPERATE_RET syncReadLineFromFile(const std::string& file_name, const int line_id, std::string& read_buff);
+    static OPERATE_RET syncWriteAllIntoFile(const std::string& file_name, const std::string& write_buff);
+    static OPERATE_RET syncWriteApendIntoFile(const std::string& file_name, const std::string& write_buff);
+    static OPERATE_RET countLineOfFile(const std::string& file_name, int& line_number);
+    static OPERATE_RET countSizeOfFile(const std::string& file_name, int& file_size);
 
+    OPERATE_RET asyncReadAllFromFile(void);
+    OPERATE_RET asyncWriteAllIntoFile(void);
+    OPERATE_RET asyncWriteApendIntoFile(void);
+    virtual void readCallBack(const std::string& read_buff) {}
+    virtual void writeCallBack(const std::string& read_buff) {}
+private:
+    std::string file_name_ = "";
+    std::string write_buff_ = "";
 };
 
 

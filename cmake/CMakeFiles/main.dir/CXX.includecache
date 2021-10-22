@@ -37,6 +37,8 @@ memory
 /home/arinux/workspace/Cpp_Repository/include/HttpClient.h
 ../include/ErrorCode.h
 /home/arinux/workspace/Cpp_Repository/include/ErrorCode.h
+../include/FileOperate.h
+/home/arinux/workspace/Cpp_Repository/include/FileOperate.h
 
 /home/arinux/workspace/Cpp_Repository/include/ErrorCode.h
 
@@ -50,6 +52,16 @@ map
 vector
 -
 sys/time.h
+-
+ErrorCode.h
+/home/arinux/workspace/Cpp_Repository/include/ErrorCode.h
+
+/home/arinux/workspace/Cpp_Repository/include/FileOperate.h
+string
+-
+fstream
+-
+functional
 -
 ErrorCode.h
 /home/arinux/workspace/Cpp_Repository/include/ErrorCode.h
@@ -119,6 +131,8 @@ functional
 -
 unistd.h
 -
+ErrorCode.h
+/home/arinux/workspace/Cpp_Repository/include/ErrorCode.h
 
 /home/arinux/workspace/Cpp_Repository/include/TimerTick.h
 sys/time.h

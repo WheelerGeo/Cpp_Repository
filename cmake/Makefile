@@ -137,6 +137,19 @@ main/fast:
 .PHONY : main/fast
 
 #=============================================================================
+# Target rules for targets named file_main
+
+# Build rule for target.
+file_main: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 file_main
+.PHONY : file_main
+
+# fast build rule for target.
+file_main/fast:
+	$(MAKE) -f CMakeFiles/file_main.dir/build.make CMakeFiles/file_main.dir/build
+.PHONY : file_main/fast
+
+#=============================================================================
 # Target rules for targets named nwk_shared
 
 # Build rule for target.
@@ -161,6 +174,33 @@ nwk_static: cmake_check_build_system
 nwk_static/fast:
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/build
 .PHONY : nwk_static/fast
+
+home/arinux/workspace/Cpp_Repository/demo/file_main.o: home/arinux/workspace/Cpp_Repository/demo/file_main.cpp.o
+
+.PHONY : home/arinux/workspace/Cpp_Repository/demo/file_main.o
+
+# target to build an object file
+home/arinux/workspace/Cpp_Repository/demo/file_main.cpp.o:
+	$(MAKE) -f CMakeFiles/file_main.dir/build.make CMakeFiles/file_main.dir/home/arinux/workspace/Cpp_Repository/demo/file_main.cpp.o
+.PHONY : home/arinux/workspace/Cpp_Repository/demo/file_main.cpp.o
+
+home/arinux/workspace/Cpp_Repository/demo/file_main.i: home/arinux/workspace/Cpp_Repository/demo/file_main.cpp.i
+
+.PHONY : home/arinux/workspace/Cpp_Repository/demo/file_main.i
+
+# target to preprocess a source file
+home/arinux/workspace/Cpp_Repository/demo/file_main.cpp.i:
+	$(MAKE) -f CMakeFiles/file_main.dir/build.make CMakeFiles/file_main.dir/home/arinux/workspace/Cpp_Repository/demo/file_main.cpp.i
+.PHONY : home/arinux/workspace/Cpp_Repository/demo/file_main.cpp.i
+
+home/arinux/workspace/Cpp_Repository/demo/file_main.s: home/arinux/workspace/Cpp_Repository/demo/file_main.cpp.s
+
+.PHONY : home/arinux/workspace/Cpp_Repository/demo/file_main.s
+
+# target to generate assembly for a file
+home/arinux/workspace/Cpp_Repository/demo/file_main.cpp.s:
+	$(MAKE) -f CMakeFiles/file_main.dir/build.make CMakeFiles/file_main.dir/home/arinux/workspace/Cpp_Repository/demo/file_main.cpp.s
+.PHONY : home/arinux/workspace/Cpp_Repository/demo/file_main.cpp.s
 
 home/arinux/workspace/Cpp_Repository/demo/main.o: home/arinux/workspace/Cpp_Repository/demo/main.cpp.o
 
@@ -585,9 +625,13 @@ help:
 	@echo "... edit_cache"
 	@echo "... test"
 	@echo "... main"
+	@echo "... file_main"
 	@echo "... rebuild_cache"
 	@echo "... nwk_shared"
 	@echo "... nwk_static"
+	@echo "... home/arinux/workspace/Cpp_Repository/demo/file_main.o"
+	@echo "... home/arinux/workspace/Cpp_Repository/demo/file_main.i"
+	@echo "... home/arinux/workspace/Cpp_Repository/demo/file_main.s"
 	@echo "... home/arinux/workspace/Cpp_Repository/demo/main.o"
 	@echo "... home/arinux/workspace/Cpp_Repository/demo/main.i"
 	@echo "... home/arinux/workspace/Cpp_Repository/demo/main.s"

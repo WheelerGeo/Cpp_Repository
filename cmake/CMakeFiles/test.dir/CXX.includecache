@@ -21,6 +21,8 @@ string
 -
 fstream
 -
+functional
+-
 ErrorCode.h
 /home/arinux/workspace/Cpp_Repository/include/ErrorCode.h
 

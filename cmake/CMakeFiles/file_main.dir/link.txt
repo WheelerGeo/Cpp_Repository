@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/file_main.dir/home/arinux/workspace/Cpp_Repository/demo/file_main.cpp.o  -o /home/arinux/workspace/Cpp_Repository/bin/file_main  -lpthread /home/arinux/workspace/Cpp_Repository/lib/libnwk_static.a 

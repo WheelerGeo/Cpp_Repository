@@ -7,8 +7,8 @@
 
 class FileOperate{
 public:
-    FileOperate(const std::string& file_name):file_name_(file_name) {}
-    FileOperate(const std::string& file_name, const std::string& write_buff):file_name_(file_name), write_buff_(write_buff) {}
+    FileOperate(const std::string& file_name);
+    FileOperate(const std::string& file_name, const std::string& write_buff);
     
     static OPERATE_RET syncReadAllFromFile(const std::string& file_name, std::string& read_buff);
     static OPERATE_RET syncReadLineFromFile(const std::string& file_name, const int line_id, std::string& read_buff);
@@ -21,10 +21,11 @@ public:
     OPERATE_RET asyncWriteAllIntoFile(void);
     OPERATE_RET asyncWriteApendIntoFile(void);
     virtual void readCallBack(const std::string& read_buff) {}
-    virtual void writeCallBack(const std::string& read_buff) {}
+    virtual void writeCallBack(void) {}
 private:
     std::string file_name_ = "";
     std::string write_buff_ = "";
+    pthread_mutex_t file_lock_;
 };
 
 

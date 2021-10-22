@@ -1,28 +1,36 @@
 #include "../include/FileOperate.h"
 #include "../include/Logger.h"
 #include "../include/ThreadPool.h"
+#include "../include/EventPoll.h"
+#include "../include/cmdOperate.h"
 class File: public FileOperate {
 public:
+    File(const std::string& file_name): FileOperate(file_name) {}
     File(const std::string& file_name, const std::string& write_buff): FileOperate(file_name, write_buff) {}
     void readCallBack(const std::string& read_buff) override {
+        LogInfo() << read_buff;
     }
 };
 
 int main(int argc, char **argv) {
-    /* Log init */
-    Logger::getInstance().addLoggerToFile("/tmp", "file_main", FNLog::PRIORITY_DEBUG, 1024, 1);
-    Logger::getInstance().addLoggerToScreen(FNLog::PRIORITY_DEBUG);
-    Logger::getInstance().setLoggerSync();
-    Logger::getInstance().loggerStart();
+    std::string* argv_string  = new std::string(cmdOperate(argc, argv)['s']);
+    if ("" == *argv_string) {
+        delete(argv_string);
+        LogInfo() << "argv string is empty";
+    }
+    LogInfo() << "argv string: " << *argv_string;
 
-    ThreadPool threadPool = ThreadPool::getInstance();
-    LogDebug() << &ThreadPool::getInstance();
+    /* Event poll init */
+    EventPoll eventPoll;
+
+    ThreadPool& threadPool = ThreadPool::getInstance();
     threadPool.threadPoolStart();
 
-    std::string write_buff = "21312321321321";
-    File fileOperate("../a.txt", write_buff);
-    LogInfo() << "Hello World!";
-    fileOperate.asyncWriteApendIntoFile();
-    return 0;
+    File fileOperate("../html/index.html");
+    fileOperate.asyncReadAllFromFile();
+    
+
+
+    return eventPoll.loop();
 }
 

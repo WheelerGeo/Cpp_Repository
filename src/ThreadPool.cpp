@@ -7,7 +7,6 @@ ThreadPool& ThreadPool::getInstance(void) {
 }
 
 void ThreadPool::threadPoolStart(int min_thread, int max_thread, int max_queue) {
-    
     if (pthread_mutex_init(&thread_pool_lock_, NULL) != 0 || 
         pthread_mutex_init(&busy_task_lock_, NULL) != 0 ||
         pthread_cond_init(&queue_not_full_, NULL) != 0 || 
@@ -18,14 +17,10 @@ void ThreadPool::threadPoolStart(int min_thread, int max_thread, int max_queue) 
     max_thread_num_ = max_thread;
     min_thread_num_ = min_thread;
     max_queue_num_ = max_queue;
-    LogDebug() << max_queue_num_;
     busy_thread_num_ = 0;
     live_thread_num_ = min_thread_num_;
     wait_exit_thread_num_ = 0;
     work_thread_ = new pthread_t[max_thread_num_];
-    // 重设任务队列容量
-    // thread_queue_.resize(max_queue_num_);
-    // 创建管理者线程
     pthread_create(&manager_thread_, NULL, threadMangerHandler, this);
     // 创建任务线程
     for(int i = 0; i < min_thread; ++i) {
@@ -35,7 +30,6 @@ void ThreadPool::threadPoolStart(int min_thread, int max_thread, int max_queue) 
 }
 
 void* ThreadPool::threadWorkHandler(void* arg) {
-    LogInfo() << "work thread start!";
     ThreadPool* pool = (ThreadPool*)arg;
     while (1) {
         pthread_mutex_lock(&pool->thread_pool_lock_);
@@ -64,7 +58,7 @@ void* ThreadPool::threadWorkHandler(void* arg) {
         pthread_cond_signal(&pool->queue_not_full_);
         pthread_mutex_unlock(&pool->thread_pool_lock_);
 
-        LogInfo() << "tid:" << pthread_self() << "start working!";
+        LogInfo() << "tid:" << pthread_self() << " start working!";
         pthread_mutex_lock(&pool->busy_task_lock_);
         pool->busy_thread_num_++;
         pthread_mutex_unlock(&pool->busy_task_lock_);
@@ -73,7 +67,7 @@ void* ThreadPool::threadWorkHandler(void* arg) {
         free(task);
         task = NULL;
         
-        LogInfo() << "tid:" << pthread_self() << "end working!";
+        LogInfo() << "tid:" << pthread_self() << " end working!";
         pthread_mutex_lock(&pool->busy_task_lock_);
         pool->busy_thread_num_--;
         pthread_mutex_unlock(&pool->busy_task_lock_);
@@ -133,11 +127,9 @@ void ThreadPool::threadExit(void) {
 
 void ThreadPool::addThreadPoolTask(void* usr_data, TASKCALLBACK task_call_back) {
     pthread_mutex_lock(&thread_pool_lock_);
-    LogDebug() << thread_queue_.size() << " " << max_queue_num_ << " " << shut_down_state_;
     while (thread_queue_.size() == max_queue_num_ && !shut_down_state_) {
         pthread_cond_wait(&queue_not_full_, &thread_pool_lock_);
     }
-    LogDebug() << "bbbb";
     if (shut_down_state_) {
         pthread_mutex_unlock(&thread_pool_lock_);
         return;

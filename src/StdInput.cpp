@@ -4,6 +4,7 @@
 #include <string.h>
 #include "../include/StdInput.h"
 #include "../include/Logger.h"
+#include "../include/TcpClient.h"
 
 StdInput::StdInput(EventPoll* my_epoll) {
     epoll_ = my_epoll;
@@ -18,7 +19,6 @@ OPERATE_RET StdInput::stdinInit(void) {
     return OPRT_OK;
 }
 
-/* 存在读标准输入大于1025的bug */
 OPERATE_RET StdInput::receive(void* server, int fd) {
     StdInput* Server = (StdInput*)server;
     char buff[1024] = "";
@@ -30,13 +30,25 @@ OPERATE_RET StdInput::receive(void* server, int fd) {
     }
     Server->buff_ = std::string(buff, buff_size);
    
-    Server->callback_(Server->usr_data_, Server->buff_);
+    Server->recvCallBack(Server->usr_data_, Server->buff_);
     LogInfo() << "Stdinput:" << Server->buff_;
     return OPRT_OK;
 }
 
-void StdInput::addCallBack(void* usr_data, STDCALLBACK callback) {
+OPERATE_RET StdInput::addUsrData(void* usr_data) {
     usr_data_ = usr_data;
-    callback_ = callback;
+    return OPRT_OK;
+}
+
+OPERATE_RET StdInput::recvCallBack(void* usr_data, const std::string& buff) {
+    TcpClient* cli_usr = (TcpClient*)usr_data;
+    LogInfo() << buff;
+    if (!buff.compare("close")) {
+        cli_usr->closeConnect();
+        LogInfo() << "client closed";
+    } else {
+        cli_usr->sendData(buff);
+    }
+    return OPRT_OK;
 }
 

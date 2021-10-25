@@ -61,7 +61,7 @@ OPERATE_RET EventPoll::loop() {
             LogError() << "EventPoll:epoll_wait";
             return OPRT_EPOLL_WAIT_ERROR;
         }
-        LogDebug() << "time_out: " << epoll_time_out_;
+        LogTrace() << "time_out: " << epoll_time_out_;
         
         for (int n = 0; n < nfds; ++n) {
             auto it = event_map_.find(events_[n].data.fd);

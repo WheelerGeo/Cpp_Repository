@@ -137,6 +137,19 @@ main/fast:
 .PHONY : main/fast
 
 #=============================================================================
+# Target rules for targets named http_main
+
+# Build rule for target.
+http_main: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 http_main
+.PHONY : http_main
+
+# fast build rule for target.
+http_main/fast:
+	$(MAKE) -f CMakeFiles/http_main.dir/build.make CMakeFiles/http_main.dir/build
+.PHONY : http_main/fast
+
+#=============================================================================
 # Target rules for targets named file_main
 
 # Build rule for target.
@@ -201,6 +214,33 @@ home/arinux/workspace/Cpp_Repository/demo/file_main.s: home/arinux/workspace/Cpp
 home/arinux/workspace/Cpp_Repository/demo/file_main.cpp.s:
 	$(MAKE) -f CMakeFiles/file_main.dir/build.make CMakeFiles/file_main.dir/home/arinux/workspace/Cpp_Repository/demo/file_main.cpp.s
 .PHONY : home/arinux/workspace/Cpp_Repository/demo/file_main.cpp.s
+
+home/arinux/workspace/Cpp_Repository/demo/http_main.o: home/arinux/workspace/Cpp_Repository/demo/http_main.cpp.o
+
+.PHONY : home/arinux/workspace/Cpp_Repository/demo/http_main.o
+
+# target to build an object file
+home/arinux/workspace/Cpp_Repository/demo/http_main.cpp.o:
+	$(MAKE) -f CMakeFiles/http_main.dir/build.make CMakeFiles/http_main.dir/home/arinux/workspace/Cpp_Repository/demo/http_main.cpp.o
+.PHONY : home/arinux/workspace/Cpp_Repository/demo/http_main.cpp.o
+
+home/arinux/workspace/Cpp_Repository/demo/http_main.i: home/arinux/workspace/Cpp_Repository/demo/http_main.cpp.i
+
+.PHONY : home/arinux/workspace/Cpp_Repository/demo/http_main.i
+
+# target to preprocess a source file
+home/arinux/workspace/Cpp_Repository/demo/http_main.cpp.i:
+	$(MAKE) -f CMakeFiles/http_main.dir/build.make CMakeFiles/http_main.dir/home/arinux/workspace/Cpp_Repository/demo/http_main.cpp.i
+.PHONY : home/arinux/workspace/Cpp_Repository/demo/http_main.cpp.i
+
+home/arinux/workspace/Cpp_Repository/demo/http_main.s: home/arinux/workspace/Cpp_Repository/demo/http_main.cpp.s
+
+.PHONY : home/arinux/workspace/Cpp_Repository/demo/http_main.s
+
+# target to generate assembly for a file
+home/arinux/workspace/Cpp_Repository/demo/http_main.cpp.s:
+	$(MAKE) -f CMakeFiles/http_main.dir/build.make CMakeFiles/http_main.dir/home/arinux/workspace/Cpp_Repository/demo/http_main.cpp.s
+.PHONY : home/arinux/workspace/Cpp_Repository/demo/http_main.cpp.s
 
 home/arinux/workspace/Cpp_Repository/demo/main.o: home/arinux/workspace/Cpp_Repository/demo/main.cpp.o
 
@@ -625,6 +665,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... test"
 	@echo "... main"
+	@echo "... http_main"
 	@echo "... file_main"
 	@echo "... rebuild_cache"
 	@echo "... nwk_shared"
@@ -632,6 +673,9 @@ help:
 	@echo "... home/arinux/workspace/Cpp_Repository/demo/file_main.o"
 	@echo "... home/arinux/workspace/Cpp_Repository/demo/file_main.i"
 	@echo "... home/arinux/workspace/Cpp_Repository/demo/file_main.s"
+	@echo "... home/arinux/workspace/Cpp_Repository/demo/http_main.o"
+	@echo "... home/arinux/workspace/Cpp_Repository/demo/http_main.i"
+	@echo "... home/arinux/workspace/Cpp_Repository/demo/http_main.s"
 	@echo "... home/arinux/workspace/Cpp_Repository/demo/main.o"
 	@echo "... home/arinux/workspace/Cpp_Repository/demo/main.i"
 	@echo "... home/arinux/workspace/Cpp_Repository/demo/main.s"

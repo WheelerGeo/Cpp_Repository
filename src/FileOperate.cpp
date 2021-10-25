@@ -14,7 +14,7 @@ OPERATE_RET FileOperate::syncReadAllFromFile(const std::string& file_name, std::
     std::ifstream readFrom;
     readFrom.open(file_name, std::ifstream::in);
     if (!readFrom.is_open()) {
-        LogError() << "Open Failed";
+        LogError() << file_name << ": Open Failed";
         return OPRT_FILE_OPEN_ERROR;
     }
     std::string str((std::istreambuf_iterator<char>(readFrom)), std::istreambuf_iterator<char>(0));

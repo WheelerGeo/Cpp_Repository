@@ -56,7 +56,6 @@ OPERATE_RET TcpClient::establish(void) {
     return OPRT_OK;
 }
 
-/* 存在bug */
 OPERATE_RET TcpClient::receive(void* server, int fd) {
     int buff_size = 0;
     char buff[1024] = "";
@@ -69,8 +68,8 @@ OPERATE_RET TcpClient::receive(void* server, int fd) {
         return OPRT_SOCK_RECV_ERROR;
     }
     Server->buff_ = std::string(buff, buff_size);
-    LogInfo() << "recv from server[" << buff_size << "]:" << Server->buff_;
-    Server->callback_(Server->usr_data_, Server->buff_);
+    LogDebug() << "recv from server[" << buff_size << "]:" << Server->buff_;
+    Server->recvCallBack(Server->usr_data_, Server->buff_);
     
     return OPRT_OK;
 }
@@ -83,15 +82,26 @@ OPERATE_RET TcpClient::sendData(std::string data) {
     return OPRT_OK;
 }
 
-void TcpClient::addCallBack(void* usr_data, EXTCALLBACK callback) {
-    usr_data_ = usr_data;
-    callback_ = callback;
-}
-
 OPERATE_RET TcpClient::closeConnect(void) {
     if (0 > close(connect_fd_)) {
         LogError() << "TcpClient:close";
         return OPRT_SOCK_CLOSE_ERROR;
+    }
+    LogInfo() << "TcpClient:close fd:" << connect_fd_;
+    return OPRT_OK;
+}
+
+OPERATE_RET TcpClient::addUsrData(void* usr_data) {
+    usr_data = usr_data;
+    return OPRT_OK;
+}
+
+OPERATE_RET TcpClient::recvCallBack(void* usr_data, const std::string& recv_buff) {
+    TcpClient* cli_usr = (TcpClient*)usr_data;
+    if (0 == recv_buff.size()) {
+        cli_usr->closeConnect();
+    } else {
+        LogDebug() << recv_buff;
     }
     return OPRT_OK;
 }

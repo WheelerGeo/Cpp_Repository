@@ -82,12 +82,11 @@ OPERATE_RET TcpServer::listenCli(void* server, int fd) {
         return OPRT_SOCK_ACCEPT_ERROR;
     }
     LogInfo() << "TcpServer:accept:" << Server->connet_fd_;
-    Server -> callback_(Server->usr_data_, Server->connet_fd_);
+    Server->listenCallBack(Server->connet_fd_);
 
     return OPRT_OK;
 }
 
-void TcpServer::addCallBack(void* usr_data, EXTCALLBACK callback) {
-    usr_data_ = usr_data;
-    callback_ = callback;
+OPERATE_RET TcpServer::listenCallBack(int fd) {
+    return OPRT_OK;
 }

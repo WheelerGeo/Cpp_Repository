@@ -16,6 +16,7 @@ CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.c
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o: /home/arinux/workspace/Cpp_Repository/include/ErrorCode.h
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o: /home/arinux/workspace/Cpp_Repository/include/EventPoll.h
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o: /home/arinux/workspace/Cpp_Repository/include/FileOperate.h
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o: /home/arinux/workspace/Cpp_Repository/include/HttpClient.h
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o: /home/arinux/workspace/Cpp_Repository/include/Logger.h
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o: /home/arinux/workspace/Cpp_Repository/include/TcpClient.h
@@ -47,6 +48,7 @@ CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.o: /home/arinux/workspace/Cpp_Repository/include/EventPoll.h
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.o: /home/arinux/workspace/Cpp_Repository/include/Logger.h
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.o: /home/arinux/workspace/Cpp_Repository/include/StdInput.h
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.o: /home/arinux/workspace/Cpp_Repository/include/TcpClient.h
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.o: /home/arinux/workspace/Cpp_Repository/include/fn_log.h
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.o: /home/arinux/workspace/Cpp_Repository/src/StdInput.cpp
 

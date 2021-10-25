@@ -2,6 +2,7 @@
 #include <fstream>
 #include "../include/HttpClient.h"
 #include "../include/Logger.h"
+#include "../include/FileOperate.h"
 
 HttpClient::HttpClient(EventPoll* my_epoll, const int my_port, const std::string my_addr): TcpClient(my_epoll, my_port, my_addr) {
 
@@ -35,42 +36,35 @@ OPERATE_RET HttpClient::responseSuccess(const std::string& http_file_name) {
     std::string protocol = "HTTP/1.1 200 OK\r\n";
     std::string server = "Server:Linux Web Server\r\n";
     std::string cnt_len = "Content-length:";
+    std::string file_buff = "";
+    std::string http_file = "";
+    if ("" == http_file_name) {
+        http_file = "../fodder/index.html";
+    } else {
+        http_file = "../fodder/" + http_file_name_;
+    }
     
-    std::ifstream ifs(http_file_name, std::ifstream::in);
-    std::string str((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>(0));
-    ifs.close();
+    if (OPRT_FILE_OPEN_ERROR == FileOperate::syncReadAllFromFile(http_file, file_buff)) {
+        LogError() << "File empty";
+        closeConnect();
+        return OPRT_FILE_OPEN_ERROR;
+    }
 
-    cnt_len.append(std::to_string(str.size())).append("\r\n\r\n");
-    send_buff.append(protocol).append(server).append(cnt_len).append(str);
+    cnt_len += std::to_string(file_buff.size()) + "\r\n\r\n";
+    send_buff += protocol + server + cnt_len + file_buff;
     
     if (0 > sendData(send_buff)) {
         LogError() << "HttpClient:senddata";
         return OPRT_SOCK_SEND_ERROR;
     }
 
-    LogInfo() << send_buff;
+    LogDebug() << send_buff;
+    closeConnect();
     return OPRT_OK;
 }
 
 OPERATE_RET HttpClient::responseSuccess(void) {
-    std::string send_buff = "";
-    std::string protocol = "HTTP/1.1 200 OK\r\n";
-    std::string server = "Server:Linux Web Server\r\n";
-    std::string cnt_len = "Content-length:";
-
-    std::ifstream ifs(http_file_name_.c_str(), std::ifstream::in);
-    std::string str((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>(0));
-    ifs.close();
-
-    cnt_len.append(std::to_string(str.size())).append("\r\n\r\n");
-    send_buff.append(protocol).append(server).append(cnt_len).append(str);
-    
-    if (0 > sendData(send_buff)) {
-        LogError() << "HttpClient:senddata";
-        return OPRT_SOCK_SEND_ERROR;
-    }
-    LogInfo() << send_buff;
-    return OPRT_OK;
+    return HttpClient::responseSuccess(http_file_name_); 
 }
 
 OPERATE_RET HttpClient::responseFailed(const std::string& error_file_name) {
@@ -78,18 +72,17 @@ OPERATE_RET HttpClient::responseFailed(const std::string& error_file_name) {
     std::string protocol = "HTTP/1.1 400 Bad Request\r\n";
     std::string server = "Server:Linux Web Server\r\n";
     std::string cnt_len = "Content-length:";
+    std::string file_buff = "";
+    std::string error_file = "../fodder/" + error_file_name;
 
-    std::ifstream ifs(error_file_name, std::ifstream::in);
-    std::string str((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>(0));
-    ifs.close();
-
-    cnt_len.append(std::to_string(str.size())).append("\r\n\r\n");
-    send_buff.append(protocol).append(server).append(cnt_len).append(str);
+    FileOperate::syncReadAllFromFile(error_file, file_buff);
+    cnt_len += std::to_string(file_buff.size()) + "\r\n\r\n";
+    send_buff += protocol + server + cnt_len + file_buff;
     
     if (0 > sendData(send_buff)) {
         LogError() << "HttpClient:senddata";
         return OPRT_SOCK_SEND_ERROR;
     }
-    LogInfo() << send_buff;
+    LogDebug() << send_buff;
     return OPRT_OK;
 }

@@ -20,20 +20,18 @@
 #define __STDINPUT_H__
 #include "EventPoll.h"
 #include "ErrorCode.h"
-using STDCALLBACK = std::function<OPERATE_RET(void* usr_data, std::string buff)>;
-
 
 class StdInput{
 public:
     StdInput(EventPoll* my_epoll);
     OPERATE_RET stdinInit(void);
     static OPERATE_RET receive(void* server, int fd);
-    void addCallBack(void* usr_data, STDCALLBACK callback);
+    OPERATE_RET addUsrData(void* usr_data);
+    virtual OPERATE_RET recvCallBack(void* usr_data, const std::string& buff);
 private:
     EventPoll* epoll_ = NULL;
     std::string buff_ = "";
     void* usr_data_ = NULL;
-    STDCALLBACK callback_ = NULL;
 };
 
 

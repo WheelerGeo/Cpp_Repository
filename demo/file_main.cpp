@@ -2,7 +2,7 @@
 #include "../include/Logger.h"
 #include "../include/ThreadPool.h"
 #include "../include/EventPoll.h"
-#include "../include/cmdOperate.h"
+#include "../include/CmdOperate.h"
 class File: public FileOperate {
 public:
     File(const std::string& file_name): FileOperate(file_name) {}

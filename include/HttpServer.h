@@ -7,8 +7,6 @@ class HttpServer: public TcpServer{
 public:
     HttpServer(EventPoll* my_epoll, const int my_port, const std::string my_addr);
     HttpServer(EventPoll* my_epoll, const int my_port);
-
-
 };
 
 #endif 

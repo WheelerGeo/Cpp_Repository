@@ -46,6 +46,11 @@ OPERATE_RET HttpClient::responseSuccess(const std::string& http_file_name) {
     
     if (OPRT_FILE_OPEN_ERROR == FileOperate::syncReadAllFromFile(http_file, file_buff)) {
         LogError() << "File empty";
+        send_buff = "HTTP/1.1 404 NOT FOUND\r\n\r\n";
+        if (0 > sendData(send_buff)) {
+            LogError() << "HttpClient:senddata";
+            return OPRT_SOCK_SEND_ERROR;
+        }
         closeConnect();
         return OPRT_FILE_OPEN_ERROR;
     }
@@ -58,7 +63,7 @@ OPERATE_RET HttpClient::responseSuccess(const std::string& http_file_name) {
         return OPRT_SOCK_SEND_ERROR;
     }
 
-    LogDebug() << send_buff;
+    
     closeConnect();
     return OPRT_OK;
 }
@@ -83,6 +88,7 @@ OPERATE_RET HttpClient::responseFailed(const std::string& error_file_name) {
         LogError() << "HttpClient:senddata";
         return OPRT_SOCK_SEND_ERROR;
     }
-    LogDebug() << send_buff;
+
+    closeConnect();
     return OPRT_OK;
 }

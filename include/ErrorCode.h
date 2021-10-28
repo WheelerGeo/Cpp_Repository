@@ -33,7 +33,8 @@ using OPERATE_RET = int;
 #define OPRT_FILE_INEXIST_ERROR                             (-0x0030) //-48, file不存在
 #define OPRT_FILE_OPEN_ERROR                                (-0x0031) //-49, file打开失败
 #define OPRT_FILE_READ_ERROR                                (-0x0032) //-50, file读取失败
-
+#define OPRT_FILE_TYPE_ERROR                                (-0x0033) //-51, file类型错误
+#define OPRT_YAML_LACK_PARAM                                (-0x0034) //-52, yml文件缺少参数
 
 #define OPRT_IOCTL_ERROR                                    (-0x0040) //-64, ioctl读取失败
 

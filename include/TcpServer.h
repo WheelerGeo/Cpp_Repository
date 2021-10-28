@@ -33,7 +33,7 @@
 class TcpServer{
 public:
     TcpServer(EventPoll* my_epoll, const int my_port, const std::string my_addr);
-    TcpServer(EventPoll* my_epoll, const int my_port);
+    TcpServer(EventPoll* my_epoll, const std::string eth_type, const int my_port);
     OPERATE_RET establish(void);
     static OPERATE_RET listenCli(void* server, int fd);
     virtual OPERATE_RET listenCallBack(int fd);

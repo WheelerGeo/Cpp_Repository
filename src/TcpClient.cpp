@@ -75,6 +75,7 @@ OPERATE_RET TcpClient::receive(void* server, int fd) {
 }
 
 OPERATE_RET TcpClient::sendData(std::string data) {
+    LogDebug() << data;
     if (0 > send(connect_fd_, data.c_str(), data.size(), 0)) {
         LogError() << "TcpClient:send";
         return OPRT_SOCK_SEND_ERROR;

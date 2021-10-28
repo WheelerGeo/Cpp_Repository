@@ -4,6 +4,7 @@
 #include "../include/ThreadPool.h"
 #include "../include/StdInput.h"
 #include "../include/ErrorCode.h"
+#include "../include/yaml/yaml.h"
 #include <memory>
 
 
@@ -42,7 +43,8 @@ public:
 
 class UsrHttpServer: public HttpServer {
 public:
-    UsrHttpServer(EventPoll* my_epoll, const int my_port): HttpServer(my_epoll, my_port){}
+    UsrHttpServer(EventPoll* my_epoll, const std::string eth_type, const int my_port): HttpServer(my_epoll, eth_type, my_port){}
+    UsrHttpServer(EventPoll* my_epoll, const int my_port, const std::string my_addr): HttpServer(my_epoll, my_port, my_addr){}
     OPERATE_RET listenCallBack(int fd) override {
         UsrHttpClient* httpClient = new UsrHttpClient(epoll_, fd);
         return OPRT_OK;
@@ -60,8 +62,13 @@ int main(int argc, char **argv) {
 
     /* Event poll init */
     EventPoll eventPoll;
+    YAML::Node config = YAML::LoadFile("../config.yml");
+    if (config["Server"]["ip"].as<std::string>() != "null") {
+        UsrHttpServer httpServer(&eventPoll, config["Server"]["port"].as<int>(), config["Server"]["ip"].as<std::string>());
+    } else {
+        UsrHttpServer httpServer(&eventPoll, config["Server"]["eth"].as<std::string>(), config["Server"]["port"].as<int>());
+    }
 
-    UsrHttpServer httpServer(&eventPoll, 8000);
 
     return eventPoll.loop();
 }

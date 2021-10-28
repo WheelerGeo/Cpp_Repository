@@ -22,11 +22,12 @@ TcpServer::TcpServer(EventPoll* my_epoll, const int my_port, const std::string m
     establish();
 }
 
-TcpServer::TcpServer(EventPoll* my_epoll, const int my_port) {
+TcpServer::TcpServer(EventPoll* my_epoll, const std::string eth_type, const int my_port) {
     epoll_ = my_epoll;
     port_ = my_port;
     char ip[16];
-    NetworkTool::GetLocalIp("ens33", ip);
+    
+    NetworkTool::GetLocalIp(eth_type.c_str(), ip);
     addr_ = ip;
     LogInfo() << "GetLocalIp:" << addr_;
     establish();

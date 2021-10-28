@@ -25,7 +25,7 @@ class UdpServer{
 public:
     using EXTCALLBACK = std::function<OPERATE_RET(void*, char*, std::string, int)>;
     UdpServer(EventPoll* my_epoll, const int my_port, const std::string my_addr);
-    UdpServer(EventPoll* my_epoll, const int my_port);
+    UdpServer(EventPoll* my_epoll, const std::string eth_type, const int my_port);
     OPERATE_RET udpServerStart(void);
     void addCallBack(void* usr_data, EXTCALLBACK callback);
     static OPERATE_RET receive(void* server, int fd);

@@ -66,9 +66,9 @@ int main(int argc, char **argv) {
     if (config["Server"]["ip"].as<std::string>() != "null") {
         UsrHttpServer httpServer(&eventPoll, config["Server"]["port"].as<int>(), config["Server"]["ip"].as<std::string>());
     } else {
+        LogInfo() << config["Server"]["eth"].as<std::string>() << config["Server"]["port"].as<int>();
         UsrHttpServer httpServer(&eventPoll, config["Server"]["eth"].as<std::string>(), config["Server"]["port"].as<int>());
     }
-
 
     return eventPoll.loop();
 }

@@ -1,0 +1,2 @@
+/usr/bin/ar qc /home/arinux/workspace/Cpp_Repository/lib/libjson_static.a  CMakeFiles/json_static.dir/home/arinux/workspace/Cpp_Repository/src/json/json_reader.cpp.o CMakeFiles/json_static.dir/home/arinux/workspace/Cpp_Repository/src/json/json_value.cpp.o CMakeFiles/json_static.dir/home/arinux/workspace/Cpp_Repository/src/json/json_writer.cpp.o
+/usr/bin/ranlib /home/arinux/workspace/Cpp_Repository/lib/libjson_static.a

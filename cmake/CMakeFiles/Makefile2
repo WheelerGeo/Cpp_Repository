@@ -57,6 +57,10 @@ all: CMakeFiles/test.dir/all
 all: CMakeFiles/main.dir/all
 all: CMakeFiles/http_main.dir/all
 all: CMakeFiles/file_main.dir/all
+all: CMakeFiles/yaml_shared.dir/all
+all: CMakeFiles/yaml_static.dir/all
+all: CMakeFiles/json_shared.dir/all
+all: CMakeFiles/json_static.dir/all
 all: CMakeFiles/nwk_shared.dir/all
 all: CMakeFiles/nwk_static.dir/all
 
@@ -72,6 +76,10 @@ clean: CMakeFiles/test.dir/clean
 clean: CMakeFiles/main.dir/clean
 clean: CMakeFiles/http_main.dir/clean
 clean: CMakeFiles/file_main.dir/clean
+clean: CMakeFiles/yaml_shared.dir/clean
+clean: CMakeFiles/yaml_static.dir/clean
+clean: CMakeFiles/json_shared.dir/clean
+clean: CMakeFiles/json_static.dir/clean
 clean: CMakeFiles/nwk_shared.dir/clean
 clean: CMakeFiles/nwk_static.dir/clean
 
@@ -81,15 +89,17 @@ clean: CMakeFiles/nwk_static.dir/clean
 # Target rules for target CMakeFiles/test.dir
 
 # All Build rule for target.
+CMakeFiles/test.dir/all: CMakeFiles/yaml_static.dir/all
+CMakeFiles/test.dir/all: CMakeFiles/json_static.dir/all
 CMakeFiles/test.dir/all: CMakeFiles/nwk_static.dir/all
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/depend
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=33,34 "Built target test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=40,41 "Built target test"
 .PHONY : CMakeFiles/test.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles 49
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles 0
 .PHONY : CMakeFiles/test.dir/rule
@@ -108,15 +118,17 @@ CMakeFiles/test.dir/clean:
 # Target rules for target CMakeFiles/main.dir
 
 # All Build rule for target.
+CMakeFiles/main.dir/all: CMakeFiles/yaml_static.dir/all
+CMakeFiles/main.dir/all: CMakeFiles/json_static.dir/all
 CMakeFiles/main.dir/all: CMakeFiles/nwk_static.dir/all
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/depend
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=5,6 "Built target main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=12,13 "Built target main"
 .PHONY : CMakeFiles/main.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles 49
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles 0
 .PHONY : CMakeFiles/main.dir/rule
@@ -135,15 +147,17 @@ CMakeFiles/main.dir/clean:
 # Target rules for target CMakeFiles/http_main.dir
 
 # All Build rule for target.
+CMakeFiles/http_main.dir/all: CMakeFiles/yaml_static.dir/all
+CMakeFiles/http_main.dir/all: CMakeFiles/json_static.dir/all
 CMakeFiles/http_main.dir/all: CMakeFiles/nwk_static.dir/all
 	$(MAKE) -f CMakeFiles/http_main.dir/build.make CMakeFiles/http_main.dir/depend
 	$(MAKE) -f CMakeFiles/http_main.dir/build.make CMakeFiles/http_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=3,4 "Built target http_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=2,3 "Built target http_main"
 .PHONY : CMakeFiles/http_main.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/http_main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles 49
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/http_main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles 0
 .PHONY : CMakeFiles/http_main.dir/rule
@@ -162,15 +176,17 @@ CMakeFiles/http_main.dir/clean:
 # Target rules for target CMakeFiles/file_main.dir
 
 # All Build rule for target.
+CMakeFiles/file_main.dir/all: CMakeFiles/yaml_static.dir/all
+CMakeFiles/file_main.dir/all: CMakeFiles/json_static.dir/all
 CMakeFiles/file_main.dir/all: CMakeFiles/nwk_static.dir/all
 	$(MAKE) -f CMakeFiles/file_main.dir/build.make CMakeFiles/file_main.dir/depend
 	$(MAKE) -f CMakeFiles/file_main.dir/build.make CMakeFiles/file_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=1,2 "Built target file_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=1 "Built target file_main"
 .PHONY : CMakeFiles/file_main.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/file_main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles 48
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/file_main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles 0
 .PHONY : CMakeFiles/file_main.dir/rule
@@ -186,13 +202,121 @@ CMakeFiles/file_main.dir/clean:
 .PHONY : CMakeFiles/file_main.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/yaml_shared.dir
+
+# All Build rule for target.
+CMakeFiles/yaml_shared.dir/all:
+	$(MAKE) -f CMakeFiles/yaml_shared.dir/build.make CMakeFiles/yaml_shared.dir/depend
+	$(MAKE) -f CMakeFiles/yaml_shared.dir/build.make CMakeFiles/yaml_shared.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70 "Built target yaml_shared"
+.PHONY : CMakeFiles/yaml_shared.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/yaml_shared.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles 29
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/yaml_shared.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles 0
+.PHONY : CMakeFiles/yaml_shared.dir/rule
+
+# Convenience name for target.
+yaml_shared: CMakeFiles/yaml_shared.dir/rule
+
+.PHONY : yaml_shared
+
+# clean rule for target.
+CMakeFiles/yaml_shared.dir/clean:
+	$(MAKE) -f CMakeFiles/yaml_shared.dir/build.make CMakeFiles/yaml_shared.dir/clean
+.PHONY : CMakeFiles/yaml_shared.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/yaml_static.dir
+
+# All Build rule for target.
+CMakeFiles/yaml_static.dir/all:
+	$(MAKE) -f CMakeFiles/yaml_static.dir/build.make CMakeFiles/yaml_static.dir/depend
+	$(MAKE) -f CMakeFiles/yaml_static.dir/build.make CMakeFiles/yaml_static.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100 "Built target yaml_static"
+.PHONY : CMakeFiles/yaml_static.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/yaml_static.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles 30
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/yaml_static.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles 0
+.PHONY : CMakeFiles/yaml_static.dir/rule
+
+# Convenience name for target.
+yaml_static: CMakeFiles/yaml_static.dir/rule
+
+.PHONY : yaml_static
+
+# clean rule for target.
+CMakeFiles/yaml_static.dir/clean:
+	$(MAKE) -f CMakeFiles/yaml_static.dir/build.make CMakeFiles/yaml_static.dir/clean
+.PHONY : CMakeFiles/yaml_static.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/json_shared.dir
+
+# All Build rule for target.
+CMakeFiles/json_shared.dir/all:
+	$(MAKE) -f CMakeFiles/json_shared.dir/build.make CMakeFiles/json_shared.dir/depend
+	$(MAKE) -f CMakeFiles/json_shared.dir/build.make CMakeFiles/json_shared.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=4,5,6,7 "Built target json_shared"
+.PHONY : CMakeFiles/json_shared.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/json_shared.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/json_shared.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles 0
+.PHONY : CMakeFiles/json_shared.dir/rule
+
+# Convenience name for target.
+json_shared: CMakeFiles/json_shared.dir/rule
+
+.PHONY : json_shared
+
+# clean rule for target.
+CMakeFiles/json_shared.dir/clean:
+	$(MAKE) -f CMakeFiles/json_shared.dir/build.make CMakeFiles/json_shared.dir/clean
+.PHONY : CMakeFiles/json_shared.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/json_static.dir
+
+# All Build rule for target.
+CMakeFiles/json_static.dir/all:
+	$(MAKE) -f CMakeFiles/json_static.dir/build.make CMakeFiles/json_static.dir/depend
+	$(MAKE) -f CMakeFiles/json_static.dir/build.make CMakeFiles/json_static.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=8,9,10,11 "Built target json_static"
+.PHONY : CMakeFiles/json_static.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/json_static.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/json_static.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles 0
+.PHONY : CMakeFiles/json_static.dir/rule
+
+# Convenience name for target.
+json_static: CMakeFiles/json_static.dir/rule
+
+.PHONY : json_static
+
+# clean rule for target.
+CMakeFiles/json_static.dir/clean:
+	$(MAKE) -f CMakeFiles/json_static.dir/build.make CMakeFiles/json_static.dir/clean
+.PHONY : CMakeFiles/json_static.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/nwk_shared.dir
 
 # All Build rule for target.
 CMakeFiles/nwk_shared.dir/all:
 	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/depend
 	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=7,8,9,10,11,12,13,14,15,16,17,18,19 "Built target nwk_shared"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=14,15,16,17,18,19,20,21,22,23,24,25,26 "Built target nwk_shared"
 .PHONY : CMakeFiles/nwk_shared.dir/all
 
 # Build rule for subdir invocation for target.
@@ -219,7 +343,7 @@ CMakeFiles/nwk_shared.dir/clean:
 CMakeFiles/nwk_static.dir/all:
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/depend
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=20,21,22,23,24,25,26,27,28,29,30,31,32 "Built target nwk_static"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=27,28,29,30,31,32,33,34,35,36,37,38,39 "Built target nwk_static"
 .PHONY : CMakeFiles/nwk_static.dir/all
 
 # Build rule for subdir invocation for target.

@@ -80,6 +80,8 @@ file_main_EXTERNAL_OBJECTS =
 /home/arinux/workspace/Cpp_Repository/bin/file_main: CMakeFiles/file_main.dir/home/arinux/workspace/Cpp_Repository/demo/file_main.cpp.o
 /home/arinux/workspace/Cpp_Repository/bin/file_main: CMakeFiles/file_main.dir/build.make
 /home/arinux/workspace/Cpp_Repository/bin/file_main: /home/arinux/workspace/Cpp_Repository/lib/libnwk_static.a
+/home/arinux/workspace/Cpp_Repository/bin/file_main: /home/arinux/workspace/Cpp_Repository/lib/libyaml_static.a
+/home/arinux/workspace/Cpp_Repository/bin/file_main: /home/arinux/workspace/Cpp_Repository/lib/libjson_static.a
 /home/arinux/workspace/Cpp_Repository/bin/file_main: CMakeFiles/file_main.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/arinux/workspace/Cpp_Repository/bin/file_main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/file_main.dir/link.txt --verbose=$(VERBOSE)

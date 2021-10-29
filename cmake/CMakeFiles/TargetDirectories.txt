@@ -3,6 +3,10 @@
 /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles/main.dir
 /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles/http_main.dir
 /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles/file_main.dir
+/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles/yaml_shared.dir
+/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles/yaml_static.dir
+/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles/json_shared.dir
+/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles/json_static.dir
 /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles/rebuild_cache.dir
 /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles/nwk_shared.dir
 /home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles/nwk_static.dir

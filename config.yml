@@ -1,7 +1,5 @@
 Server:
-  ip:
-  port: "8000"
-  eth: "ens33"
+  port: "1200"
 
 Client:
   ip:

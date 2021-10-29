@@ -15,30 +15,19 @@
 #include "../include/Logger.h"
 #include "../include/NetworkTool.h"
 
-TcpServer::TcpServer(EventPoll* my_epoll, const int my_port, const std::string my_addr) {
+TcpServer::TcpServer(EventPoll* my_epoll, const int my_port) {
     epoll_ = my_epoll;
     port_ = my_port;
-    addr_ = my_addr;
-    establish();
-}
-
-TcpServer::TcpServer(EventPoll* my_epoll, const std::string eth_type, const int my_port) {
-    epoll_ = my_epoll;
-    port_ = my_port;
-    char ip[16];
-    
-    NetworkTool::GetLocalIp(eth_type.c_str(), ip);
-    addr_ = ip;
-    LogInfo() << "GetLocalIp:" << addr_;
     establish();
 }
 
 OPERATE_RET TcpServer::establish(void) {
+    struct sockaddr_in server_addr_ = {0};
     /* server address information */
     memset(&server_addr_, 0, sizeof(struct sockaddr_in));
     server_addr_.sin_family = AF_INET;
     server_addr_.sin_port = htons(port_);
-    server_addr_.sin_addr.s_addr = inet_addr(addr_.c_str());
+    server_addr_.sin_addr.s_addr = htonl(INADDR_ANY);
     int on = 1;
 
     if (0 > (listen_fd_ = socket(AF_INET, SOCK_STREAM, 0))) {
@@ -71,19 +60,21 @@ OPERATE_RET TcpServer::establish(void) {
 }
 
 OPERATE_RET TcpServer::listenCli(void* server, int fd) {
+    struct sockaddr_in client_addr_ = {0};
+    int connet_fd_ = -1;
     TcpServer* Server = (TcpServer*)server;
     if (fd != Server->listen_fd_) {
         return OPRT_INVALID_PARM;
     }
 
     int socklen = sizeof(struct sockaddr);
-    if (0 > (Server->connet_fd_ = accept(Server->listen_fd_, 
-                                         (struct sockaddr *)&(Server->client_addr_), 
-                                         (socklen_t *)&socklen))) {
+    if (0 > (connet_fd_ = accept(Server->listen_fd_, 
+                                    (struct sockaddr *)&(client_addr_), 
+                                    (socklen_t *)&socklen))) {
         return OPRT_SOCK_ACCEPT_ERROR;
     }
-    LogInfo() << "TcpServer:accept:" << Server->connet_fd_;
-    Server->listenCallBack(Server->connet_fd_);
+    LogInfo() << "TcpServer:accept:" << connet_fd_;
+    Server->listenCallBack(connet_fd_);
 
     return OPRT_OK;
 }

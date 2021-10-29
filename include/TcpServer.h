@@ -32,22 +32,15 @@
 // create TCP server class
 class TcpServer{
 public:
-    TcpServer(EventPoll* my_epoll, const int my_port, const std::string my_addr);
-    TcpServer(EventPoll* my_epoll, const std::string eth_type, const int my_port);
+    TcpServer(EventPoll* my_epoll, const int my_port);
     OPERATE_RET establish(void);
     static OPERATE_RET listenCli(void* server, int fd);
     virtual OPERATE_RET listenCallBack(int fd);
-    
 protected:
     EventPoll* epoll_ = nullptr;
     int port_ = 0;
 private:
-    std::string addr_ = "";
     int listen_fd_ = -1;
-    int connet_fd_ = -1;
-    struct sockaddr_in server_addr_ = {0};
-    struct sockaddr_in client_addr_ = {0};
-    char buff_[1024] = {0};
     void* usr_data_ = nullptr;
 };
 

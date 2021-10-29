@@ -43,8 +43,7 @@ public:
 
 class UsrHttpServer: public HttpServer {
 public:
-    UsrHttpServer(EventPoll* my_epoll, const std::string eth_type, const int my_port): HttpServer(my_epoll, eth_type, my_port){}
-    UsrHttpServer(EventPoll* my_epoll, const int my_port, const std::string my_addr): HttpServer(my_epoll, my_port, my_addr){}
+    UsrHttpServer(EventPoll* my_epoll, const int my_port): HttpServer(my_epoll, my_port){}
     OPERATE_RET listenCallBack(int fd) override {
         UsrHttpClient* httpClient = new UsrHttpClient(epoll_, fd);
         return OPRT_OK;
@@ -52,23 +51,17 @@ public:
 };
 
 int main(int argc, char **argv) {
-    std::string* argv_string = new std::string(cmdOperate(argc, argv)['s']);
+    std::unique_ptr<std::string> argv_string(new std::string(cmdOperate(argc, argv)['s']));
     if ("" == *argv_string) {
-        delete(argv_string);
-        LogInfo() << "argv string is empty";
     } else {
-        LogInfo() << "argv string: " << *argv_string;
+        LogInfo() << "argv string:" << *argv_string;
     }
 
     /* Event poll init */
     EventPoll eventPoll;
     YAML::Node config = YAML::LoadFile("../config.yml");
-    if (config["Server"]["ip"].as<std::string>() != "null") {
-        UsrHttpServer httpServer(&eventPoll, config["Server"]["port"].as<int>(), config["Server"]["ip"].as<std::string>());
-    } else {
-        LogInfo() << config["Server"]["eth"].as<std::string>() << config["Server"]["port"].as<int>();
-        UsrHttpServer httpServer(&eventPoll, config["Server"]["eth"].as<std::string>(), config["Server"]["port"].as<int>());
-    }
+    UsrHttpServer* httpServer = new UsrHttpServer(&eventPoll, config["Server"]["port"].as<int>());
+
 
     return eventPoll.loop();
 }

@@ -12,6 +12,15 @@ CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.c
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o: /home/arinux/workspace/Cpp_Repository/include/Logger.h
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o: /home/arinux/workspace/Cpp_Repository/include/ThreadPool.h
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o: /home/arinux/workspace/Cpp_Repository/include/fn_log.h
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o: /home/arinux/workspace/Cpp_Repository/include/json/allocator.h
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o: /home/arinux/workspace/Cpp_Repository/include/json/config.h
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o: /home/arinux/workspace/Cpp_Repository/include/json/forwards.h
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o: /home/arinux/workspace/Cpp_Repository/include/json/json.h
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o: /home/arinux/workspace/Cpp_Repository/include/json/json_features.h
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o: /home/arinux/workspace/Cpp_Repository/include/json/reader.h
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o: /home/arinux/workspace/Cpp_Repository/include/json/value.h
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o: /home/arinux/workspace/Cpp_Repository/include/json/version.h
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o: /home/arinux/workspace/Cpp_Repository/include/json/writer.h
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o: /home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o: /home/arinux/workspace/Cpp_Repository/include/ErrorCode.h
@@ -21,6 +30,15 @@ CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cp
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o: /home/arinux/workspace/Cpp_Repository/include/Logger.h
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o: /home/arinux/workspace/Cpp_Repository/include/TcpClient.h
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o: /home/arinux/workspace/Cpp_Repository/include/fn_log.h
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o: /home/arinux/workspace/Cpp_Repository/include/json/allocator.h
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o: /home/arinux/workspace/Cpp_Repository/include/json/config.h
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o: /home/arinux/workspace/Cpp_Repository/include/json/forwards.h
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o: /home/arinux/workspace/Cpp_Repository/include/json/json.h
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o: /home/arinux/workspace/Cpp_Repository/include/json/json_features.h
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o: /home/arinux/workspace/Cpp_Repository/include/json/reader.h
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o: /home/arinux/workspace/Cpp_Repository/include/json/value.h
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o: /home/arinux/workspace/Cpp_Repository/include/json/version.h
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o: /home/arinux/workspace/Cpp_Repository/include/json/writer.h
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o: /home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.o: /home/arinux/workspace/Cpp_Repository/include/ErrorCode.h

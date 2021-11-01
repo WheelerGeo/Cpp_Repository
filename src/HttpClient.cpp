@@ -12,10 +12,10 @@ HttpClient::HttpClient(EventPoll *my_epoll, int fd): TcpClient(my_epoll, fd) {
 
 }
 
-OPERATE_RET HttpClient::analysisUrl(const std::string& buf) {
+OPERATE_RET HttpClient::urlParse(const std::string& buf) {
     std::string str_buf = buf;
     if (std::string::npos == str_buf.find("HTTP/")) {
-        LogError() << "analysisUrl:Url Error";
+        LogError() << "urlParser:Url Error";
         return OPRT_HTTP_PROTO_ERROR;
     }
     

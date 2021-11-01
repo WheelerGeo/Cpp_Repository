@@ -17,7 +17,7 @@ public:
             
             return OPRT_OK;
         } else {
-            OPERATE_RET ret = analysisUrl(recv_buff);
+            OPERATE_RET ret = urlParse(recv_buff);
             switch (ret) {
                 case OPRT_OK: {
                     responseSuccess();

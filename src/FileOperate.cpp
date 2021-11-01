@@ -59,6 +59,33 @@ OPERATE_RET FileOperate::syncWriteAllIntoFile(const std::string& file_name, cons
     return OPRT_OK;
 }
 
+OPERATE_RET FileOperate::syncWriteLineIntoFile(const std::string& file_name, const int line_id, const std::string& write_buff) {
+    std::ifstream readFrom;
+    readFrom.open(file_name, std::ifstream::in);
+    if (!readFrom.is_open()) {
+        LogError() << file_name << ": Open Failed";
+        return OPRT_FILE_OPEN_ERROR;
+    }
+    std::string wirte_file_data = "";
+    int line = 1;
+    std::string tmp = "";
+    while (getline(readFrom, tmp)) {
+        if (line == line_id) {
+            wirte_file_data += std::string(write_buff);
+            wirte_file_data += "\n";
+        } else {
+            wirte_file_data += std::string(tmp);
+            wirte_file_data += "\n";
+        }
+        line++;
+    }
+
+    readFrom.close();
+
+    syncWriteAllIntoFile(file_name, wirte_file_data);
+    return OPRT_OK;
+}
+
 OPERATE_RET FileOperate::syncWriteApendIntoFile(const std::string& file_name, const std::string& write_buff) {
     std::ofstream writeIn(file_name, std::ifstream::app);
     writeIn << write_buff;
@@ -68,8 +95,7 @@ OPERATE_RET FileOperate::syncWriteApendIntoFile(const std::string& file_name, co
 
 OPERATE_RET FileOperate::countLineOfFile(const std::string& file_name, int& line_number) {
     std::ifstream readFrom(file_name, std::ifstream::in);
-    int n=0;
-    std::string tmp;
+    std::string tmp = "";
     if (readFrom.fail()) {
         LogError() << "No such file";
         return OPRT_FILE_INEXIST_ERROR;
@@ -90,6 +116,7 @@ OPERATE_RET FileOperate::countSizeOfFile(const std::string& file_name, int& file
     }
     std::string str((std::istreambuf_iterator<char>(readFrom)), std::istreambuf_iterator<char>(0));
     file_size = str.size();
+    readFrom.close();
     return OPRT_OK;
 }
 
@@ -109,6 +136,7 @@ OPERATE_RET FileOperate::asyncReadAllFromFile(void) {
     });
     return OPRT_OK;
 }
+
 OPERATE_RET FileOperate::asyncWriteAllIntoFile(void) {
     if (file_name_ == "" || write_buff_ == "") {
         LogError() << "Missing instance parameters";
@@ -139,4 +167,45 @@ OPERATE_RET FileOperate::asyncWriteApendIntoFile(void) {
         return OPRT_OK;
     });
     return OPRT_OK;
+}
+
+OPERATE_RET FileOperate::parseJsonFromStr(const std::string& json_str, Json::Value& read_root) {
+    Json::CharReaderBuilder builder;
+    const std::unique_ptr<Json::CharReader> reader(builder.newCharReader());
+    
+    if (!reader->parse(json_str.c_str(), json_str.c_str() + json_str.length(), &read_root, nullptr)) {
+		LogError() << "parse failed";
+		return OPRT_JSON_PARSE_ERROR;
+	}
+
+    return OPRT_OK;
+}
+
+OPERATE_RET FileOperate::parseJsonFromFile(const std::string& file_name, Json::Value& read_root) {
+    std::string read_buff = "";
+    syncReadAllFromFile(file_name, read_buff);
+    OPERATE_RET ret = OPRT_OK;
+    ret = parseJsonFromStr(read_buff, read_root);
+
+    return ret;
+}
+
+OPERATE_RET FileOperate::formatJsonIntoStr(std::string& save_str, const Json::Value& format_root) {
+    Json::StreamWriterBuilder writerBuilder;
+    std::ostringstream os;
+    std::unique_ptr<Json::StreamWriter> writer(writerBuilder.newStreamWriter());
+
+    writer->write(format_root, &os);
+    save_str = os.str();
+
+    return OPRT_OK;
+}
+
+OPERATE_RET FileOperate::writeJsonIntoFile(const std::string& file_name, const Json::Value& write_root) {
+    std::string write_str = "";
+    OPERATE_RET ret = OPRT_OK;
+    ret = formatJsonIntoStr(write_str, write_root);
+    ret = syncWriteAllIntoFile(file_name, write_str);
+
+    return ret;
 }

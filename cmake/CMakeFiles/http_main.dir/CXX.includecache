@@ -337,8 +337,6 @@ sstream
 /home/arinux/workspace/Cpp_Repository/include/CmdOperate.h
 ../include/ThreadPool.h
 /home/arinux/workspace/Cpp_Repository/include/ThreadPool.h
-../include/StdInput.h
-/home/arinux/workspace/Cpp_Repository/include/StdInput.h
 ../include/ErrorCode.h
 /home/arinux/workspace/Cpp_Repository/include/ErrorCode.h
 ../include/yaml/yaml.h
@@ -387,12 +385,6 @@ TcpServer.h
 /home/arinux/workspace/Cpp_Repository/include/Logger.h
 fn_log.h
 /home/arinux/workspace/Cpp_Repository/include/fn_log.h
-ErrorCode.h
-/home/arinux/workspace/Cpp_Repository/include/ErrorCode.h
-
-/home/arinux/workspace/Cpp_Repository/include/StdInput.h
-EventPoll.h
-/home/arinux/workspace/Cpp_Repository/include/EventPoll.h
 ErrorCode.h
 /home/arinux/workspace/Cpp_Repository/include/ErrorCode.h
 

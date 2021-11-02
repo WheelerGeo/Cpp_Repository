@@ -2,7 +2,6 @@
 #include "../include/HttpClient.h"
 #include "../include/CmdOperate.h"
 #include "../include/ThreadPool.h"
-#include "../include/StdInput.h"
 #include "../include/ErrorCode.h"
 #include "../include/yaml/yaml.h"
 #include <memory>

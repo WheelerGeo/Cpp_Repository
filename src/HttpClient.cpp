@@ -8,7 +8,7 @@ HttpClient::HttpClient(EventPoll* my_epoll, const int my_port, const std::string
 
 }
 
-HttpClient::HttpClient(EventPoll *my_epoll, int fd): TcpClient(my_epoll, fd) {
+HttpClient::HttpClient(EventPoll *my_epoll, const int fd): TcpClient(my_epoll, fd) {
 
 }
 

@@ -7,7 +7,7 @@
 class HttpClient: public TcpClient{
 public:
     HttpClient(EventPoll* my_epoll, const int my_port, const std::string my_addr);
-    HttpClient(EventPoll *my_epoll, int fd);
+    HttpClient(EventPoll *my_epoll, const int fd);
     OPERATE_RET urlParse(const std::string& buf);
     OPERATE_RET responseSuccess(const std::string& http_file_name);
     OPERATE_RET responseSuccess(void);

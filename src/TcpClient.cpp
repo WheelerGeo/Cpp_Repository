@@ -15,14 +15,14 @@
 #include "../include/StdInput.h"
 #include "../include/Logger.h"
 
-TcpClient::TcpClient(EventPoll *my_epoll, int my_port, std::string my_addr) {
+TcpClient::TcpClient(EventPoll *my_epoll, const int my_port, const std::string& my_addr) {
     epoll_ = my_epoll;
     port_ = my_port;
     addr_ = my_addr;
     establish();
 }
 
-TcpClient::TcpClient(EventPoll *my_epoll, int fd) {
+TcpClient::TcpClient(EventPoll *my_epoll, const int fd) {
     epoll_ = my_epoll;
     connect_fd_ = fd;
     if (0 > (epoll_->addEvent(this, connect_fd_, EPOLLIN | EPOLLET, receive))) {

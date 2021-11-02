@@ -39,7 +39,6 @@ CMakeFiles/http_main.dir/home/arinux/workspace/Cpp_Repository/demo/http_main.cpp
  /home/arinux/workspace/Cpp_Repository/include/HttpClient.h
  /home/arinux/workspace/Cpp_Repository/include/HttpServer.h
  /home/arinux/workspace/Cpp_Repository/include/Logger.h
- /home/arinux/workspace/Cpp_Repository/include/StdInput.h
  /home/arinux/workspace/Cpp_Repository/include/TcpClient.h
  /home/arinux/workspace/Cpp_Repository/include/TcpServer.h
  /home/arinux/workspace/Cpp_Repository/include/ThreadPool.h

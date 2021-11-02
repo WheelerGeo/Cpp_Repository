@@ -56,6 +56,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/http_main.dir/DependInfo.cmake"
   "CMakeFiles/file_main.dir/DependInfo.cmake"
   "CMakeFiles/yaml_shared.dir/DependInfo.cmake"
+  "CMakeFiles/rpc_main.dir/DependInfo.cmake"
   "CMakeFiles/yaml_static.dir/DependInfo.cmake"
   "CMakeFiles/json_shared.dir/DependInfo.cmake"
   "CMakeFiles/json_static.dir/DependInfo.cmake"

@@ -23,8 +23,8 @@ OPERATE_RET TimerTick::timerInit(void) {
 OPERATE_RET TimerTick::timerRun(void* usr_data, const long int now_time_ms, int* time_duration) {
     TimerTick* timertick = (TimerTick*)usr_data;
     *time_duration = timertick->end_time_ms_ - now_time_ms;
-    LogDebug() << "addr: " << usr_data << " end: " << timertick->end_time_ms_ << " now: " << now_time_ms << " diff: " << time_duration;
-    if (time_duration <= 0) {
+    LogTrace() << "addr: " << usr_data << " end: " << timertick->end_time_ms_ << " now: " << now_time_ms << " diff: " << *time_duration;
+    if (*time_duration <= 0) {
         timertick->tim_callback_(usr_data);
         if(TIMER_ONCE == timertick->timer_mode_) {
             timertick->epoll_->addTimer(timertick, NULL);

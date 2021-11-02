@@ -28,8 +28,8 @@
 
 class TcpClient{
 public:
-    TcpClient(EventPoll *my_epoll, int my_port, std::string my_addr);
-    TcpClient(EventPoll *my_epoll, int fd);
+    TcpClient(EventPoll *my_epoll, const int my_port, const std::string& my_addr);
+    TcpClient(EventPoll *my_epoll, const int fd);
     OPERATE_RET establish(void);
     static OPERATE_RET receive(void* server, int fd);
     OPERATE_RET sendData(std::string data);

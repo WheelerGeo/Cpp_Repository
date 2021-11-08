@@ -29,6 +29,7 @@ using TASKCALLBACK = std::function<OPERATE_RET(void*)>;
 
 class ThreadPool{
 public:
+    ThreadPool(void);
     static ThreadPool& getInstance(void);
     void threadPoolStart(int min_thread = 3, int max_thread = 10, int max_queue = 50);
     static void* threadWorkHandler(void *arg);
@@ -58,6 +59,7 @@ private:
     int max_queue_num_ = 0;
     bool shut_down_state_ = 0;                          // 是否要销毁线程池，销毁1，不销毁0
     std::vector<struct thread_pool_task_> thread_queue_;
+    bool is_start_ = false;
 };
 
 

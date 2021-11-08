@@ -50,13 +50,13 @@ public:
 };
 
 int main(int argc, char **argv) {
-    std::unique_ptr<std::string> argv_string(new std::string(cmdOperate(argc, argv)['s']));
+    std::string* argv_string  = new std::string(cmdOperate(argc, argv)['s']);
     if ("" == *argv_string) {
+        delete(argv_string);
     } else {
-        LogInfo() << "argv string:" << *argv_string;
+        LogInfo() << "argv string: " << *argv_string;
     }
 
-    /* Event poll init */
     EventPoll eventPoll;
     YAML::Node config = YAML::LoadFile("../config.yml");
     UsrHttpServer* httpServer = new UsrHttpServer(&eventPoll, config["Server"]["port"].as<int>());

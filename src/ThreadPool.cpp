@@ -5,6 +5,13 @@ ThreadPool& ThreadPool::getInstance(void) {
     static ThreadPool instance;
     return instance;
 }
+ThreadPool::ThreadPool() { 
+    if (!is_start_) {
+        threadPoolStart();
+        is_start_ = true;
+    }
+}
+
 
 void ThreadPool::threadPoolStart(int min_thread, int max_thread, int max_queue) {
     if (pthread_mutex_init(&thread_pool_lock_, NULL) != 0 || 

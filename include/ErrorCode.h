@@ -36,8 +36,14 @@ using OPERATE_RET = int;
 #define OPRT_FILE_TYPE_ERROR                                (-0x0033) //-51, file类型错误
 #define OPRT_YAML_LACK_PARAM                                (-0x0034) //-52, yml文件缺少参数
 #define OPRT_JSON_PARSE_ERROR                               (-0x0035) //-53, json文件解析失败
-
-
+#define OPRT_SHM_NOT_FOUND                                  (-0x0036) //-54, 共享内存不存在
+#define OPRT_SHM_CREATE_ERROR                               (-0x0037) //-55, 共享内存创建失败
+#define OPRT_SHM_ADDRESS_ALLOC_ERROR                        (-0x0038) //-56, 共享内存内存分配失败
+#define OPRT_SHM_DESTROY_ERROR                              (-0x0039) //-57, 共享内存销毁失败
+#define OPRT_FIFO_CREATE_ERROR                              (-0x004A) //-58, 有名管道创建失败
+#define OPRT_FIFO_OPEN_ERROR                                (-0x004B) //-59, 有名管道打开失败
+#define OPRT_FIFO_READ_ERROR                                (-0x004C) //-60, 有名管道读取失败
+#define OPRT_FIFO_WRITE_ERROR                               (-0x004D) //-61, 有名管道写入失败
 #define OPRT_IOCTL_ERROR                                    (-0x0040) //-64, ioctl读取失败
 
 

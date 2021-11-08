@@ -81,10 +81,11 @@ OPERATE_RET timCallBack(void* usr_data) {
 }
 
 int main(int argc, char** argv) {
-    std::unique_ptr<std::string> argv_string(new std::string(cmdOperate(argc, argv)['s']));
+    std::string* argv_string  = new std::string(cmdOperate(argc, argv)['s']);
     if ("" == *argv_string) {
+        delete(argv_string);
     } else {
-        LogInfo() << "argv string:" << *argv_string;
+        LogInfo() << "argv string: " << *argv_string;
     }
 
     EventPoll eventPoll;

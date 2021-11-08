@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/arinux/workspace/Cpp_Repository/cmake
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -77,6 +66,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,69 +111,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named test
+# Target rules for targets named nwk_static
 
 # Build rule for target.
-test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test
-.PHONY : test
+nwk_static: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 nwk_static
+.PHONY : nwk_static
 
 # fast build rule for target.
-test/fast:
-	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
-.PHONY : test/fast
+nwk_static/fast:
+	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/build
+.PHONY : nwk_static/fast
 
 #=============================================================================
-# Target rules for targets named main
+# Target rules for targets named nwk_shared
 
 # Build rule for target.
-main: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 main
-.PHONY : main
+nwk_shared: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 nwk_shared
+.PHONY : nwk_shared
 
 # fast build rule for target.
-main/fast:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-.PHONY : main/fast
-
-#=============================================================================
-# Target rules for targets named http_main
-
-# Build rule for target.
-http_main: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 http_main
-.PHONY : http_main
-
-# fast build rule for target.
-http_main/fast:
-	$(MAKE) -f CMakeFiles/http_main.dir/build.make CMakeFiles/http_main.dir/build
-.PHONY : http_main/fast
-
-#=============================================================================
-# Target rules for targets named file_main
-
-# Build rule for target.
-file_main: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 file_main
-.PHONY : file_main
-
-# fast build rule for target.
-file_main/fast:
-	$(MAKE) -f CMakeFiles/file_main.dir/build.make CMakeFiles/file_main.dir/build
-.PHONY : file_main/fast
-
-#=============================================================================
-# Target rules for targets named yaml_shared
-
-# Build rule for target.
-yaml_shared: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 yaml_shared
-.PHONY : yaml_shared
-
-# fast build rule for target.
-yaml_shared/fast:
-	$(MAKE) -f CMakeFiles/yaml_shared.dir/build.make CMakeFiles/yaml_shared.dir/build
-.PHONY : yaml_shared/fast
+nwk_shared/fast:
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/build
+.PHONY : nwk_shared/fast
 
 #=============================================================================
 # Target rules for targets named rpc_main
@@ -189,6 +150,58 @@ rpc_main/fast:
 .PHONY : rpc_main/fast
 
 #=============================================================================
+# Target rules for targets named yaml_shared
+
+# Build rule for target.
+yaml_shared: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 yaml_shared
+.PHONY : yaml_shared
+
+# fast build rule for target.
+yaml_shared/fast:
+	$(MAKE) -f CMakeFiles/yaml_shared.dir/build.make CMakeFiles/yaml_shared.dir/build
+.PHONY : yaml_shared/fast
+
+#=============================================================================
+# Target rules for targets named file_main
+
+# Build rule for target.
+file_main: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 file_main
+.PHONY : file_main
+
+# fast build rule for target.
+file_main/fast:
+	$(MAKE) -f CMakeFiles/file_main.dir/build.make CMakeFiles/file_main.dir/build
+.PHONY : file_main/fast
+
+#=============================================================================
+# Target rules for targets named http_main
+
+# Build rule for target.
+http_main: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 http_main
+.PHONY : http_main
+
+# fast build rule for target.
+http_main/fast:
+	$(MAKE) -f CMakeFiles/http_main.dir/build.make CMakeFiles/http_main.dir/build
+.PHONY : http_main/fast
+
+#=============================================================================
+# Target rules for targets named ipc_main
+
+# Build rule for target.
+ipc_main: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ipc_main
+.PHONY : ipc_main
+
+# fast build rule for target.
+ipc_main/fast:
+	$(MAKE) -f CMakeFiles/ipc_main.dir/build.make CMakeFiles/ipc_main.dir/build
+.PHONY : ipc_main/fast
+
+#=============================================================================
 # Target rules for targets named yaml_static
 
 # Build rule for target.
@@ -200,6 +213,19 @@ yaml_static: cmake_check_build_system
 yaml_static/fast:
 	$(MAKE) -f CMakeFiles/yaml_static.dir/build.make CMakeFiles/yaml_static.dir/build
 .PHONY : yaml_static/fast
+
+#=============================================================================
+# Target rules for targets named test
+
+# Build rule for target.
+test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test
+.PHONY : test
+
+# fast build rule for target.
+test/fast:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
+.PHONY : test/fast
 
 #=============================================================================
 # Target rules for targets named json_shared
@@ -228,30 +254,17 @@ json_static/fast:
 .PHONY : json_static/fast
 
 #=============================================================================
-# Target rules for targets named nwk_shared
+# Target rules for targets named main
 
 # Build rule for target.
-nwk_shared: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 nwk_shared
-.PHONY : nwk_shared
+main: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 main
+.PHONY : main
 
 # fast build rule for target.
-nwk_shared/fast:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/build
-.PHONY : nwk_shared/fast
-
-#=============================================================================
-# Target rules for targets named nwk_static
-
-# Build rule for target.
-nwk_static: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 nwk_static
-.PHONY : nwk_static
-
-# fast build rule for target.
-nwk_static/fast:
-	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/build
-.PHONY : nwk_static/fast
+main/fast:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
+.PHONY : main/fast
 
 home/arinux/workspace/Cpp_Repository/demo/file_main.o: home/arinux/workspace/Cpp_Repository/demo/file_main.cpp.o
 
@@ -306,6 +319,33 @@ home/arinux/workspace/Cpp_Repository/demo/http_main.s: home/arinux/workspace/Cpp
 home/arinux/workspace/Cpp_Repository/demo/http_main.cpp.s:
 	$(MAKE) -f CMakeFiles/http_main.dir/build.make CMakeFiles/http_main.dir/home/arinux/workspace/Cpp_Repository/demo/http_main.cpp.s
 .PHONY : home/arinux/workspace/Cpp_Repository/demo/http_main.cpp.s
+
+home/arinux/workspace/Cpp_Repository/demo/ipc_main.o: home/arinux/workspace/Cpp_Repository/demo/ipc_main.cpp.o
+
+.PHONY : home/arinux/workspace/Cpp_Repository/demo/ipc_main.o
+
+# target to build an object file
+home/arinux/workspace/Cpp_Repository/demo/ipc_main.cpp.o:
+	$(MAKE) -f CMakeFiles/ipc_main.dir/build.make CMakeFiles/ipc_main.dir/home/arinux/workspace/Cpp_Repository/demo/ipc_main.cpp.o
+.PHONY : home/arinux/workspace/Cpp_Repository/demo/ipc_main.cpp.o
+
+home/arinux/workspace/Cpp_Repository/demo/ipc_main.i: home/arinux/workspace/Cpp_Repository/demo/ipc_main.cpp.i
+
+.PHONY : home/arinux/workspace/Cpp_Repository/demo/ipc_main.i
+
+# target to preprocess a source file
+home/arinux/workspace/Cpp_Repository/demo/ipc_main.cpp.i:
+	$(MAKE) -f CMakeFiles/ipc_main.dir/build.make CMakeFiles/ipc_main.dir/home/arinux/workspace/Cpp_Repository/demo/ipc_main.cpp.i
+.PHONY : home/arinux/workspace/Cpp_Repository/demo/ipc_main.cpp.i
+
+home/arinux/workspace/Cpp_Repository/demo/ipc_main.s: home/arinux/workspace/Cpp_Repository/demo/ipc_main.cpp.s
+
+.PHONY : home/arinux/workspace/Cpp_Repository/demo/ipc_main.s
+
+# target to generate assembly for a file
+home/arinux/workspace/Cpp_Repository/demo/ipc_main.cpp.s:
+	$(MAKE) -f CMakeFiles/ipc_main.dir/build.make CMakeFiles/ipc_main.dir/home/arinux/workspace/Cpp_Repository/demo/ipc_main.cpp.s
+.PHONY : home/arinux/workspace/Cpp_Repository/demo/ipc_main.cpp.s
 
 home/arinux/workspace/Cpp_Repository/demo/main.o: home/arinux/workspace/Cpp_Repository/demo/main.cpp.o
 
@@ -394,8 +434,8 @@ home/arinux/workspace/Cpp_Repository/src/EventPoll.o: home/arinux/workspace/Cpp_
 
 # target to build an object file
 home/arinux/workspace/Cpp_Repository/src/EventPoll.cpp.o:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/EventPoll.cpp.o
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/EventPoll.cpp.o
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/EventPoll.cpp.o
 .PHONY : home/arinux/workspace/Cpp_Repository/src/EventPoll.cpp.o
 
 home/arinux/workspace/Cpp_Repository/src/EventPoll.i: home/arinux/workspace/Cpp_Repository/src/EventPoll.cpp.i
@@ -404,8 +444,8 @@ home/arinux/workspace/Cpp_Repository/src/EventPoll.i: home/arinux/workspace/Cpp_
 
 # target to preprocess a source file
 home/arinux/workspace/Cpp_Repository/src/EventPoll.cpp.i:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/EventPoll.cpp.i
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/EventPoll.cpp.i
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/EventPoll.cpp.i
 .PHONY : home/arinux/workspace/Cpp_Repository/src/EventPoll.cpp.i
 
 home/arinux/workspace/Cpp_Repository/src/EventPoll.s: home/arinux/workspace/Cpp_Repository/src/EventPoll.cpp.s
@@ -414,8 +454,8 @@ home/arinux/workspace/Cpp_Repository/src/EventPoll.s: home/arinux/workspace/Cpp_
 
 # target to generate assembly for a file
 home/arinux/workspace/Cpp_Repository/src/EventPoll.cpp.s:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/EventPoll.cpp.s
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/EventPoll.cpp.s
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/EventPoll.cpp.s
 .PHONY : home/arinux/workspace/Cpp_Repository/src/EventPoll.cpp.s
 
 home/arinux/workspace/Cpp_Repository/src/FileOperate.o: home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o
@@ -424,8 +464,8 @@ home/arinux/workspace/Cpp_Repository/src/FileOperate.o: home/arinux/workspace/Cp
 
 # target to build an object file
 home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o
 .PHONY : home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o
 
 home/arinux/workspace/Cpp_Repository/src/FileOperate.i: home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.i
@@ -434,8 +474,8 @@ home/arinux/workspace/Cpp_Repository/src/FileOperate.i: home/arinux/workspace/Cp
 
 # target to preprocess a source file
 home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.i:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.i
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.i
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.i
 .PHONY : home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.i
 
 home/arinux/workspace/Cpp_Repository/src/FileOperate.s: home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.s
@@ -444,8 +484,8 @@ home/arinux/workspace/Cpp_Repository/src/FileOperate.s: home/arinux/workspace/Cp
 
 # target to generate assembly for a file
 home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.s:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.s
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.s
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.s
 .PHONY : home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.s
 
 home/arinux/workspace/Cpp_Repository/src/HttpClient.o: home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o
@@ -454,8 +494,8 @@ home/arinux/workspace/Cpp_Repository/src/HttpClient.o: home/arinux/workspace/Cpp
 
 # target to build an object file
 home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o
 .PHONY : home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o
 
 home/arinux/workspace/Cpp_Repository/src/HttpClient.i: home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.i
@@ -464,8 +504,8 @@ home/arinux/workspace/Cpp_Repository/src/HttpClient.i: home/arinux/workspace/Cpp
 
 # target to preprocess a source file
 home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.i:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.i
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.i
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.i
 .PHONY : home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.i
 
 home/arinux/workspace/Cpp_Repository/src/HttpClient.s: home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.s
@@ -474,8 +514,8 @@ home/arinux/workspace/Cpp_Repository/src/HttpClient.s: home/arinux/workspace/Cpp
 
 # target to generate assembly for a file
 home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.s:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.s
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.s
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.s
 .PHONY : home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.s
 
 home/arinux/workspace/Cpp_Repository/src/HttpServer.o: home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.o
@@ -484,8 +524,8 @@ home/arinux/workspace/Cpp_Repository/src/HttpServer.o: home/arinux/workspace/Cpp
 
 # target to build an object file
 home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.o:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.o
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.o
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.o
 .PHONY : home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.o
 
 home/arinux/workspace/Cpp_Repository/src/HttpServer.i: home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.i
@@ -494,8 +534,8 @@ home/arinux/workspace/Cpp_Repository/src/HttpServer.i: home/arinux/workspace/Cpp
 
 # target to preprocess a source file
 home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.i:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.i
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.i
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.i
 .PHONY : home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.i
 
 home/arinux/workspace/Cpp_Repository/src/HttpServer.s: home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.s
@@ -504,9 +544,39 @@ home/arinux/workspace/Cpp_Repository/src/HttpServer.s: home/arinux/workspace/Cpp
 
 # target to generate assembly for a file
 home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.s:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.s
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.s
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.s
 .PHONY : home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.s
+
+home/arinux/workspace/Cpp_Repository/src/Ipc.o: home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.o
+
+.PHONY : home/arinux/workspace/Cpp_Repository/src/Ipc.o
+
+# target to build an object file
+home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.o:
+	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.o
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.o
+.PHONY : home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.o
+
+home/arinux/workspace/Cpp_Repository/src/Ipc.i: home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.i
+
+.PHONY : home/arinux/workspace/Cpp_Repository/src/Ipc.i
+
+# target to preprocess a source file
+home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.i:
+	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.i
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.i
+.PHONY : home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.i
+
+home/arinux/workspace/Cpp_Repository/src/Ipc.s: home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.s
+
+.PHONY : home/arinux/workspace/Cpp_Repository/src/Ipc.s
+
+# target to generate assembly for a file
+home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.s:
+	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.s
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.s
+.PHONY : home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.s
 
 home/arinux/workspace/Cpp_Repository/src/Logger.o: home/arinux/workspace/Cpp_Repository/src/Logger.cpp.o
 
@@ -514,8 +584,8 @@ home/arinux/workspace/Cpp_Repository/src/Logger.o: home/arinux/workspace/Cpp_Rep
 
 # target to build an object file
 home/arinux/workspace/Cpp_Repository/src/Logger.cpp.o:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Logger.cpp.o
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/Logger.cpp.o
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Logger.cpp.o
 .PHONY : home/arinux/workspace/Cpp_Repository/src/Logger.cpp.o
 
 home/arinux/workspace/Cpp_Repository/src/Logger.i: home/arinux/workspace/Cpp_Repository/src/Logger.cpp.i
@@ -524,8 +594,8 @@ home/arinux/workspace/Cpp_Repository/src/Logger.i: home/arinux/workspace/Cpp_Rep
 
 # target to preprocess a source file
 home/arinux/workspace/Cpp_Repository/src/Logger.cpp.i:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Logger.cpp.i
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/Logger.cpp.i
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Logger.cpp.i
 .PHONY : home/arinux/workspace/Cpp_Repository/src/Logger.cpp.i
 
 home/arinux/workspace/Cpp_Repository/src/Logger.s: home/arinux/workspace/Cpp_Repository/src/Logger.cpp.s
@@ -534,8 +604,8 @@ home/arinux/workspace/Cpp_Repository/src/Logger.s: home/arinux/workspace/Cpp_Rep
 
 # target to generate assembly for a file
 home/arinux/workspace/Cpp_Repository/src/Logger.cpp.s:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Logger.cpp.s
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/Logger.cpp.s
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Logger.cpp.s
 .PHONY : home/arinux/workspace/Cpp_Repository/src/Logger.cpp.s
 
 home/arinux/workspace/Cpp_Repository/src/NetworkTool.o: home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.o
@@ -544,8 +614,8 @@ home/arinux/workspace/Cpp_Repository/src/NetworkTool.o: home/arinux/workspace/Cp
 
 # target to build an object file
 home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.o:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.o
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.o
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.o
 .PHONY : home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.o
 
 home/arinux/workspace/Cpp_Repository/src/NetworkTool.i: home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.i
@@ -554,8 +624,8 @@ home/arinux/workspace/Cpp_Repository/src/NetworkTool.i: home/arinux/workspace/Cp
 
 # target to preprocess a source file
 home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.i:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.i
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.i
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.i
 .PHONY : home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.i
 
 home/arinux/workspace/Cpp_Repository/src/NetworkTool.s: home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.s
@@ -564,8 +634,8 @@ home/arinux/workspace/Cpp_Repository/src/NetworkTool.s: home/arinux/workspace/Cp
 
 # target to generate assembly for a file
 home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.s:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.s
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.s
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.s
 .PHONY : home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.s
 
 home/arinux/workspace/Cpp_Repository/src/RpcClient.o: home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.o
@@ -574,8 +644,8 @@ home/arinux/workspace/Cpp_Repository/src/RpcClient.o: home/arinux/workspace/Cpp_
 
 # target to build an object file
 home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.o:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.o
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.o
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.o
 .PHONY : home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.o
 
 home/arinux/workspace/Cpp_Repository/src/RpcClient.i: home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.i
@@ -584,8 +654,8 @@ home/arinux/workspace/Cpp_Repository/src/RpcClient.i: home/arinux/workspace/Cpp_
 
 # target to preprocess a source file
 home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.i:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.i
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.i
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.i
 .PHONY : home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.i
 
 home/arinux/workspace/Cpp_Repository/src/RpcClient.s: home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.s
@@ -594,8 +664,8 @@ home/arinux/workspace/Cpp_Repository/src/RpcClient.s: home/arinux/workspace/Cpp_
 
 # target to generate assembly for a file
 home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.s:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.s
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.s
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.s
 .PHONY : home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.s
 
 home/arinux/workspace/Cpp_Repository/src/RpcServer.o: home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.o
@@ -604,8 +674,8 @@ home/arinux/workspace/Cpp_Repository/src/RpcServer.o: home/arinux/workspace/Cpp_
 
 # target to build an object file
 home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.o:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.o
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.o
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.o
 .PHONY : home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.o
 
 home/arinux/workspace/Cpp_Repository/src/RpcServer.i: home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.i
@@ -614,8 +684,8 @@ home/arinux/workspace/Cpp_Repository/src/RpcServer.i: home/arinux/workspace/Cpp_
 
 # target to preprocess a source file
 home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.i:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.i
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.i
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.i
 .PHONY : home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.i
 
 home/arinux/workspace/Cpp_Repository/src/RpcServer.s: home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.s
@@ -624,8 +694,8 @@ home/arinux/workspace/Cpp_Repository/src/RpcServer.s: home/arinux/workspace/Cpp_
 
 # target to generate assembly for a file
 home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.s:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.s
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.s
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.s
 .PHONY : home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.s
 
 home/arinux/workspace/Cpp_Repository/src/StdInput.o: home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.o
@@ -634,8 +704,8 @@ home/arinux/workspace/Cpp_Repository/src/StdInput.o: home/arinux/workspace/Cpp_R
 
 # target to build an object file
 home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.o:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.o
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.o
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.o
 .PHONY : home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.o
 
 home/arinux/workspace/Cpp_Repository/src/StdInput.i: home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.i
@@ -644,8 +714,8 @@ home/arinux/workspace/Cpp_Repository/src/StdInput.i: home/arinux/workspace/Cpp_R
 
 # target to preprocess a source file
 home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.i:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.i
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.i
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.i
 .PHONY : home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.i
 
 home/arinux/workspace/Cpp_Repository/src/StdInput.s: home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.s
@@ -654,8 +724,8 @@ home/arinux/workspace/Cpp_Repository/src/StdInput.s: home/arinux/workspace/Cpp_R
 
 # target to generate assembly for a file
 home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.s:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.s
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.s
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.s
 .PHONY : home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.s
 
 home/arinux/workspace/Cpp_Repository/src/TcpClient.o: home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.o
@@ -664,8 +734,8 @@ home/arinux/workspace/Cpp_Repository/src/TcpClient.o: home/arinux/workspace/Cpp_
 
 # target to build an object file
 home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.o:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.o
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.o
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.o
 .PHONY : home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.o
 
 home/arinux/workspace/Cpp_Repository/src/TcpClient.i: home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.i
@@ -674,8 +744,8 @@ home/arinux/workspace/Cpp_Repository/src/TcpClient.i: home/arinux/workspace/Cpp_
 
 # target to preprocess a source file
 home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.i:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.i
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.i
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.i
 .PHONY : home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.i
 
 home/arinux/workspace/Cpp_Repository/src/TcpClient.s: home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.s
@@ -684,8 +754,8 @@ home/arinux/workspace/Cpp_Repository/src/TcpClient.s: home/arinux/workspace/Cpp_
 
 # target to generate assembly for a file
 home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.s:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.s
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.s
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.s
 .PHONY : home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.s
 
 home/arinux/workspace/Cpp_Repository/src/TcpServer.o: home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.o
@@ -694,8 +764,8 @@ home/arinux/workspace/Cpp_Repository/src/TcpServer.o: home/arinux/workspace/Cpp_
 
 # target to build an object file
 home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.o:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.o
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.o
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.o
 .PHONY : home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.o
 
 home/arinux/workspace/Cpp_Repository/src/TcpServer.i: home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.i
@@ -704,8 +774,8 @@ home/arinux/workspace/Cpp_Repository/src/TcpServer.i: home/arinux/workspace/Cpp_
 
 # target to preprocess a source file
 home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.i:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.i
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.i
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.i
 .PHONY : home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.i
 
 home/arinux/workspace/Cpp_Repository/src/TcpServer.s: home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.s
@@ -714,8 +784,8 @@ home/arinux/workspace/Cpp_Repository/src/TcpServer.s: home/arinux/workspace/Cpp_
 
 # target to generate assembly for a file
 home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.s:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.s
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.s
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.s
 .PHONY : home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.s
 
 home/arinux/workspace/Cpp_Repository/src/ThreadPool.o: home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.o
@@ -724,8 +794,8 @@ home/arinux/workspace/Cpp_Repository/src/ThreadPool.o: home/arinux/workspace/Cpp
 
 # target to build an object file
 home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.o:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.o
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.o
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.o
 .PHONY : home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.o
 
 home/arinux/workspace/Cpp_Repository/src/ThreadPool.i: home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.i
@@ -734,8 +804,8 @@ home/arinux/workspace/Cpp_Repository/src/ThreadPool.i: home/arinux/workspace/Cpp
 
 # target to preprocess a source file
 home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.i:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.i
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.i
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.i
 .PHONY : home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.i
 
 home/arinux/workspace/Cpp_Repository/src/ThreadPool.s: home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.s
@@ -744,8 +814,8 @@ home/arinux/workspace/Cpp_Repository/src/ThreadPool.s: home/arinux/workspace/Cpp
 
 # target to generate assembly for a file
 home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.s:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.s
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.s
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.s
 .PHONY : home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.s
 
 home/arinux/workspace/Cpp_Repository/src/TimerTick.o: home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.o
@@ -754,8 +824,8 @@ home/arinux/workspace/Cpp_Repository/src/TimerTick.o: home/arinux/workspace/Cpp_
 
 # target to build an object file
 home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.o:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.o
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.o
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.o
 .PHONY : home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.o
 
 home/arinux/workspace/Cpp_Repository/src/TimerTick.i: home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.i
@@ -764,8 +834,8 @@ home/arinux/workspace/Cpp_Repository/src/TimerTick.i: home/arinux/workspace/Cpp_
 
 # target to preprocess a source file
 home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.i:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.i
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.i
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.i
 .PHONY : home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.i
 
 home/arinux/workspace/Cpp_Repository/src/TimerTick.s: home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.s
@@ -774,8 +844,8 @@ home/arinux/workspace/Cpp_Repository/src/TimerTick.s: home/arinux/workspace/Cpp_
 
 # target to generate assembly for a file
 home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.s:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.s
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.s
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.s
 .PHONY : home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.s
 
 home/arinux/workspace/Cpp_Repository/src/UdpServer.o: home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.o
@@ -784,8 +854,8 @@ home/arinux/workspace/Cpp_Repository/src/UdpServer.o: home/arinux/workspace/Cpp_
 
 # target to build an object file
 home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.o:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.o
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.o
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.o
 .PHONY : home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.o
 
 home/arinux/workspace/Cpp_Repository/src/UdpServer.i: home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.i
@@ -794,8 +864,8 @@ home/arinux/workspace/Cpp_Repository/src/UdpServer.i: home/arinux/workspace/Cpp_
 
 # target to preprocess a source file
 home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.i:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.i
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.i
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.i
 .PHONY : home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.i
 
 home/arinux/workspace/Cpp_Repository/src/UdpServer.s: home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.s
@@ -804,8 +874,8 @@ home/arinux/workspace/Cpp_Repository/src/UdpServer.s: home/arinux/workspace/Cpp_
 
 # target to generate assembly for a file
 home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.s:
-	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.s
 	$(MAKE) -f CMakeFiles/nwk_static.dir/build.make CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.s
+	$(MAKE) -f CMakeFiles/nwk_shared.dir/build.make CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.s
 .PHONY : home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.s
 
 home/arinux/workspace/Cpp_Repository/src/json/json_reader.o: home/arinux/workspace/Cpp_Repository/src/json/json_reader.cpp.o
@@ -1774,25 +1844,29 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... edit_cache"
-	@echo "... test"
-	@echo "... main"
-	@echo "... http_main"
-	@echo "... file_main"
-	@echo "... yaml_shared"
-	@echo "... rpc_main"
-	@echo "... yaml_static"
-	@echo "... json_shared"
-	@echo "... json_static"
-	@echo "... rebuild_cache"
-	@echo "... nwk_shared"
 	@echo "... nwk_static"
+	@echo "... nwk_shared"
+	@echo "... rpc_main"
+	@echo "... yaml_shared"
+	@echo "... file_main"
+	@echo "... http_main"
+	@echo "... ipc_main"
+	@echo "... yaml_static"
+	@echo "... test"
+	@echo "... rebuild_cache"
+	@echo "... json_shared"
+	@echo "... edit_cache"
+	@echo "... json_static"
+	@echo "... main"
 	@echo "... home/arinux/workspace/Cpp_Repository/demo/file_main.o"
 	@echo "... home/arinux/workspace/Cpp_Repository/demo/file_main.i"
 	@echo "... home/arinux/workspace/Cpp_Repository/demo/file_main.s"
 	@echo "... home/arinux/workspace/Cpp_Repository/demo/http_main.o"
 	@echo "... home/arinux/workspace/Cpp_Repository/demo/http_main.i"
 	@echo "... home/arinux/workspace/Cpp_Repository/demo/http_main.s"
+	@echo "... home/arinux/workspace/Cpp_Repository/demo/ipc_main.o"
+	@echo "... home/arinux/workspace/Cpp_Repository/demo/ipc_main.i"
+	@echo "... home/arinux/workspace/Cpp_Repository/demo/ipc_main.s"
 	@echo "... home/arinux/workspace/Cpp_Repository/demo/main.o"
 	@echo "... home/arinux/workspace/Cpp_Repository/demo/main.i"
 	@echo "... home/arinux/workspace/Cpp_Repository/demo/main.s"
@@ -1814,6 +1888,9 @@ help:
 	@echo "... home/arinux/workspace/Cpp_Repository/src/HttpServer.o"
 	@echo "... home/arinux/workspace/Cpp_Repository/src/HttpServer.i"
 	@echo "... home/arinux/workspace/Cpp_Repository/src/HttpServer.s"
+	@echo "... home/arinux/workspace/Cpp_Repository/src/Ipc.o"
+	@echo "... home/arinux/workspace/Cpp_Repository/src/Ipc.i"
+	@echo "... home/arinux/workspace/Cpp_Repository/src/Ipc.s"
 	@echo "... home/arinux/workspace/Cpp_Repository/src/Logger.o"
 	@echo "... home/arinux/workspace/Cpp_Repository/src/Logger.i"
 	@echo "... home/arinux/workspace/Cpp_Repository/src/Logger.s"

@@ -5,6 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o"
   "CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o"
   "CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.o"
+  "CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.o"
   "CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Logger.cpp.o"
   "CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.o"
   "CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.o"

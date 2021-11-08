@@ -20,6 +20,7 @@ add_library(json_static STATIC ${JSON_SRCS_LIST})
 add_library(json_shared SHARED ${JSON_SRCS_LIST})
 add_library(yaml_static STATIC ${YAML_SRCS_LIST})
 add_library(yaml_shared SHARED ${YAML_SRCS_LIST})
+add_definitions("-g")
 
 find_package(Threads)
 

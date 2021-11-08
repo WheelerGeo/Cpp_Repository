@@ -51,6 +51,13 @@ CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/HttpServer.cp
  /home/arinux/workspace/Cpp_Repository/include/TcpServer.h
  /home/arinux/workspace/Cpp_Repository/include/fn_log.h
  /home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp
+CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.o
+ /home/arinux/workspace/Cpp_Repository/include/ErrorCode.h
+ /home/arinux/workspace/Cpp_Repository/include/Ipc.h
+ /home/arinux/workspace/Cpp_Repository/include/Logger.h
+ /home/arinux/workspace/Cpp_Repository/include/ThreadPool.h
+ /home/arinux/workspace/Cpp_Repository/include/fn_log.h
+ /home/arinux/workspace/Cpp_Repository/src/Ipc.cpp
 CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/Logger.cpp.o
  /home/arinux/workspace/Cpp_Repository/include/ErrorCode.h
  /home/arinux/workspace/Cpp_Repository/include/Logger.h

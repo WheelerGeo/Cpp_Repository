@@ -109,9 +109,22 @@ CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpServer.cp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp -o CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.s
 
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.o: CMakeFiles/nwk_shared.dir/flags.make
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.o: /home/arinux/workspace/Cpp_Repository/src/Ipc.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.o -c /home/arinux/workspace/Cpp_Repository/src/Ipc.cpp
+
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/arinux/workspace/Cpp_Repository/src/Ipc.cpp > CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.i
+
+CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/arinux/workspace/Cpp_Repository/src/Ipc.cpp -o CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.s
+
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Logger.cpp.o: CMakeFiles/nwk_shared.dir/flags.make
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Logger.cpp.o: /home/arinux/workspace/Cpp_Repository/src/Logger.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Logger.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Logger.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Logger.cpp.o -c /home/arinux/workspace/Cpp_Repository/src/Logger.cpp
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Logger.cpp.i: cmake_force
@@ -124,7 +137,7 @@ CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Logger.cpp.s:
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.o: CMakeFiles/nwk_shared.dir/flags.make
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.o: /home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.o -c /home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.i: cmake_force
@@ -137,7 +150,7 @@ CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/NetworkTool.c
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.o: CMakeFiles/nwk_shared.dir/flags.make
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.o: /home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.o -c /home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.i: cmake_force
@@ -150,7 +163,7 @@ CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.o: CMakeFiles/nwk_shared.dir/flags.make
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.o: /home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.o -c /home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp.i: cmake_force
@@ -163,7 +176,7 @@ CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcServer.cpp
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.o: CMakeFiles/nwk_shared.dir/flags.make
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.o: /home/arinux/workspace/Cpp_Repository/src/StdInput.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.o -c /home/arinux/workspace/Cpp_Repository/src/StdInput.cpp
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.i: cmake_force
@@ -176,7 +189,7 @@ CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/StdInput.cpp.
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.o: CMakeFiles/nwk_shared.dir/flags.make
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.o: /home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.o -c /home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp.i: cmake_force
@@ -189,7 +202,7 @@ CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpClient.cpp
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.o: CMakeFiles/nwk_shared.dir/flags.make
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.o: /home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.o -c /home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp.i: cmake_force
@@ -202,7 +215,7 @@ CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TcpServer.cpp
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.o: CMakeFiles/nwk_shared.dir/flags.make
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.o: /home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.o -c /home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/ThreadPool.cpp.i: cmake_force
@@ -215,7 +228,7 @@ CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/ThreadPool.cp
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.o: CMakeFiles/nwk_shared.dir/flags.make
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.o: /home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.o -c /home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp.i: cmake_force
@@ -228,7 +241,7 @@ CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/TimerTick.cpp
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.o: CMakeFiles/nwk_shared.dir/flags.make
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.o: /home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.o -c /home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp
 
 CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.i: cmake_force
@@ -245,6 +258,7 @@ nwk_shared_OBJECTS = \
 "CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o" \
 "CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o" \
 "CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.o" \
+"CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.o" \
 "CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Logger.cpp.o" \
 "CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.o" \
 "CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.o" \
@@ -263,6 +277,7 @@ nwk_shared_EXTERNAL_OBJECTS =
 /home/arinux/workspace/Cpp_Repository/lib/libnwk_shared.so: CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o
 /home/arinux/workspace/Cpp_Repository/lib/libnwk_shared.so: CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o
 /home/arinux/workspace/Cpp_Repository/lib/libnwk_shared.so: CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.o
+/home/arinux/workspace/Cpp_Repository/lib/libnwk_shared.so: CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.o
 /home/arinux/workspace/Cpp_Repository/lib/libnwk_shared.so: CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/Logger.cpp.o
 /home/arinux/workspace/Cpp_Repository/lib/libnwk_shared.so: CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.o
 /home/arinux/workspace/Cpp_Repository/lib/libnwk_shared.so: CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.o
@@ -275,7 +290,7 @@ nwk_shared_EXTERNAL_OBJECTS =
 /home/arinux/workspace/Cpp_Repository/lib/libnwk_shared.so: CMakeFiles/nwk_shared.dir/home/arinux/workspace/Cpp_Repository/src/UdpServer.cpp.o
 /home/arinux/workspace/Cpp_Repository/lib/libnwk_shared.so: CMakeFiles/nwk_shared.dir/build.make
 /home/arinux/workspace/Cpp_Repository/lib/libnwk_shared.so: CMakeFiles/nwk_shared.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX shared library /home/arinux/workspace/Cpp_Repository/lib/libnwk_shared.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking CXX shared library /home/arinux/workspace/Cpp_Repository/lib/libnwk_shared.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/nwk_shared.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

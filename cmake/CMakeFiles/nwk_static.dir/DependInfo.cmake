@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp" "/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/FileOperate.cpp.o"
   "/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp" "/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/HttpClient.cpp.o"
   "/home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp" "/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/HttpServer.cpp.o"
+  "/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp" "/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/Ipc.cpp.o"
   "/home/arinux/workspace/Cpp_Repository/src/Logger.cpp" "/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/Logger.cpp.o"
   "/home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp" "/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/NetworkTool.cpp.o"
   "/home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp" "/home/arinux/workspace/Cpp_Repository/cmake/CMakeFiles/nwk_static.dir/home/arinux/workspace/Cpp_Repository/src/RpcClient.cpp.o"

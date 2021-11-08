@@ -24,9 +24,6 @@ int main(int argc, char **argv) {
     /* Event poll init */
     EventPoll eventPoll;
 
-    ThreadPool& threadPool = ThreadPool::getInstance();
-    threadPool.threadPoolStart();
-
     File fileOperate("../fodder/index.html");
     fileOperate.asyncReadAllFromFile();
 
